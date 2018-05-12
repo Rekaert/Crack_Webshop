@@ -16,7 +16,7 @@ const host = 'localhost';
 const port = 27017;
 const user = 'root';
 const password = 'toor';
-const database = 'blog';
+const database = 'crack';
 
 module.exports = {
   uri: `mongodb://${user}:${password}@${host}:${port}/${database}`,
