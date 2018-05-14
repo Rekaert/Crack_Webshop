@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
@@ -10,6 +11,8 @@ import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NavbarComponent } from './navbar/navbar.component';
+
+import { UsersService } from './users/users.service';
 
 const routes: Routes = [
   { path: '', component: NavbarComponent, pathMatch: 'full' },
@@ -31,10 +34,11 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
