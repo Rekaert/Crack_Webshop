@@ -1,5 +1,5 @@
 /*
-use blog
+use webshop
 db.createUser(
    {
      user: "pwd",
