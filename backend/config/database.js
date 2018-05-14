@@ -2,11 +2,11 @@
 use blog
 db.createUser(
    {
-     user: "root",
-     pwd: "toor",
+     user: "pwd",
+     pwd: "user",
      roles:
        [
-         { role: "readWrite", db: "blog" }
+         { role: "readWrite", db: "webshop" }
        ]
    }
 )
@@ -14,9 +14,9 @@ db.createUser(
 
 const host = 'localhost';
 const port = 27017;
-const user = 'root';
-const password = 'toor';
-const database = 'blog';
+const user = 'pwd';
+const password = 'user';
+const database = 'webshop';
 
 module.exports = {
   uri: `mongodb://${user}:${password}@${host}:${port}/${database}`,
