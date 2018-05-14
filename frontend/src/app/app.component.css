@@ -1,0 +1,87 @@
+body {
+  background: #000;
+}
+
+.container {}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Dancing Script', cursive;
+}
+
+section {
+  padding: 10px;
+}
+
+.container {
+  box-shadow: 10px 10px 40px 10px rgba(0, 0, 0, 0.20);
+  font-family: 'Courgette', cursive;
+  animation-name: mymove;
+  animation-duration: 5s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes mymove {
+  from {
+    top: 0px;
+    opacity: 0;
+    width: 800px;
+  }
+  to {
+    top: 1000px;
+    opacity: 1;
+    width: 1200px;
+  }
+}
+
+.fa-twitter {
+  color: #1DA1F2
+}
+
+.fa-facebook-square {
+  color: #4867AA
+}
+
+.fa-facebook-square:hover {
+  color: #1DA1F2
+}
+
+.fa-youtube {
+  color: #FF0000
+}
+
+.fa-youtube:hover {
+  color: #1DA1F2
+}
+
+.fa-instagram {
+  color: #FFF;
+  background: linear-gradient(to bottom right, #9840A4, #D53591, #FDC25F);
+  width: 50px;
+  height: 45px;
+  border-radius: 4px;
+}
+
+.fa-instagram:hover {
+  color: #1DA1F2
+}
+
+.fa-github {
+  color: #000
+}
+
+.fa-github:hover {
+  color: #1DA1F2
+}
+
+.fa-slack {
+  color: #3DBA91;
+}
+
+.fa-slack:hover {
+  color: #E11665
+}

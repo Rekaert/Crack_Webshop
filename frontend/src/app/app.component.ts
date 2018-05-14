@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { Headers } from '@angular/http';
+import { User } from './users/user';
+import { UsersService } from './users/users.service';
 
 @Component({
     selector: 'app-root',
