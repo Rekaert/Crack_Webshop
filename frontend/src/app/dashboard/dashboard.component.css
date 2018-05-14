@@ -1,11 +1,33 @@
+.full_width {
+  margin: 15px;
+}
+
 .header_title {
   box-sizing: border-box;
   margin: 1%;
   height: 10vh;
-  background-color: blanchedalmond;
+  background-color: gray;
+  border-radius: 5px;
 }
 
-.fas {
-  font-size: 3em;
-  color: Tomato
+.header_title_data {
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 10px;
+  text-align: right;
+}
+
+.header_title_hint {
+  padding-top: 10px;
+  text-align: right;
+}
+
+.fa-user,
+.fa-archive,
+.fa-shopping-basket,
+.fa-euro-sign {
+  padding-top: 5%;
+  margin-top: 5%;
+  font-size: 4em;
+  color: rgb(255, 255, 255)
 }

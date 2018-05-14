@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Chart } from 'chart.js';
+import { DashboardChartService } from '../dashboard-chart.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _dashboardChart: DashboardChartService) { }
 
   ngOnInit() {
+    this._dashboardChart.dailyForecast().subscribe(res => {
+      console.log(res);
+    })
   }
 
 }
