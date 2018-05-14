@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardChartService } from './dashboard-chart.service';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -31,10 +34,11 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [DashboardChartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

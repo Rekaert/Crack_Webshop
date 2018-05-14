@@ -1,0 +1,11 @@
+.header_title {
+  box-sizing: border-box;
+  margin: 1%;
+  height: 10vh;
+  background-color: blanchedalmond;
+}
+
+.fas {
+  font-size: 3em;
+  color: Tomato
+}
