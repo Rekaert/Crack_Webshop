@@ -14,9 +14,11 @@ module.exports = {
         szmlcim: req.body.szmlcim,
         szallcim: req.body.szallcim,
         tel: req.body.tel,
+        perm: req.body.perm,
       }), req.body.password)
       .then(() => res.json({
         success: 'Sikeres regisztráció',
+        user: req.body,
       }))
       .catch(err => res.send(err));
   },
@@ -25,6 +27,9 @@ module.exports = {
       User.save();
     }); */
     User.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
+      post.changePassword(req.body.oldpassword, req.body.newpassword, () => {
+        post.save();
+      });
       if (err) {
         res.send(err);
       }
