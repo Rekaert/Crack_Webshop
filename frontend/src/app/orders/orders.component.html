@@ -13,16 +13,18 @@
   <tbody>
     <tr>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.userId">
+        <select name="" id="" [(ngModel)]="orders.userId" class="form-control">
+          <option *ngFor="let x of orders" value={{x._id}}>{{x.userId}}</option>
+        </select>
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.productId">
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.productId">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.quantity">
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.quantity">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.cost">
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.cost">
       </td>
       <td>
         <input type="button" class="btn btn-success" value="Create" name="" id="" (click)="create()">
