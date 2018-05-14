@@ -4,6 +4,7 @@ const UserController = require('../controller/user.controller');
 
 userRouter.get('/profile', UserController.profile);
 userRouter.post('/register', UserController.register);
+userRouter.post('/update/:id', UserController.update);
 userRouter.post('/login', passport.authenticate('local'), UserController.login);
 userRouter.get('/logout', UserController.logout);
 
