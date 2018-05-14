@@ -6,7 +6,14 @@ module.exports = {
       user: req.user,
     });
   },
-
+  all: (req, res) => {
+    User.find({}, (err, post) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(post);
+    });
+  },
   register: (req, res) => {
     User.register(new User({
         username: req.body.username,
@@ -23,13 +30,18 @@ module.exports = {
       .catch(err => res.send(err));
   },
   update: (req, res) => {
-    /* User.changePassword('qwer1234', 'valami', () => {
-      User.save();
-    }); */
     User.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
       post.changePassword(req.body.oldpassword, req.body.newpassword, () => {
         post.save();
       });
+      if (err) {
+        res.send(err);
+      }
+      res.json(post);
+    });
+  },
+  delete: (req, res) => {
+    User.findByIdAndRemove(req.params.id, (err, post) => {
       if (err) {
         res.send(err);
       }

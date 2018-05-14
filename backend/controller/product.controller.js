@@ -1,5 +1,6 @@
 const Product = require('../models/product');
-
+const fs = require('fs');
+const request = require('request');
 
 module.exports = {
 
@@ -21,10 +22,14 @@ module.exports = {
     });
   },
   create: (req, res) => {
+    const cim = req.body.image;
+    const nev = req.body.name;
+    req.body.image = `public/img/${nev}.jpg`;
     Product.create(req.body, (err, post) => {
       if (err) {
         res.send(err);
       }
+      request(cim).pipe(fs.createWriteStream(`public/img/${nev}.jpg`));
       res.json(post);
     });
   },
