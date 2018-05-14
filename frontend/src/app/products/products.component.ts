@@ -106,5 +106,5 @@ export class ProductsComponent implements OnInit {
     /**
      * Upload image for products
      */
-    imageUpload(id){ }
   }
+}

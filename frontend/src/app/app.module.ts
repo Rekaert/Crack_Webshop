@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-<<<<<<< HEAD
 import { DashboardChartService } from './dashboard-chart.service';
-=======
->>>>>>> 62cca56628b37dcf458199a196eb3927ba95fe23
+import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -43,11 +41,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
   ],
-<<<<<<< HEAD
-  providers: [DashboardChartService],
-=======
-  providers: [UsersService],
->>>>>>> 62cca56628b37dcf458199a196eb3927ba95fe23
+  providers: [DashboardChartService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
