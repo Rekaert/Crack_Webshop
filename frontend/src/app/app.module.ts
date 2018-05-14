@@ -43,7 +43,7 @@ const routes: Routes = [
     Ng2GoogleChartsModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [DashboardChartService, HttpLocalService],
+  providers: [DashboardChartService, HttpLocalService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
