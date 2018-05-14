@@ -13,10 +13,10 @@
   <tbody>
     <tr>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.userID">
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.userId">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.productID">
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.productId">
       </td>
       <td>
         <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.quantity">
@@ -28,22 +28,23 @@
         <input type="button" class="btn btn-success" value="Create" name="" id="" (click)="create()">
       </td>
     </tr>
+
     <tr *ngFor="let order of orders">
       <td>
-        <input type="text" class="form-control" [(ngModel)]="orders.userID">
+        <input type="text" class="form-control" [(ngModel)]="order.userId">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="orders.productID">
+        <input type="text" class="form-control" [(ngModel)]="order.productId">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="orders.quantity">
+        <input type="text" class="form-control" [(ngModel)]="order.quantity">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="orders.cost">
+        <input type="text" class="form-control" [(ngModel)]="order.cost">
       </td>
       <td class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" (click)="update(product)">Update</button>
-        <button type="button" class="btn btn-danger" (click)="delete(product)">Delete</button>
+        <button type="button" class="btn btn-primary" (click)="update(order)">Update</button>
+        <button type="button" class="btn btn-danger" (click)="delete(order)">Delete</button>
       </td>
     </tr>
   </tbody>

@@ -7,15 +7,22 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  orders: object = {
-    userID: "",
-    productID: "",
+  ordersNew: object = {
+    userId: "",
+    productId: "",
     quantity: "",
     cost: "",
   }
-  constructor(public http: Http) { }
+
+  orders: any = [];
+
+
+  constructor(public http: Http) {
+    this.getAll();
+  }
 
   ngOnInit() {
+
   }
 
 
@@ -28,7 +35,7 @@ export class OrdersComponent implements OnInit {
   }
 
   create() {
-    this.http.post('http://localhost:8080/order/create', this.orders)
+    this.http.post('http://localhost:8080/order/create', this.ordersNew)
       .subscribe((data) => {
         this.orders = JSON.parse(data['_body']);
       }
