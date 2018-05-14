@@ -37,7 +37,7 @@ module.exports = {
             if (err) {
                 res.send(err)
             }
-            res.json(post)
+            res.json(req.body)
         })
     },
 
