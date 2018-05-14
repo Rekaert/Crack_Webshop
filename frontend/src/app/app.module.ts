@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardChartService } from './dashboard-chart.service';
 import { HttpLocalService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 import { AppComponent } from './app.component';
 
@@ -39,6 +40,7 @@ const routes: Routes = [
     HttpModule,
     HttpClientModule,
     FormsModule,
+    Ng2GoogleChartsModule,
     RouterModule.forRoot(routes),
   ],
   providers: [DashboardChartService, HttpLocalService],

@@ -1,12 +1,13 @@
 .full_width {
   margin: 15px;
+  color: white;
 }
 
 .header_title {
   box-sizing: border-box;
   margin: 1%;
   height: 10vh;
-  background-color: gray;
+  background-color: #3366CC;
   border-radius: 5px;
 }
 
