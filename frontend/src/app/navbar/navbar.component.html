@@ -1,3 +1,29 @@
-<p>
-  navbar works!
-</p>
+<!--nav-->
+<nav id="main-menu" class="navbar fixed-top navbar-expand-lg navbar-white bg-white">
+  <a class="navbar-brand" routerLink="">
+    <i class="fas fa-home fa-2x"></i>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" routerLink="">
+        <span class="sr-only">(current)</span>
+      </a>
+      <a class="nav-item nav-link" routerLink="/dashboard">Dashboard</a>
+      <a class="nav-item nav-link" routerLink="/users">Users</a>
+      <a class="nav-item nav-link" routerLink="/products">Prodacts</a>
+      <a class="nav-item nav-link" routerLink="/orders">Orders</a>
+      <a class="nav-item nav-link" routerLink="/register"></a>
+      <a class="nav-item nav-link" routerLink="/login"></a>
+      <a class="nav-item nav-link" routerLink="/logout"></a>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal" routerLink="{{ '/' }}">Login</button>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#registrateModal" routerLink="{{ '/' }}">Registrate</button>
+    </div>
+    <div *ngIf="bejelentkezve" class="kijelentkezes">
+      <button class="btn btn-danger" type="submit" (click)="logout()" routerLink="{{ '/' }}">Logout</button>
+    </div>
+  </div>
+</nav>
