@@ -5,43 +5,46 @@ import { Observable } from 'rxjs/Observable';
 import { Headers } from '@angular/http';
 import { User } from './users/user';
 import { UsersService } from './users/users.service';
+import { HttpLocalService } from './http.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    user: any = {
-        username: 'YOUR RESGISTERED USERNAME',
-        password: 'YOUR RESGISTERED USER PASSWORD'
-    };
+  user: any = {
+    username: 'YOUR RESGISTERED USERNAME',
+    password: 'YOUR RESGISTERED USER PASSWORD'
+  };
 
-    options = new RequestOptions({ withCredentials: true });
-    baseUrl = 'http://localhost:8080/user/';
+  options = new RequestOptions({ withCredentials: true });
+  baseUrl = 'http://localhost:8080/user/';
 
-    constructor(public http: Http) {
+  constructor(public http: HttpLocalService) {
 
-    }
-
-    profile() {
-        this.http.get(this.baseUrl + 'profile', this.options)
-            .subscribe(data => {
-                console.log(data['_body']);
-            });
-    }
-
-    login() {
-        this.http.post(this.baseUrl + 'login', this.user, this.options)
-            .subscribe(data => {
-                console.log(data['_body']);
-            });
-    }
-
-    logout() {
-        this.http.get(this.baseUrl + 'logout', this.options)
-            .subscribe(data => {
-                console.log(data['_body']);
-            });
-    }
+  }
+  login() {
+    this.http.login();
+  }
+  /*     profile() {
+          this.http.get(this.baseUrl + 'profile', this.options)
+              .subscribe(data => {
+                  console.log(data['_body']);
+              });
+      }
+  
+      login() {
+          this.http.post(this.baseUrl + 'login', this.user, this.options)
+              .subscribe(data => {
+                  console.log(data['_body']);
+              });
+      }
+  
+      logout() {
+          this.http.get(this.baseUrl + 'logout', this.options)
+              .subscribe(data => {
+                  console.log(data['_body']);
+              });
+      } */
 }
