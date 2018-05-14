@@ -1,5 +1,29 @@
-<label for="name">Username</label>
-<input class="form-control" type="text" id="name" [(ngModel)]="user.username">
-<app-navbar>
-</app-navbar>
-<router-outlet></router-outlet>
+<div class="container">
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+  <section>
+    <!--social ikonok-->
+    <div class="row text-center">
+      <div class="col-12 text center">
+        <a href="https://twitter.com/?lang=en" data-toggle="tooltip" data-placement="top" title="Twitter">
+          <i class="fab fa-3x fa-twitter-square"></i>
+        </a>
+        <a href="https://www.facebook.com/" data-toggle="tooltip" data-placement="top" title="Facebook">
+          <i class="fab fa-3x fa-facebook-square"></i>
+        </a>
+        <a href="https://www.youtube.com/" data-toggle="tooltip" data-placement="bottom" title="Youtube">
+          <i class="fab fa-3x fa-youtube"></i>
+        </a>
+        <a href="https://www.instagram.com/" data-toggle="tooltip" data-placement="top" title="Instagram">
+          <i class="fab fa-3x fa-instagram"></i>
+        </a>
+        <a href="https://www.github.com/" data-toggle="tooltip" data-placement="top" title="GitHub">
+          <i class="fab fa-3x fa-github"></i>
+        </a>
+        <a href="https://www.slack.com/" data-toggle="tooltip" data-placement="bottom" title="Slack">
+          <i class="fab fa-3x fa-slack"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

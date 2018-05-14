@@ -1,0 +1,40 @@
+.svg-inline--fa.fa-home:hover {
+  color: #0056B3
+}
+
+#main-menu .nav-item {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.navbar {
+  cursor: pointer;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+  font-size: 25px
+}
+
+.navbar .nav-item:hover {
+  cursor: pointer;
+  text-shadow: 1px 1px 2px white, 0 0 25px blue, 0 0 5px white;
+  font-size: 25px
+}
+
+.btn-danger {
+  margin-left: 70px;
+}
+
+#signin {
+  position: absolute;
+  left: 1200px;
+  width: 100px;
+}
+
+#regist {
+  position: absolute;
+  left: 1320px;
+  width: 100px;
+}
+
+.btn-primary:hover {
+  background-color: white;
+  color: #0069D9
+}
