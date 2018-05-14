@@ -77,6 +77,7 @@ app.use(cors({
 // User User router
 app.use('/user/', userRouter);
 app.use('/order/', orderRouter);
+app.use('/product/', require('./route/product.route'));
 
 
 // Start server
