@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardChartService } from './dashboard-chart.service';
-import { HttpService } from './http.service';
+import { HttpLocalService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -41,7 +41,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [DashboardChartService, HttpService],
+  providers: [DashboardChartService, HttpLocalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

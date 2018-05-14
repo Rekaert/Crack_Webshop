@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpLocalService } from '../http.service';
 import { Observable } from 'rxjs/Observable';
 import { Headers, RequestOptions } from '@angular/http';
 import { User } from './user';
@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
   users: User[];
   user = new User();
 
-  constructor(private http: HttpClient,
+  constructor(private http: HttpLocalService,
     private userService: UsersService) { }
 
   ngOnInit() {
