@@ -1,6 +1,25 @@
 <br>
 <h2>Products</h2>
 <hr>
+<div class="col-md-4">
+  <div class="card text-center">
+    <div class="card-header">
+      <input placeholder="termék neve" type="text" class="form-control" [(ngModel)]="newProduct.name">
+    </div>
+    <div class="card-body">
+      <div class="card-title">
+        <label class="form-control" for="newPic">Új kép </label>
+        <input placeholder="image link" id="newPic" type="text" class="form-control" [(ngModel)]="newProduct.image">
+      </div>
+      <input type="text" placeholder="URL" class="form-control" [(ngModel)]="newProduct.url">
+      <input type="text" placeholder="manufacturer" class="form-control" name="manufact" id="prodManufact" [(ngModel)]="newProduct.manufacturer">
+      <input type="text" placeholder="cost" class="form-control" name="manufact" id="prodManufact" [(ngModel)]="newProduct.cost">
+    </div>
+    <div class="card-footer btn-group">
+      <button type="button" class="btn btn-primary" (click)="create()">Create</button>
+    </div>
+  </div>
+</div>
 <div class="col-md-4" *ngFor="let product of products">
   <div class="card text-center">
     <div class="card-header">
@@ -8,14 +27,17 @@
     </div>
     <div class="card-body">
       <div class="card-title">
-        <input type="text" class="form-control" [(ngModel)]="product.image">
+        <label class="form-control" for="">Kép neve: {{product.image}}</label>
+        <label class="form-control" for="newPic">Új kép link</label>
+        <input placeholder="image link" id="newPic" type="text" class="form-control" [(ngModel)]="product.newImage">
       </div>
       <img style="max-width:100% " src="{{ 'http://localhost:8080/images/'+product.image}}" alt="kép">
       <input type="text" class="form-control" [(ngModel)]="product.url">
       <input type="text" class="form-control" name="manufact" id="prodManufact" [(ngModel)]="product.manufacturer">
+      <input type="text" class="form-control" name="manufact" id="prodManufact" [(ngModel)]="product.cost">
     </div>
     <div class="card-footer btn-group">
-      <button type="button" class="btn btn-primary" (click)="update(product)">Update</button>
+      <button type="button" class="btn btn-primary" (click)="update(product,i)">Update</button>
       <!-- <button type="button" class="btn btn-success" (click)="update(product)">Update Image</button> -->
       <button type="button" class="btn btn-danger" (click)="delete(product)">Delete</button>
     </div>
