@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   monthlyIncome = {
     chartType: 'ColumnChart',
     dataTable: this.chartData,
-    options: { 'title': 'Bevétel a hónapban' },
+    options: { 'title': 'Bevétel a hónapban', chartArea: { width: '100%' }, 'width': document.body.style.width },
   };
 
   createDataForChart() {

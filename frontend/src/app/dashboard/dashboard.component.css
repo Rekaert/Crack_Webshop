@@ -6,9 +6,11 @@
 .header_title {
   background-color: #3366CC;
   border-radius: 5px;
-  box-sizing: border-box;
-  height: 10vh;
-  margin: 1%;
+  padding: 1%;
+}
+
+.header_title .row {
+  padding: 3%;
 }
 
 .header_title_data {
