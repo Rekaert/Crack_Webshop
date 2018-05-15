@@ -6,20 +6,22 @@ import { User } from './users/user';
 @Injectable()
 export class HttpLocalService {
   private url = 'http://localhost:8080';
-
+  users: any = [];
+  products: any = [];
+  orders: any = [];
   constructor(private httpClient: HttpClient) { }
 
   getUsers() {
     this.httpClient.get(this.url + '/user/')
-      .subscribe((data) => console.log(data));
+      .subscribe((data) => this.users = data);
   }
   getOrders() {
     this.httpClient.get(this.url + '/order/all')
-      .subscribe((data) => console.log(data));
+      .subscribe((data) => this.orders = data);
   }
   getProducts() {
     this.httpClient.get(this.url + '/product')
-      .subscribe((data) => console.log(data));
+      .subscribe((data) => this.products = data);
   }
   login() {
     this.httpClient.post(this.url + '/user/login', { username: "email@cim.com", password: "1234" })
