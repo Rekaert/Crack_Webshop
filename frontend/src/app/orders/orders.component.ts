@@ -22,8 +22,10 @@ export class OrdersComponent implements OnInit {
   constructor(public http: Http, public httpLocalService: HttpLocalService) {
 
     this.httpLocalService.getUsers();
+    this.httpLocalService.getProducts();
     this.getAll();
     setTimeout(() => { console.log(this.httpLocalService.users); }, 1000);
+    setTimeout(() => { console.log(this.httpLocalService.products); }, 1000);
   }
 
   ngOnInit() {
