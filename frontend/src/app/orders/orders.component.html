@@ -13,37 +13,40 @@
   <tbody>
     <tr>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.userID">
+        <select name="" id="" [(ngModel)]="orders.userId" class="form-control">
+          <option *ngFor="let x of orders" value={{x._id}}>{{x.userId}}</option>
+        </select>
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.productID">
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.productId">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.quantity">
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.quantity">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="orders.cost">
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.cost">
       </td>
       <td>
         <input type="button" class="btn btn-success" value="Create" name="" id="" (click)="create()">
       </td>
     </tr>
+
     <tr *ngFor="let order of orders">
       <td>
-        <input type="text" class="form-control" [(ngModel)]="orders.userID">
+        <input type="text" class="form-control" [(ngModel)]="order.userId">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="orders.productID">
+        <input type="text" class="form-control" [(ngModel)]="order.productId">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="orders.quantity">
+        <input type="text" class="form-control" [(ngModel)]="order.quantity">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="orders.cost">
+        <input type="text" class="form-control" [(ngModel)]="order.cost">
       </td>
       <td class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" (click)="update(product)">Update</button>
-        <button type="button" class="btn btn-danger" (click)="delete(product)">Delete</button>
+        <button type="button" class="btn btn-primary" (click)="update(order)">Update</button>
+        <button type="button" class="btn btn-danger" (click)="delete(order)">Delete</button>
       </td>
     </tr>
   </tbody>
