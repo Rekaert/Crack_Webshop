@@ -25,19 +25,23 @@ footer {
 }
 
 .fa-twitter {
-  color: #1DA1F2
+  color: #1DA1F2;
 }
 
 .fa-facebook-square {
-  color: #4867AA
+  color: #4867AA;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .fa-facebook-square:hover {
-  color: #1DA1F2
+  color: #1DA1F2;
 }
 
 .fa-youtube {
-  color: #FF0000
+  color: #FF0000;
 }
 
 .fa-youtube:hover {

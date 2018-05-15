@@ -40,7 +40,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
-
+// use public folder
+app.use(express.static('public'));
+app.get('/images/:img', (req, res) => {
+  console.log(req.params.img);
+  res.sendFile(__dirname + '/public/img/' + req.params.img);
+});
 // Session handling
 app.use(session({
   secret: 'secret',
