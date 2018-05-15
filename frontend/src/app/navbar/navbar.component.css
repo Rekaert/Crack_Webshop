@@ -2,10 +2,6 @@
   margin-bottom: 100px;
 }
 
-.svg-inline--fa.fa-mobile-alt:hover {
-  color: #0056B3
-}
-
 .navbar-brand {
   padding: 20px;
   text-shadow: 1px 1px 2px white, 0 0 25px rgb(219, 219, 92), 0 0 5px white;
@@ -33,21 +29,25 @@
 }
 
 .btn-danger {
-  margin-left: 70px;
+  margin-left: 5%;
 }
 
 .button_login {
-  left: 1200px;
+  left: 170vh;
+  left: 80%;
   position: absolute;
-  top: 25px;
-  width: 100px;
+  top: 5vh;
+  top: 35%;
+  width: 17vh;
 }
 
 .button_registrate {
-  left: 1320px;
+  left: 190vh;
+  left: 89%;
   position: absolute;
-  top: 25px;
-  width: 100px;
+  top: 5vh;
+  top: 35%;
+  width: 17vh;
 }
 
 .btn-primary:hover {
