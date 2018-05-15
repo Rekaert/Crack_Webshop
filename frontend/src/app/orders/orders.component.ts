@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { HttpLocalService } from '../http.service'
+import { setTimeout } from 'core-js/library/web/timers';
 
 @Component({
   selector: 'app-orders',
@@ -15,15 +16,14 @@ export class OrdersComponent implements OnInit {
     cost: "",
   }
 
-  users: any;
-
   orders: any = [];
 
 
   constructor(public http: Http, public httpLocalService: HttpLocalService) {
+
+    this.httpLocalService.getUsers();
     this.getAll();
-    this.users = httpLocalService.getUsers();
-    console.log(this.users);
+    setTimeout(() => { console.log(this.httpLocalService.users); }, 1000);
   }
 
   ngOnInit() {

@@ -14,7 +14,7 @@
     <tr>
       <td>
         <select name="" id="" [(ngModel)]="ordersNew.userId" class="form-control">
-          <option *ngFor="let x of orders" value={{x.userId}}>{{x.userId}}</option>
+          <option *ngFor="let x of httpLocalService.users" value={{x._id}}>{{x.username}}</option>
         </select>
       </td>
       <td>
@@ -33,7 +33,9 @@
 
     <tr *ngFor="let order of orders">
       <td>
-        <input type="text" class="form-control" [(ngModel)]="order.userId">
+        <select name="" id="" [(ngModel)]="order.userId" class="form-control">
+          <option *ngFor="let x of httpLocalService.users" value={{x._id}}>{{x.username}}</option>
+        </select>
       </td>
       <td>
         <input type="text" class="form-control" [(ngModel)]="order.productId">
