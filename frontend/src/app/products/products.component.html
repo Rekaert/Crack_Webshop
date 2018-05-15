@@ -1,8 +1,27 @@
 <br>
 <h2>Products</h2>
 <hr>
-
-<table class="table table-bordered text-center table-striped">
+<div class="col-md-4" *ngFor="let product of products">
+  <div class="card text-center">
+    <div class="card-header">
+      <input type="text" class="form-control" [(ngModel)]="product.name">
+    </div>
+    <div class="card-body">
+      <div class="card-title">
+        <input type="text" class="form-control" [(ngModel)]="product.image">
+      </div>
+      <img style="max-width:100% " src="{{ 'http://localhost:8080/images/'+product.image}}" alt="kép">
+      <input type="text" class="form-control" [(ngModel)]="product.url">
+      <input type="text" class="form-control" name="manufact" id="prodManufact" [(ngModel)]="product.manufacturer">
+    </div>
+    <div class="card-footer btn-group">
+      <button type="button" class="btn btn-primary" (click)="update(product)">Update</button>
+      <!-- <button type="button" class="btn btn-success" (click)="update(product)">Update Image</button> -->
+      <button type="button" class="btn btn-danger" (click)="delete(product)">Delete</button>
+    </div>
+  </div>
+</div>
+<!-- <table class="table table-bordered text-center table-striped">
   <thead>
     <th>ID</th>
     <th>Name</th>
@@ -29,7 +48,7 @@
         <input type="text" class="form-control" name="cost" id="prodCost" [(ngModel)]="newProduct.cost">
       </td>
       <td>
-        <input type="text" class="form-control" name="image" id="prodImage" [(ngModel)]="newProduct.image">
+
       </td>
       <td>
         <input type="button" class="btn btn-success" value="Create" name="create" id="createButton" (click)="create()">
@@ -60,4 +79,4 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
