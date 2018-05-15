@@ -2,7 +2,7 @@ const Product = require('../models/product');
 const fs = require('fs');
 const request = require('request');
 
-const filePath = '/';
+const filePath = './';
 
 function deleteFile(fileName) {
   fs.unlinkSync(filePath + fileName);
@@ -51,7 +51,7 @@ module.exports = {
       }
       request(cim).pipe(fs.createWriteStream(`public/img/${nev}.jpg`));
       res.json(post);
-      deleteFile(post.image);
+      deleteFile(req.body.oldImage);
     });
   },
 
