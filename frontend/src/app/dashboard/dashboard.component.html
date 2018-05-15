@@ -1,67 +1,67 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <div class="container full_width">
   <div class="row">
-    <div class="col-md-3 header_title">
-      <div class="row">
-        <div class="col-md-3">
-          <br>
-          <i class="fas fa-user"></i>
-        </div>
-        <div class="col-9">
-          <p class="header_title_data">sad</p>
-          <p class="header_title_hint">Felhasználók</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 header_title">
-      <div class="row">
-        <div class="col-md-3">
-          <br>
-          <i class="fas fa-archive"></i>
-        </div>
-        <div class="col-9">
-          <p class="header_title_data">sad</p>
-          <p class="header_title_hint">Termékek</p>
+    <div class="col-md-3">
+      <div class="header_title">
+        <div class="row">
+          <div class="col-md-3">
+            <br>
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="col-md-9">
+            <p class="header_title_data">{{httpreq.users.length}}</p>
+            <p class="header_title_hint">Felhasználók</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-3 header_title">
-      <div class="row">
-        <div class="col-md-3">
-          <br>
-          <i class="fas fa-shopping-basket"></i>
-        </div>
-        <div class="col-9">
-          <p class="header_title_data">sad</p>
-          <p class="header_title_hint">Vásárlók</p>
+    <div class="col-md-3">
+      <div class="header_title">
+        <div class="row">
+          <div class="col-md-3">
+            <br>
+            <i class="fas fa-archive"></i>
+          </div>
+          <div class="col-md-9">
+            <p class="header_title_data">{{httpreq.products.length}}</p>
+            <p class="header_title_hint">Termékek</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-2 header_title">
-      <div class="row">
-        <div class="col-md-3">
-          <br>
-          <i class="fas fa-euro-sign"></i>
-        </div>
-        <div class="col-9">
-          <p class="header_title_data">sad</p>
-          <p class="header_title_hint">Havi bevétel</p>
+    <div class="col-md-3">
+      <div class="header_title">
+        <div class="row">
+          <div class="col-md-3">
+            <br>
+            <i class="fas fa-shopping-basket"></i>
+          </div>
+          <div class="col-md-9">
+            <p class="header_title_data">{{httpreq.orders.length}}</p>
+            <p class="header_title_hint">Rendelések</p>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-3">
+      <div class="header_title">
+        <div class="row">
+          <div class="col-md-3">
+            <br>
+            <i class="far fa-money-bill-alt"></i>
+          </div>
+          <div class="col-md-9">
+            <p class="header_title_data">{{cost}} ft</p>
+            <p class="header_title_hint">Bevétel</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <google-chart style="margin:auto" [data]="monthlyIncome"></google-chart>
     </div>
   </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">asd
-        <google-chart [data]="monthlyIncome"></google-chart>
-
-      </div>
-    </div>
-  </div>
-  <button (click)="createDataForChart()">createDataForChart</button>
+</div>

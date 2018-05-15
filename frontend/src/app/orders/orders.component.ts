@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { HttpLocalService } from '../http.service'
+import { setTimeout } from 'core-js/library/web/timers';
 
 @Component({
   selector: 'app-orders',
@@ -17,20 +19,33 @@ export class OrdersComponent implements OnInit {
   orders: any = [];
 
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public httpLocalService: HttpLocalService) {
+
+    this.httpLocalService.getUsers();
+    this.httpLocalService.getProducts();
+    setTimeout(() => { this.countCost() }, 1000)
     this.getAll();
+    //setTimeout(() => { console.log(this.httpLocalService.users); }, 1000);
+    //setTimeout(() => { console.log(this.httpLocalService.products); }, 1000);
   }
 
   ngOnInit() {
 
   }
 
+  countCost() {
+    for (let i = 0; i < this.orders.length; i++) {
+      if (this.orders[i].quantity > 1) {
+        this.orders[i].cost = this.orders[i].cost * this.orders[i].quantity;
+      }
+      console.log(this.orders);
+    }
+  }
 
   getAll() {
     this.http.get('http://localhost:8080/order/all').subscribe(
       data => {
         this.orders = JSON.parse(data['_body']);
-        console.log(data);
       });
   }
 
@@ -38,18 +53,16 @@ export class OrdersComponent implements OnInit {
     console.log(this.ordersNew);
     this.http.post('http://localhost:8080/order/create', this.ordersNew)
       .subscribe((data) => {
-        this.ordersNew = JSON.parse(data['_body']);
+        this.orders.push(JSON.parse(data['_body']));
       }
       );
   }
 
   update(editOrder) {
-    console.log(editOrder._id);
     console.log(editOrder);
-
     this.http.put('http://localhost:8080/order/update/' + editOrder._id, editOrder)
       .subscribe((data) => {
-        this.orders = JSON.parse(data['_body']);
+        this.getAll();
       })
   }
 
@@ -57,7 +70,7 @@ export class OrdersComponent implements OnInit {
 
     this.http.delete('http://localhost:8080/order/delete/' + deleteOrder._id)
       .subscribe((data) => {
-        this.orders = JSON.parse(data['_body']);
+        this.getAll();
       })
   }
 
