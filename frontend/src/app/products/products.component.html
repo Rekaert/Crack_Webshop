@@ -1,140 +1,67 @@
-<main>
-  <section>
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-12">
-          <h2>Products</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <table class="table table-striped text-center">
-            <thead>
-              <tr>
-                <th>
-                  <i class="fab fa-slack-hash"></i>
-                  ID
-                </th>
-                <th>
-                  <i class="far fa-2x fa-comments"></i>
-                  Name
-                </th>
-                <th>
-                  <i class="far fa-2x fa-envelope"></i>
-                  URL
-                </th>
-                <th>
-                  <i class="far fa-2x fa-envelope-open"></i>
-                  Image
-                </th>
-                <th>
-                  <i class="far fa-2x fa-calendar-check"></i>
-                  Manufacturer
-                </th>
-                <th>
-                  <i class="far fa-2x fa-calendar-check"></i>
-                  Cost
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td>
-                  <input class="form-control" type="text" name="text" id="text" [(ngModel)]="newProduct.name">
-                </td>
-                <td>
-                  <input class="form-control" type="text" name="url" id="url" [(ngModel)]="newProduct.url">
-                </td>
-                <td>
-                  <input class="form-control" type="text" name="image" id="image" [(ngModel)]="newProduct.image">
-                </td>
-                <td>
-                  <input class="form-control" type="text" name="manufacturer" id="manufacturer" [(ngModel)]="newProduct.manufacturer">
-                </td>
-                <td>
-                  <input class="form-control" type="number" name="cost" id="cost" [(ngModel)]="newProduct.cost">
-                </td>
-                <td>
-                  <div class="btn-group">
-                    <button class="btn btn-success" type="button" (click)="create()">
-                      <i class="far fa-calendar-plus"></i>
-                      Add new item</button>
-                  </div>
-                </td>
-              </tr>
-              <tr *ngFor="let data of datas; index as i">
-                <td>{{i + 1}}.</td>
-                <td>{{data.id}}</td>
-                <td>{{data.name}}</td>
-                <td>{{data.url}}</td>
-                <td>{{data.image}}</td>
-                <td>{{data.manufacturer}}</td>
-                <td>{{data.cost}}</td>
-                <td>
-                  <div class="btn-group">
-                    <!--{{data | json}}-->
-                    <button class="btn btn-success" type="button" (click)="upload(data._id)">
-                      <i class="far fa-trash-alt"></i>
-                      Upload image</button>
-                    <button class="btn btn-danger" type="button" (click)="delete(data._id)">
-                      <i class="far fa-trash-alt"></i>
-                      Delete row</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="updateByModal(data._id)">
-                      <i class="fas fa-pencil-alt"></i>
-                      Edit datas
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Modal -->
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Edit datas</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <label for="id">ID</label>
-                  <input class="form-control" type="text" name="id" id="idModal" [(ngModel)]="product._id">
-                  <br>
-                  <label for="text">Name</label>
-                  <input class="form-control" type="text" name="name" id="nameModal" [(ngModel)]="product.name">
-                  <br>
-                  <label for="important">URL</label>
-                  <input class="form-control" type="text" name="url" id="urlModal" [(ngModel)]="product.url">
-                  <br>
-                  <label for="done">Image</label>
-                  <input class="form-control" type="text" name="image" id="imageModal" [(ngModel)]="product.image">
-                  <br>
-                  <label for="done">Manufacturer</label>
-                  <input class="form-control" type="text" name="manufacturer" id="manufacturerModal" [(ngModel)]="product.manufacturer">
-                  <br>
-                  <label for="done">Cost</label>
-                  <input class="form-control" type="number" name="cost" id="costModal" [(ngModel)]="product.cost">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" (click)="update()">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+<br>
+<h2>Products</h2>
+<hr>
+
+<table class="table table-bordered text-center table-striped">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>URL</th>
+    <th>Image</th>
+    <th>Manufacturer</th>
+    <th>Cost</th>
+    <th>Methods</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.id">
+      </td>
+      <td>
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.name">
+      </td>
+      <td>
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.url">
+      </td>
+      <td>
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.image">
+      </td>
+      <td>
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.manufacturer">
+      </td>
+      <td>
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.cost">
+      </td>
+      <td>
+        <input type="button" class="btn btn-success" value="Create" name="" id="" (click)="create()">
+      </td>
+    </tr>
+    <tr *ngFor="let product of products">
+      <td>
+        <input type="text" class="form-control" [(ngModel)]="products.id">
+      </td>
+      <td>
+        <input type="text" class="form-control" [(ngModel)]="products.name">
+      </td>
+      <td>
+        <input type="text" class="form-control" [(ngModel)]="products.url">
+      </td>
+      <td>
+        <input type="text" class="form-control" [(ngModel)]="products.img">
+      </td>
+      <td>
+        <input type="text" class="form-control" [(ngModel)]="products.manufacturer">
+      </td>
+      <td>
+        <input type="text" class="form-control" [(ngModel)]="products.cost">
+      </td>
+      <td class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" (click)="update(product)">Update</button>
+        <button type="button" class="btn btn-danger" (click)="delete(product)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<pre>
+  {{userNew | json}}
+</pre>
