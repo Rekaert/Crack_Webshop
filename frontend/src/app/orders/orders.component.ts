@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { HttpLocalService } from '../http.service'
 
 @Component({
   selector: 'app-orders',
@@ -14,11 +15,15 @@ export class OrdersComponent implements OnInit {
     cost: "",
   }
 
+  users: any;
+
   orders: any = [];
 
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public httpLocalService: HttpLocalService) {
     this.getAll();
+    this.users = httpLocalService.getUsers();
+    console.log(this.users);
   }
 
   ngOnInit() {
@@ -30,7 +35,6 @@ export class OrdersComponent implements OnInit {
     this.http.get('http://localhost:8080/order/all').subscribe(
       data => {
         this.orders = JSON.parse(data['_body']);
-        console.log(JSON.parse(data['_body']));
       });
   }
 
