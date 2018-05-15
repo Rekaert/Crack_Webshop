@@ -23,15 +23,24 @@ export class OrdersComponent implements OnInit {
 
     this.httpLocalService.getUsers();
     this.httpLocalService.getProducts();
+    setTimeout(() => { this.countCost() }, 1000)
     this.getAll();
-    setTimeout(() => { console.log(this.httpLocalService.users); }, 1000);
-    setTimeout(() => { console.log(this.httpLocalService.products); }, 1000);
+    //setTimeout(() => { console.log(this.httpLocalService.users); }, 1000);
+    //setTimeout(() => { console.log(this.httpLocalService.products); }, 1000);
   }
 
   ngOnInit() {
 
   }
 
+  countCost() {
+    for (let i = 0; i < this.orders.length; i++) {
+      if (this.orders[i].quantity > 1) {
+        this.orders[i].cost = this.orders[i].cost * this.orders[i].quantity;
+      }
+      console.log(this.orders);
+    }
+  }
 
   getAll() {
     this.http.get('http://localhost:8080/order/all').subscribe(
