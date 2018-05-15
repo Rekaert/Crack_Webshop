@@ -42,16 +42,23 @@ module.exports = {
   },
 
   update: (req, res) => {
-    const cim = req.body.image;
-    const url = req.body.url;
-    req.body.image = `${url}.jpg`;
+    if (req.body.oldImage) {
+      const cim = req.body.image;
+      const url = req.body.url;
+      req.body.image = `${url}.jpg`;
+    }
+    console.log(req.body.oldImage + "----------------");
     Product.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
       if (err) {
         res.send(err);
       }
-      request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
-      res.json(post);
-      deleteFile(req.body.oldImage);
+      if (req.body.oldImage) {
+        request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
+        res.json(post);
+        if (req.body.oldImage) {
+          deleteFile(req.body.oldImage);
+        }
+      }
     });
   },
 
