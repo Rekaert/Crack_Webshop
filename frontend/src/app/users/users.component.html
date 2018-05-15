@@ -4,22 +4,23 @@
       <table class="table table-hover table-bordered text-center table-striped">
         <thead>
           <tr>
+            <th>UserID</th>
             <th>Username</th>
             <th>Email</th>
             <th>Invoice address</th>
             <th>Posting address</th>
             <th>Permission</th>
-            <th>UserID</th>
+            <th>Phone</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let user of users">
+            <td>{{user._id}}</td>
             <td>{{user.username}}</td>
             <td>{{user.email}}</td>
             <td>{{user.szmlcim}}</td>
             <td>{{user.szallcim}}</td>
             <td>{{user.perm}}</td>
-            <td>{{user._id}}</td>
             <td>
               <button type="button" class="btn btn-info" (click)="delete(user._id)" class="btn btn-info">Delete</button>
             </td>
