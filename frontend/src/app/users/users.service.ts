@@ -18,12 +18,11 @@ export class UsersService {
     return this.httpClient.delete<void>(this.url + Userid);
   }
 
-  save(user: User): Observable<User> {
-    if (user.id) {
-      return this.httpClient.put<User>(this.url + user.id, user);
-    } else {
-      return this.httpClient.post<User>(this.url, user);
-    }
+  create(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.url, user);
   }
 
+  update(user: User): Observable<User> {
+    return this.httpClient.put<User>(this.url + user.id, user);
+  }
 }

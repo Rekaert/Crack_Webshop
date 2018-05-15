@@ -32,8 +32,14 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  save(user) {
-    this.userService.save(user).subscribe(data => {
+  create() {
+    this.userService.create(this.user).subscribe(data => {
+      this.ngOnInit();
+    });
+  }
+
+  update() {
+    this.userService.update(this.user).subscribe(data => {
       this.ngOnInit();
     });
   }

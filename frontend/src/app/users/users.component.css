@@ -6,10 +6,6 @@ thead {
   text-align: center;
 }
 
-.table {
-  box-shadow: 10px 10px 40px 10px rgb(40, 204, 193);
-}
-
-.td {
-  color: rgb(40, 204, 193);
+.container-fluid-userstop {
+  margin-top: 100px;
 }

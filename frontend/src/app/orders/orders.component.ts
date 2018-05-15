@@ -7,15 +7,22 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  orders: object = {
-    userID: "",
-    productID: "",
+  ordersNew: object = {
+    userId: "",
+    productId: "",
     quantity: "",
     cost: "",
   }
-  constructor(public http: Http) { }
+
+  orders: any = [];
+
+
+  constructor(public http: Http) {
+    this.getAll();
+  }
 
   ngOnInit() {
+
   }
 
 
@@ -28,14 +35,18 @@ export class OrdersComponent implements OnInit {
   }
 
   create() {
-    this.http.post('http://localhost:8080/order/create', this.orders)
+    console.log(this.ordersNew);
+    this.http.post('http://localhost:8080/order/create', this.ordersNew)
       .subscribe((data) => {
-        this.orders = JSON.parse(data['_body']);
+        this.ordersNew = JSON.parse(data['_body']);
       }
       );
   }
 
   update(editOrder) {
+    console.log(editOrder._id);
+    console.log(editOrder);
+
     this.http.put('http://localhost:8080/order/update/' + editOrder._id, editOrder)
       .subscribe((data) => {
         this.orders = JSON.parse(data['_body']);
@@ -43,6 +54,7 @@ export class OrdersComponent implements OnInit {
   }
 
   delete(deleteOrder) {
+
     this.http.delete('http://localhost:8080/order/delete/' + deleteOrder._id)
       .subscribe((data) => {
         this.orders = JSON.parse(data['_body']);

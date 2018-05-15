@@ -1,3 +1,9 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="container full_width">
   <div class="row">
     <div class="col-md-3 header_title">
@@ -52,9 +58,10 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-8">asd
-
+      <div class="col-md-12">asd
+        <google-chart [data]="monthlyIncome"></google-chart>
 
       </div>
     </div>
   </div>
+  <button (click)="createDataForChart()">createDataForChart</button>

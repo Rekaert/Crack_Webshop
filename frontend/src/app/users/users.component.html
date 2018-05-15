@@ -1,91 +1,142 @@
-<div class="container-fluid">
+<div class="container-fluid-userstop">
   <div class="row justify-content-center">
     <div class="col-12">
-      <div class="table">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Szmlcim</th>
-              <th>Szallcim</th>
-              <th>Perm</th>
-              <th>ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-            </tr>
-            <tr *ngFor="let user of users">
-              <td>{{user.username}}</td>
-              <td>{{user.email}}</td>
-              <td>{{user.szmlcim}}</td>
-              <td>{{user.szallcim}}</td>
-              <td>{{user.perm}}</td>
-              <td>{{user._id}}</td>
-              <td>
-                <tr></tr>
-                <div class="btn-group btn-block">
-                  <button (click)="delete(user._id)" class="btn btn-info">Delete</button>
-                </div>
-              </td>
-            </tr>
-
+      <table class="table table-hover table-bordered text-center table-striped">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Invoice address</th>
+            <th>Posting address</th>
+            <th>Permission</th>
+            <th>UserID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.szmlcim}}</td>
+            <td>{{user.szallcim}}</td>
+            <td>{{user.perm}}</td>
+            <td>{{user._id}}</td>
             <td>
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
-                Creation & Change
-              </button>
+              <button type="button" class="btn btn-info" (click)="delete(user._id)" class="btn btn-info">Delete</button>
             </td>
+          </tr>
+        </tbody>
+      </table>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create & Update user</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <tr>
-                      <td>
-                        <label for="name">Username</label>
-                        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
-                      </td>
-                      <td>
-                        <label for="name">Email</label>
-                        <input type="text" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
-                      </td>
-                      <td>
-                        <label for="name">Szmlcim</label>
-                        <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
-                      </td>
-                      <td>
-                        <label for="name">Szallcim</label>
-                        <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
-                      </td>
-                      <td>
-                        <label for="name">Perm</label>
-                        <input type="text" name="perm" id="perm" [(ngModel)]="user.perm" class="form-control" />
-                      </td>
-                      <td>
-                        <label for="name">ID</label>
-                        <input type="text" name="id" id="id" [(ngModel)]="user.id" class="form-control" />
-                      </td>
-                    </tr>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button (click)="save(user)" type="button" class="btn btn-info">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </tbody>
-        </table>
+      <div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+          New user creation
+        </button>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create new user</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <tr>
+                <td>
+                  <label for="name">Username</label>
+                  <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">Email</label>
+                  <input type="text" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">Szmlcim</label>
+                  <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">Szallcim</label>
+                  <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">Perm</label>
+                  <input type="text" name="perm" id="perm" [(ngModel)]="user.perm" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">ID</label>
+                  <input type="text" name="id" id="id" [(ngModel)]="user.id" class="form-control" />
+                </td>
+              </tr>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button (click)="create()" type="button" class="btn btn-info">Create new user</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <br>
+
+      <div>
+        <!-- Button trigger modal USER UPDATE -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal2">
+          User update
+        </button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update user</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <tr>
+                <td>
+                  <label for="name">Username</label>
+                  <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">Email</label>
+                  <input type="text" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">Szmlcim</label>
+                  <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">Szallcim</label>
+                  <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">Perm</label>
+                  <input type="text" name="perm" id="perm" [(ngModel)]="user.perm" class="form-control" />
+                </td>
+                <td>
+                  <label for="name">ID</label>
+                  <input type="text" name="id" id="id" [(ngModel)]="user.id" class="form-control" />
+                </td>
+              </tr>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button (click)="update()" type="button" class="btn btn-info">Update user</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
-  <div>
+</div>
