@@ -1,6 +1,31 @@
 const Product = require('../models/product');
-const fs = require('fs');
+const fs = require('fs-extra');
 const request = require('request');
+const path = require('path');
+
+const formidable = require('formidable');
+const util = require('util');
+
+// function upload(req, res) {
+//   let form = new formidable.IncomingForm();
+//   form.parse(req, (err, fields, files) => {
+//     const tempPath = files.upload.path;
+//     const fileName = files.upload.name;
+//     const newLocation = path.join(__dirname, 'public/img', fileName);
+
+//     fs.copy(tempPath, newLocation, (err) => {
+//       if (err) {
+//         console.error(err);
+//       } else {
+//         res.writeHead(200, {
+//           'content-type': 'text/plain'
+//         });
+//         res.write('received upload:\n\n');
+//         res.end(`File uploaded to  ${newLocation}`);
+//       }
+//     });
+//   });
+// }
 
 module.exports = {
 
@@ -51,4 +76,5 @@ module.exports = {
       res.json(post);
     });
   },
+
 };

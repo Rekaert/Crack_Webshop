@@ -18,6 +18,9 @@ const orderRouter = require('./route/order.route');
 const logDirectory = path.join(__dirname, 'log');
 const port = process.env.PORT || 8080;
 const app = express();
+const formidable = require('formidable');
+const util = require('util');
+const multer = require('multer');
 
 // Logging
 if (!fs.existsSync(logDirectory)) {
@@ -79,6 +82,38 @@ app.use('/user/', userRouter);
 app.use('/order/', orderRouter);
 app.use('/product/', require('./route/product.route'));
 
+
+// ***** file upload parsing *****
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, './public/img');
+  },
+  filename(req, file, cb) {
+    const fullFileName = new Date().toISOString().replace(/:/g, '-').concat(file.originalname.substr(file.originalname.length - 4));
+    cb(null, fullFileName);
+  },
+});
+
+// ***** POST *****
+productRouter.post('/upload', upload.single('productImg'), ProductController.post);
+
+// ***** IMG file extension validation *****
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+// ***** IMG max upload limit 2Mb *****
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 1024 * 1024 * 2,
+  },
+});
 
 // Start server
 app.listen(port);
