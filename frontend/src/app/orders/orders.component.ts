@@ -30,7 +30,7 @@ export class OrdersComponent implements OnInit {
     this.http.get('http://localhost:8080/order/all').subscribe(
       data => {
         this.orders = JSON.parse(data['_body']);
-        console.log(data);
+        console.log(JSON.parse(data['_body']));
       });
   }
 
@@ -38,18 +38,16 @@ export class OrdersComponent implements OnInit {
     console.log(this.ordersNew);
     this.http.post('http://localhost:8080/order/create', this.ordersNew)
       .subscribe((data) => {
-        this.ordersNew = JSON.parse(data['_body']);
+        this.orders.push(JSON.parse(data['_body']));
       }
       );
   }
 
   update(editOrder) {
-    console.log(editOrder._id);
     console.log(editOrder);
-
     this.http.put('http://localhost:8080/order/update/' + editOrder._id, editOrder)
       .subscribe((data) => {
-        this.orders = JSON.parse(data['_body']);
+        this.getAll();
       })
   }
 
@@ -57,7 +55,7 @@ export class OrdersComponent implements OnInit {
 
     this.http.delete('http://localhost:8080/order/delete/' + deleteOrder._id)
       .subscribe((data) => {
-        this.orders = JSON.parse(data['_body']);
+        this.getAll();
       })
   }
 
