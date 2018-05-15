@@ -1,9 +1,9 @@
 <!--nav-->
-<div class="row">
+<div class="row navbar__nav_margin">
   <div class="col-12">
-    <nav id="main-menu" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" routerLink="">
-        <i class="fas fa-home fa-2x"></i>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark navbar__nav">
+      <a class="navbar-brand" routerLink="#">
+        <i class="fas fa-mobile-alt fa-2x"></i>cRaCk
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -21,8 +21,8 @@
           <a class="nav-item nav-link" routerLink="/register"></a>
           <a class="nav-item nav-link" routerLink="/login"></a>
           <a class="nav-item nav-link" routerLink="/logout"></a>
-          <button id=signin class="btn btn-primary" data-toggle="modal" data-target="#loginModal" routerLink="{{ '/' }}">Login</button>
-          <button id="regist" class="btn btn-primary" data-toggle="modal" data-target="#registrateModal" routerLink="{{ '/' }}">Registrate</button>
+          <button class="btn btn-primary button_login" data-toggle="modal" data-target="#loginModal" routerLink="{{ '/' }}">Login</button>
+          <button id="regist" class="btn btn-primary button_registrate" data-toggle="modal" data-target="#registrateModal" routerLink="{{ '/' }}">Registrate</button>
         </div>
         <div *ngIf="bejelentkezve" class="kijelentkezes">
           <button class="btn btn-danger" type="submit" (click)="logout()" routerLink="{{ '/' }}">Logout</button>
