@@ -32,8 +32,15 @@ export class HttpLocalService {
     this.httpClient.get(this.url + '/product')
       .subscribe((data) => this.products = data);
   }
+  register() {
+    this.httpClient.post(this.url + '/user/register', {
+      username: '', email: '',
+      szmlcim: '', szallcim: '', tel: '', perm: '', password: ''
+    }).subscribe((data) => console.log(data));
+  }
+
   login() {
-    this.httpClient.post(this.url + '/user/login', { username: "email@cim.com", password: "1234" })
+    this.httpClient.post(this.url + '/user/login', { username: 'email@cim.com', password: '1234' })
       .subscribe((data) => console.log(data));
   }
   logout() {
