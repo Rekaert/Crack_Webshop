@@ -70,5 +70,6 @@ export class NavbarComponent implements OnInit {
   login(): any {
     this.http.login();
   }
+}
 
 }
