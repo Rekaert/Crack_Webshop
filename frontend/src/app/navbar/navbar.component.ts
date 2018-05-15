@@ -17,8 +17,8 @@ export class NavbarComponent implements OnInit {
   datas: any;
   user: object = {
     email: '',
-    pass: '',
-    name: ''
+    password: '',
+    username: ''
   };
 
   constructor(public http: HttpLocalService) {
@@ -62,8 +62,8 @@ export class NavbarComponent implements OnInit {
     location.reload();
   }
   register() {
-    if (document.querySelector('#repass')['value'] === this.user['pass'] &&
-      this.user['name'] !== '' && this['email'] !== '') {
+    if (document.querySelector('#repass')['value'] === this.user['password'] &&
+      this.user['username'] !== '' && this.user['email'] !== '') {
       this.http.register();
     }
   }
