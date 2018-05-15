@@ -2,6 +2,12 @@ const Product = require('../models/product');
 const fs = require('fs');
 const request = require('request');
 
+const filePath = './public/img/';
+
+function deleteFile(fileName) {
+  fs.unlinkSync(filePath + fileName);
+}
+
 module.exports = {
 
   list: (req, res) => {
@@ -9,8 +15,8 @@ module.exports = {
       if (err) {
         res.send(err);
       }
-      res.json(post);
-    })
+      res.send(post);
+    });
   },
 
   find: (req, res) => {
@@ -21,25 +27,31 @@ module.exports = {
       res.send(post);
     });
   },
+
   create: (req, res) => {
     const cim = req.body.image;
-    const nev = req.body.name;
-    req.body.image = `public/img/${nev}.jpg`;
+    const url = req.body.url;
+    req.body.image = `${url}.jpg`;
     Product.create(req.body, (err, post) => {
       if (err) {
         res.send(err);
       }
-      request(cim).pipe(fs.createWriteStream(`public/img/${nev}.jpg`));
+      request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
       res.json(post);
     });
   },
 
   update: (req, res) => {
+    const cim = req.body.image;
+    const url = req.body.url;
+    req.body.image = `${url}.jpg`;
     Product.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
       if (err) {
         res.send(err);
       }
+      request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
       res.json(post);
+      deleteFile(req.body.oldImage);
     });
   },
 
@@ -49,6 +61,7 @@ module.exports = {
         res.send(err);
       }
       res.json(post);
+      deleteFile(post.image);
     });
   },
 };
