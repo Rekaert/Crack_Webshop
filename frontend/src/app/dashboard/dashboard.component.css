@@ -1,14 +1,14 @@
 .full_width {
-  margin: 15px;
   color: white;
+  margin: 15px;
 }
 
 .header_title {
-  box-sizing: border-box;
-  margin: 1%;
-  height: 10vh;
   background-color: #3366CC;
   border-radius: 5px;
+  box-sizing: border-box;
+  height: 10vh;
+  margin: 1%;
 }
 
 .header_title_data {
@@ -27,8 +27,8 @@
 .fa-archive,
 .fa-shopping-basket,
 .fa-euro-sign {
-  padding-top: 5%;
+  color: rgb(255, 255, 255);
+  font-size: 40px;
   margin-top: 5%;
-  font-size: 4em;
-  color: rgb(255, 255, 255)
+  padding-top: 5%;
 }
