@@ -57,6 +57,7 @@ export class ProductsComponent implements OnInit {
    */
 
   create() {
+    console.log(this.newProduct);
     this.http.post('http://localhost:8080/product', this.newProduct)
       .subscribe((data) => {
         this.newProduct = JSON.parse(data['_body']);
@@ -70,7 +71,13 @@ export class ProductsComponent implements OnInit {
    */
 
   update(product) {
-    this.http.put('http://localhost:8080/product' + product._id, product)
+    console.log(product);
+    if (product.newImage != "" && product.newImage) {
+      product.oldImage = product.image;
+      product.image = product.newImage;
+    }
+
+    this.http.put('http://localhost:8080/product/' + product._id, product)
       .subscribe((data) => {
         this.errorHandling(data);
         this.getAll();
@@ -82,6 +89,7 @@ export class ProductsComponent implements OnInit {
    */
 
   delete(product) {
+    console.log(product);
     this.http.delete('http://localhost:8080/product/' + product._id)
       .subscribe((data) => {
         this.errorHandling(data);
