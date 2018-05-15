@@ -9,33 +9,19 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Dancing Script", cursive;
+  font-family: sans-serif;
 }
 
 section,
 footer {
+  position: fixed;
+  bottom: 0;
   padding: 10px;
 }
 
 .container {
-  animation-duration: 5s;
-  animation-name: mymove;
-  animation-timing-function: ease-out;
   box-shadow: 10px 10px 40px 10px rgba(0, 0, 0, .20);
-  font-family: "Courgette", cursive;
-}
-
-@keyframes mymove {
-  from {
-    opacity: 0;
-    top: 0px;
-    width: 800px;
-  }
-  to {
-    opacity: 1;
-    top: 1000px;
-    width: 1200px;
-  }
+  font-family: sans-serif;
 }
 
 .fa-twitter {
