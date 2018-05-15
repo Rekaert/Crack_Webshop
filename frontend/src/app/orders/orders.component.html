@@ -14,11 +14,13 @@
     <tr>
       <td>
         <select name="" id="" [(ngModel)]="ordersNew.userId" class="form-control">
-          <option *ngFor="let x of orders" value={{x.userId}}>{{x.userId}}</option>
+          <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
         </select>
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.productId">
+        <select name="" id="" [(ngModel)]="ordersNew.productId" class="form-control">
+          <option *ngFor="let product of httpLocalService.products" value={{product._id}}>{{product.name}}</option>
+        </select>
       </td>
       <td>
         <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.quantity">
@@ -33,11 +35,16 @@
 
     <tr *ngFor="let order of orders">
       <td>
-        <input type="text" class="form-control" [(ngModel)]="order.userId">
+        <select name="" id="" [(ngModel)]="order.userId" class="form-control">
+          <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
+        </select>
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="order.productId">
+        <select name="" id="" [(ngModel)]="order.productId" class="form-control">
+          <option *ngFor="let product of httpLocalService.products" value={{product._id}}>{{product.name}}</option>
+        </select>
       </td>
+
       <td>
         <input type="text" class="form-control" [(ngModel)]="order.quantity">
       </td>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { HttpLocalService } from '../http.service'
+import { setTimeout } from 'core-js/library/web/timers';
 
 @Component({
   selector: 'app-orders',
@@ -17,8 +19,13 @@ export class OrdersComponent implements OnInit {
   orders: any = [];
 
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public httpLocalService: HttpLocalService) {
+
+    this.httpLocalService.getUsers();
+    this.httpLocalService.getProducts();
     this.getAll();
+    setTimeout(() => { console.log(this.httpLocalService.users); }, 1000);
+    setTimeout(() => { console.log(this.httpLocalService.products); }, 1000);
   }
 
   ngOnInit() {
@@ -30,7 +37,6 @@ export class OrdersComponent implements OnInit {
     this.http.get('http://localhost:8080/order/all').subscribe(
       data => {
         this.orders = JSON.parse(data['_body']);
-        console.log(JSON.parse(data['_body']));
       });
   }
 
