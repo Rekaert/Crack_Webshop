@@ -1,7 +1,7 @@
 <div class="container-fluid-userstop">
   <div class="row justify-content-center">
     <div class="col-12">
-      <table class="table table-hover table-bordered text-center table-striped">
+      <table class="table table-hover table-bordered text-center">
         <thead>
           <tr>
             <th>UserID</th>
@@ -9,8 +9,8 @@
             <th>Email</th>
             <th>Invoice address</th>
             <th>Posting address</th>
-            <th>Permission</th>
             <th>Phone</th>
+            <th>Permission</th>
           </tr>
         </thead>
         <tbody>
@@ -20,6 +20,7 @@
             <td>{{user.email}}</td>
             <td>{{user.szmlcim}}</td>
             <td>{{user.szallcim}}</td>
+            <td>{{user.tel}}</td>
             <td>{{user.perm}}</td>
             <td>
               <button type="button" class="btn btn-info" (click)="delete(user._id)" class="btn btn-info">Delete</button>
