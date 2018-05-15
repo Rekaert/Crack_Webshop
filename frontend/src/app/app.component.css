@@ -1,8 +1,7 @@
-body {
-  background: #000;
+.container {
+  background: rgb(247, 243, 225);
+  border-radius: 20px;
 }
-
-.container {}
 
 h1,
 h2,
@@ -10,30 +9,31 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
 }
 
-section {
+section,
+footer {
   padding: 10px;
 }
 
 .container {
-  box-shadow: 10px 10px 40px 10px rgba(0, 0, 0, 0.20);
-  font-family: 'Courgette', cursive;
-  animation-name: mymove;
   animation-duration: 5s;
+  animation-name: mymove;
   animation-timing-function: ease-out;
+  box-shadow: 10px 10px 40px 10px rgba(0, 0, 0, .20);
+  font-family: "Courgette", cursive;
 }
 
 @keyframes mymove {
   from {
-    top: 0px;
     opacity: 0;
+    top: 0px;
     width: 800px;
   }
   to {
-    top: 1000px;
     opacity: 1;
+    top: 1000px;
     width: 1200px;
   }
 }
@@ -59,11 +59,11 @@ section {
 }
 
 .fa-instagram {
-  color: #FFF;
   background: linear-gradient(to bottom right, #9840A4, #D53591, #FDC25F);
-  width: 50px;
-  height: 45px;
   border-radius: 4px;
+  color: #FFF;
+  height: 45px;
+  width: 50px;
 }
 
 .fa-instagram:hover {

@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  newProduct: object = {
+  products: object = {
     name: '',
     url: '',
     image: '',
@@ -21,41 +21,21 @@ export class ProductsComponent implements OnInit {
     cost: ''
   };
 
-  datas: any;
-
-  product: object = {
-    _id: '',
-    name: '',
-    url: '',
-    manufacturer: '',
-    cost: ''
-  };
 
   constructor(public http: Http) {
-    this.getAll();
   }
 
   ngOnInit() { }
 
-  errorHandling(res) {
-    res = JSON.parse(res['_body']);
-    if (res.error) {
-      console.error('API error:' + JSON.stringify(res.error));
-    } else {
-      this.datas = res;
-      console.log(this.datas);
-    }
-  }
 
   /**
    * List products in the datas array
    */
   getAll() {
-    this.http.get('http://localhost:8080/product').subscribe(
+    this.http.get('http://localhost:8080/product/all').subscribe(
       data => {
+        this.products = JSON.parse(data['_body']);
         console.log(data);
-        this.datas = data;
-        this.errorHandling(data);
       });
   }
 
@@ -64,47 +44,34 @@ export class ProductsComponent implements OnInit {
    */
 
   create() {
-    this.http.post('http://localhost:8080/product', this.newProduct).subscribe(
-      data => {
-        this.errorHandling(data);
-        this.getAll();
-        this.newProduct = {};
-      });
+    this.http.post('http://localhost:8080/product/create', this.products)
+      .subscribe((data) => {
+        this.products = JSON.parse(data['_body']);
+      }
+      );
   }
 
   /**
    * Update product by given id
    */
 
-  update() {
-    this.http.put(`http://localhost:8080/product/${this.product['_id']}`, this.product).subscribe(
-      data => {
-        this.errorHandling(data);
-        this.getAll();
+  update(editProduct) {
+    this.http.put('http://localhost:8080/product/update/' + editProduct._id, editProduct)
+      .subscribe((data) => {
+        this.products = JSON.parse(data['_body']);
       });
-  }
-
-  updateByModal(id) {
-    const chosen = this.datas.filter(item => item._id === id)[0];
-    this.product = Object.assign({}, chosen);
   }
 
   /**
    * Delete product by given id
    */
 
-  delete(id) {
-    if (confirm('Biztosan törölni szeretné?')) {
-      this.http.delete(`http://localhost:8080/product/${id}`).subscribe(
-        data => {
-          this.errorHandling(data);
-          console.log(data);
-          this.getAll();
-        });
-    }
-
-    /**
-     * Upload image for products
-     */
+  delete(deleteProduct) {
+    this.http.delete('http://localhost:8080/product/delete/' + deleteProduct._id)
+      .subscribe((data) => {
+        this.products = JSON.parse(data['_body']);
+      });
   }
+
 }
+
