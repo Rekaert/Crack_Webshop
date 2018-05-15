@@ -13,29 +13,42 @@ import { NgModule } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  products: object = {
+  newProduct: object = {
     name: '',
     url: '',
-    image: '',
     manufacturer: '',
-    cost: ''
+    cost: '',
+    image: ''
   };
+
+  products: any = [];
 
 
   constructor(public http: Http) {
+    this.getAll();
   }
 
   ngOnInit() { }
+
+  errorHandling(res) {
+    res = JSON.parse(res['_body']);
+    if (res.error) {
+      console.error('API error:' + JSON.stringify(res.error));
+    } else {
+      this.products = res;
+      console.log(this.products);
+    }
+  }
 
 
   /**
    * List products in the datas array
    */
   getAll() {
-    this.http.get('http://localhost:8080/product/all').subscribe(
+    this.http.get('http://localhost:8080/product').subscribe(
       data => {
         this.products = JSON.parse(data['_body']);
-        console.log(data);
+        this.errorHandling(data);
       });
   }
 
@@ -44,21 +57,23 @@ export class ProductsComponent implements OnInit {
    */
 
   create() {
-    this.http.post('http://localhost:8080/product/create', this.products)
+    this.http.post('http://localhost:8080/product', this.newProduct)
       .subscribe((data) => {
-        this.products = JSON.parse(data['_body']);
-      }
-      );
+        this.newProduct = JSON.parse(data['_body']);
+        this.getAll();
+        // this.newProduct = {};
+      });
   }
 
   /**
    * Update product by given id
    */
 
-  update(editProduct) {
-    this.http.put('http://localhost:8080/product/update/' + editProduct._id, editProduct)
+  update(product) {
+    this.http.put('http://localhost:8080/product' + product._id, product)
       .subscribe((data) => {
-        this.products = JSON.parse(data['_body']);
+        this.errorHandling(data);
+        this.getAll();
       });
   }
 
@@ -66,10 +81,12 @@ export class ProductsComponent implements OnInit {
    * Delete product by given id
    */
 
-  delete(deleteProduct) {
-    this.http.delete('http://localhost:8080/product/delete/' + deleteProduct._id)
+  delete(product) {
+    this.http.delete('http://localhost:8080/product/' + product._id)
       .subscribe((data) => {
-        this.products = JSON.parse(data['_body']);
+        this.errorHandling(data);
+        console.log(data);
+        this.getAll();
       });
   }
 

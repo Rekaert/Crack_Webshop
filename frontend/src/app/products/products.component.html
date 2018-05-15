@@ -7,53 +7,52 @@
     <th>ID</th>
     <th>Name</th>
     <th>URL</th>
-    <th>Image</th>
     <th>Manufacturer</th>
     <th>Cost</th>
+    <th>Image</th>
     <th>Methods</th>
   </thead>
   <tbody>
     <tr>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.id">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.name">
+        <input type="text" class="form-control" name="name" id="prodName" [(ngModel)]="newProduct.name">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.url">
+        <input type="text" class="form-control" name="url" id="prodUrl" [(ngModel)]="newProduct.url">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.image">
+        <input type="text" class="form-control" name="manufact" id="prodManufact" [(ngModel)]="newProduct.manufacturer">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.manufacturer">
+        <input type="text" class="form-control" name="cost" id="prodCost" [(ngModel)]="newProduct.cost">
       </td>
       <td>
-        <input type="text" class="form-control" name="" id="" [(ngModel)]="products.cost">
+        <input type="text" class="form-control" name="image" id="prodImage" [(ngModel)]="newProduct.image">
       </td>
       <td>
-        <input type="button" class="btn btn-success" value="Create" name="" id="" (click)="create()">
+        <input type="button" class="btn btn-success" value="Create" name="create" id="createButton" (click)="create()">
       </td>
     </tr>
     <tr *ngFor="let product of products">
       <td>
-        <input type="text" class="form-control" [(ngModel)]="products.id">
+        <input type="text" class="form-control" [(ngModel)]="product._id">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="products.name">
+        <input type="text" class="form-control" [(ngModel)]="product.name">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="products.url">
+        <input type="text" class="form-control" [(ngModel)]="product.url">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="products.img">
+        <input type="text" class="form-control" [(ngModel)]="product.manufacturer">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="products.manufacturer">
+        <input type="text" class="form-control" [(ngModel)]="product.cost">
       </td>
       <td>
-        <input type="text" class="form-control" [(ngModel)]="products.cost">
+        <input type="text" class="form-control" [(ngModel)]="product.img">
       </td>
       <td class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-primary" (click)="update(product)">Update</button>
@@ -62,6 +61,3 @@
     </tr>
   </tbody>
 </table>
-<pre>
-  {{userNew | json}}
-</pre>
