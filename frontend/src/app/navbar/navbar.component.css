@@ -28,13 +28,26 @@
 
 .button_signin {
   color: #fff;
-  height: 40%;
+  height: 50%;
   left: 90%;
   position: absolute;
   top: 25%;
 }
 
 .button_signin:hover {
+  background-color: white;
+  color: rgb(235, 245, 91)
+}
+
+.button_signout {
+  color: #fff;
+  height: 50%;
+  left: 90%;
+  position: absolute;
+  top: 25%;
+}
+
+.button_signout:hover {
   background-color: white;
   color: rgb(235, 245, 91)
 }
