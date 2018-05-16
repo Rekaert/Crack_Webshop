@@ -23,7 +23,7 @@
         {{ordersNew.cost}}
       </td>
       <td>
-        <input type="button" class="btn btn-success" value="Részletek" name="" id="" (click)="details()">
+        <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="details()">
       </td>
     </tr>
 
@@ -39,14 +39,17 @@
       <td>
         {{order.cost}}
       </td>
-      <td>
+      <td class="btn-group" role="group" aria-label="Basic example">
+
+        <button type="button" class="btn btn-danger" (click)="delete(order)">Törlés</button>
         <input type="button" class="btn btn-success" value="Részletek" name="" id="" (click)="details(order._id)">
       </td>
+
     </tr>
   </tbody>
 </table>
 
-<div class="orderDetails">
+<div *ngIf="showDetails" class="orderDetails">
   <h1>ORDER ID</h1>
   <table class="table table-bordered text-center table-striped">
     <thead>

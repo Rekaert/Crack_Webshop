@@ -22,6 +22,7 @@ export class OrdersComponent implements OnInit {
     price: "",
   }
 
+  showDetails: boolean = false;
   orders: any = [];
   orders2: any = [];
 
@@ -61,12 +62,14 @@ export class OrdersComponent implements OnInit {
   }
 
   details(id) {
+    this.showDetails = true;
     this.http.get('http://localhost:8080/order/one/' + id).subscribe(
       data => {
         this.orders2 = JSON.parse(data['_body']);
         console.log(this.orders2);
       });
     this.orders2New['orderId'] = id;
+
   }
 
   create() {
@@ -109,12 +112,11 @@ export class OrdersComponent implements OnInit {
 
     this.http.delete('http://localhost:8080/order/all/delete/' + deleteOrder._id)
       .subscribe((data) => {
-        this.getAll();
+        this.httpLocalService.getOrders();
       })
   }
 
   deleteOne(deleteOrder) {
-
     this.http.delete('http://localhost:8080/order/one/delete/' + deleteOrder._id)
       .subscribe((data) => {
         this.getAll();
