@@ -10,6 +10,8 @@ export class HttpLocalService {
   users: any = [];
   products: any = [];
   orders: any = [];
+
+  isLoggedIn: boolean = false;
   constructor(private httpClient: HttpClient) { }
 
   getUsers() {
@@ -39,15 +41,31 @@ export class HttpLocalService {
     }).subscribe((data) => console.log(data));
   }
 
-  login() {
-    this.httpClient.post(this.url + '/user/login', { username: 'helga@gmail.com', password: 'helga' })
-      .subscribe((data) => console.log(data));
+  login(user) {
+    this.httpClient.post(this.url + '/user/login', user)
+      .subscribe((data) => {
+        if (data['success']) {
+          this.isLoggedIn = true;
+
+        }
+        if (!this.isLoggedIn) {
+          alert('Hibás adatokat adtál meg!')
+        };
+
+      });
+
   }
   logout() {
     this.httpClient.get(this.url + '/user/logout')
       .subscribe((data) => {
-        console.log(data);
+        if (data['success']) {
+          this.isLoggedIn = false;
+
+        }
+        console.log(this.isLoggedIn)
+
       });
+
   }
 }
   /*

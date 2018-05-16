@@ -63,9 +63,16 @@ export class UsersComponent implements OnInit {
   }
 
   update() {
-    this.userService.update(this.user).subscribe(data => {
-      this.ngOnInit();
-    });
+    console.log(this.user);
+    if (!this.user['newpassword'] || this.user['newpassword'].length >= 8) {
+      this.userService.update(this.user).subscribe(data => {
+        console.log(data);
+        this.ngOnInit();
+      });
+    } else {
+      console.log('Minimum 8 hosszú legyen a jelszó')
+    }
+
   }
 
 }
