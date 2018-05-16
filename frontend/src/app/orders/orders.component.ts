@@ -98,10 +98,11 @@ export class OrdersComponent implements OnInit {
 
   updateOne(editOrder) {
     console.log(editOrder);
-    /* this.http.put('http://localhost:8080/order/one/update/' + editOrder._id, editOrder)
+    this.http.put('http://localhost:8080/order/one/update/' + editOrder._id, editOrder)
       .subscribe((data) => {
         this.getAll();
-      }) */
+        this.details(this.orders2New['orderId']);
+      })
   }
 
   delete(deleteOrder) {
@@ -117,6 +118,7 @@ export class OrdersComponent implements OnInit {
     this.http.delete('http://localhost:8080/order/one/delete/' + deleteOrder._id)
       .subscribe((data) => {
         this.getAll();
+        this.details(this.orders2New['orderId']);
       })
   }
 
