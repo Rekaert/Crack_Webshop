@@ -18,11 +18,9 @@
           <a class="nav-item nav-link" routerLink="/users">Users</a>
           <a class="nav-item nav-link" routerLink="/products">Products</a>
           <a class="nav-item nav-link" routerLink="/orders">Orders</a>
-          <a class="nav-item nav-link" routerLink="/login"></a>
-          <a class="nav-item nav-link" routerLink="/logout"></a>
-          <span class="header-text" *ngIf="logged" style="color:white">Üdv {{log[0].name}}! &nbsp; &nbsp; &nbsp; </span>
+          <span class="header-text" *ngIf="logged" style="color:white">Üdv, sikeres belépés {{log}} &nbsp; &nbsp; &nbsp; </span>
           <button *ngIf="!logged" data-toggle="modal" data-target="#loginModal" class="btn btn-warning button_signin">Sign in</button>
-          <button *ngIf="logged" (click)="signOut()" class="btn btn-warning">Sign out</button>
+          <button *ngIf="logged" (click)="logout()" class="btn btn-warning">Sign out</button>
         </div>
       </div>
     </nav>
@@ -47,7 +45,7 @@
               <i class="far fa-user"></i>
             </span>
           </div>
-          <input class="form-control" id="email2" type="email" placeholder="valami@valami.hu" [(ngModel)]="user.email">
+          <input class="form-control" id="loginEmail" type="email" placeholder="" [(ngModel)]="user.email">
         </div>
         <label for="pass">Jelszó:</label>
         <div class="input-group mb-3">
@@ -56,12 +54,12 @@
               <i class="fas fa-key"></i>
             </span>
           </div>
-          <input class="form-control" id="pass2" type="password" placeholder="Password" [(ngModel)]="user.password">
+          <input class="form-control" id="loginPass" type="password" placeholder="" [(ngModel)]="user.password">
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="signIn()">Sign In</button>
+        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="login()">Sign In</button>
       </div>
     </div>
   </div>

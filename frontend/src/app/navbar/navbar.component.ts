@@ -22,12 +22,12 @@ export class NavbarComponent implements OnInit {
   };
 
   constructor(public http: HttpLocalService) {
-    if (localStorage.user) {
-      this.log = JSON.parse(localStorage.user);
-      this.logged = true;
-      /*this.http.getTodo(this.log[0]._id);
-      setInterval(() => this.findUrgent(), 1000);*/
-    }
+    /* if (localStorage.user) {
+       this.log = JSON.parse(localStorage.user);
+       this.logged = true;
+       // this.http.getTodo(this.log[0]._id);
+       // setInterval(() => this.findUrgent(), 1000);
+     }*/
   }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
     switchRegLog() {
       this.modalTitle = this.modalTitle === 'Register' ? 'Login' : 'Register';
       this.logreg = this.logreg * -1;
-    }*/
+    }
   async signIn() {
     if (this.logreg === 1) {
       this.login();
@@ -58,10 +58,17 @@ export class NavbarComponent implements OnInit {
     // this.http.todos = [];
     localStorage.removeItem('user');
     location.reload();
-  }
+  }*/
 
   login(): any {
     this.http.login();
+    this.logged = true;
+    this.log = this.user['username'];
   }
+  logout(): any {
+    this.http.logout();
+    this.logged = false;
+  }
+
 }
 

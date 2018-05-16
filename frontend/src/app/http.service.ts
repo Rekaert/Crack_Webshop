@@ -40,13 +40,16 @@ export class HttpLocalService {
   }
 
   login() {
-    this.httpClient.post(this.url + '/user/login', { username: 'email@cim.com', password: '1234' })
+    this.httpClient.post(this.url + '/user/login', { username: 'helga@gmail.com', password: 'helga' })
       .subscribe((data) => console.log(data));
   }
   logout() {
-    this.httpClient.get(this.url + '/user/login')
-      .subscribe((data) => console.log(data));
+    this.httpClient.get(this.url + '/user/logout')
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
+}
   /*
     delete(Userid): Observable<void> {
       console.log('Deleting ID: ' + Userid);
