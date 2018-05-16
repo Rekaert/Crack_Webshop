@@ -31,16 +31,19 @@ export class DashboardComponent implements OnInit {
   monthlyIncome = {
     chartType: 'ColumnChart',
     dataTable: this.chartData,
-    options: { 'title': 'Bevétel a hónapban', chartArea: { width: '100%' }, colors: ['#7ddc1f'], width: this.x * 1.33 },
+    options: { 'title': 'BEVÉTEL A HÓNAPBAN', chartArea: { width: '100%' }, colors: ['#3366CC'] },
   };
 
   createDataForChart(data) {
     const now = new Date();
     let found = false;
+
     for (let i in data) {
       let order = new Date(data[i].createdAt);
+
       if (now.getFullYear() == order.getFullYear() && now.getMonth() == order.getMonth()) {
         for (let j in this.chartData) {
+          found = false;
           /*  console.log(this.chartData[j][0], this.chartData[j][1]) */
           if (this.chartData[j][0] == order.getDate()) {
             this.chartData[j][1] += parseInt(data[i].cost);

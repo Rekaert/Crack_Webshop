@@ -43,8 +43,7 @@ app.use(bodyParser.urlencoded({
 // use public folder
 app.use(express.static('public'));
 app.get('/images/:img', (req, res) => {
-  console.log(req.params.img);
-  res.sendFile(__dirname + '/public/img/' + req.params.img);
+  res.sendFile(path.join(__dirname, '/public/img/', req.params.img));
 });
 // Session handling
 app.use(session({

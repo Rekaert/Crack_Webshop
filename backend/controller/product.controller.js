@@ -32,32 +32,29 @@ module.exports = {
     const cim = req.body.image;
     const url = req.body.url;
     req.body.image = `${url}.jpg`;
+    request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
     Product.create(req.body, (err, post) => {
       if (err) {
         res.send(err);
+      } else {
+        res.json(post);
       }
-      request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
-      res.json(post);
     });
   },
 
   update: (req, res) => {
     if (req.body.oldImage) {
       const cim = req.body.image;
-      const url = req.body.url;
-      req.body.image = `${url}.jpg`;
+      const urlcim = req.body.url;
+      req.body.image = `${urlcim}.jpg`;
+      request(cim).pipe(fs.createWriteStream(`public/img/${urlcim}.jpg`));
+      deleteFile(req.body.oldImage);
     }
-    console.log(req.body.oldImage + "----------------");
     Product.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
       if (err) {
         res.send(err);
-      }
-      if (req.body.oldImage) {
-        request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
+      } else {
         res.json(post);
-        if (req.body.oldImage) {
-          deleteFile(req.body.oldImage);
-        }
       }
     });
   },
@@ -66,9 +63,10 @@ module.exports = {
     Product.findByIdAndRemove(req.params.id, (err, post) => {
       if (err) {
         res.send(err);
+      } else {
+        res.json(post);
+        deleteFile(post.image);
       }
-      res.json(post);
-      deleteFile(post.image);
     });
   },
 };
