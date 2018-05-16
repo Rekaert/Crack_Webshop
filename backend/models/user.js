@@ -1,6 +1,19 @@
+/**
+ * Loading modules
+ */
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
+
+/**
+ * Setting user schema for MongoDB datebase
+ * @param username - The name of the user
+ * @param email - The email address of the user
+ * @param szmlcím - The address where the bill is sent
+ * @param szallcím - The address where the product is transported
+ * @param tel - The telephone number of the user
+ * @param perm - The permission status of the user or admin
+ */
 const userSchema = mongoose.Schema({
   username: {
     type: String,
@@ -34,6 +47,9 @@ const userSchema = mongoose.Schema({
   timestamps: true,
 });
 
+/**
+ * Passport authentication options
+ */
 userSchema.plugin(passportLocalMongoose, {
   maxAttempts: 5,
   hashField: 'password',
