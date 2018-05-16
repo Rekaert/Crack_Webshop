@@ -10,10 +10,10 @@ const OrderController = require('../controller/order.controller');
  * @callback remove - Delete an order
  */
 orderRouter.get('/all', OrderController.list);
-orderRouter.get('all/find/:id', OrderController.find);
-orderRouter.post('all/create', OrderController.create);
-orderRouter.put('all/update/:id', OrderController.update);
-orderRouter.delete('all/delete/:id', OrderController.remove);
+orderRouter.get('/all/find/:id', OrderController.find);
+orderRouter.post('/all/create', OrderController.create);
+orderRouter.put('/all/update/:id', OrderController.update);
+orderRouter.delete('/all/delete/:id', OrderController.remove);
 
 /**
  * Routing middlewares
@@ -23,9 +23,9 @@ orderRouter.delete('all/delete/:id', OrderController.remove);
  * @callback update - Update an order
  * @callback remove - Delete an order
  */
-orderRouter.get('/one', OrderController.detalis);
-orderRouter.post('one/create', OrderController.createOne);
-orderRouter.put('one/update/:id', OrderController.updateOne);
-orderRouter.delete('one/delete/:id', OrderController.removeOne);
+orderRouter.get('/one/:id', OrderController.detalis);
+orderRouter.post('/one/create', OrderController.createOne);
+orderRouter.put('/one/update/:id', OrderController.updateOne);
+orderRouter.delete('/one/delete/:id', OrderController.removeOne);
 
 module.exports = orderRouter;

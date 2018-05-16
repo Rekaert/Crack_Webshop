@@ -23,7 +23,7 @@ module.exports = {
    */
   detalis: (req, res) => {
     Order2.find({
-      productId: req.params.id,
+      orderId: req.params.id,
     }, (err, post) => {
       if (err) {
         res.send(err);
