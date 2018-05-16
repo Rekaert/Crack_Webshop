@@ -18,7 +18,6 @@
           <a class="nav-item nav-link" routerLink="/users">Users</a>
           <a class="nav-item nav-link" routerLink="/products">Products</a>
           <a class="nav-item nav-link" routerLink="/orders">Orders</a>
-          <a class="nav-item nav-link" routerLink="/register"></a>
           <a class="nav-item nav-link" routerLink="/login"></a>
           <a class="nav-item nav-link" routerLink="/logout"></a>
           <span class="header-text" *ngIf="logged" style="color:white">Üdv {{log[0].name}}! &nbsp; &nbsp; &nbsp; </span>
@@ -35,86 +34,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" *ngIf="logreg == 1">
-        <label for="email">Név:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon0">
-              <i class="far fa-user"></i>
-            </span>
-          </div>
-          <input class="form-control" id="username" type="text" placeholder="username" [(ngModel)]="user.username">
-        </div>
-        <label for="email">E-mail:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">
-              <i class="far fa-user"></i>
-            </span>
-          </div>
-          <input class="form-control" id="email" type="email" placeholder="valami@valami.hu" [(ngModel)]="user.email">
-        </div>
-        <label for="pass">Jelszó:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon2">
-              <i class="fas fa-key"></i>
-            </span>
-          </div>
-          <input class="form-control" id="pass" type="password" placeholder="Password" [(ngModel)]="user.password">
-        </div>
-        <label for="repass">Jelszó újra:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">
-              <i class="fas fa-key"></i>
-            </span>
-          </div>
-          <input class="form-control" id="repass" type="password" placeholder="Repeat Password">
-        </div>
-        <label for="name">Számlázási cím:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon4">
-              <i class="fas fa-user-secret"></i>
-            </span>
-          </div>
-          <input class="form-control" id="szamlacim" type="text" placeholder="számlázis cím" [(ngModel)]="user.szmlcim">
-        </div>
-        <label for="name">Szállítási cím:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon5">
-              <i class="fas fa-user-secret"></i>
-            </span>
-          </div>
-          <input class="form-control" id="szalliasicim" type="text" placeholder="szállítási cím" [(ngModel)]="user.szallcim">
-        </div>
-        <label for="name">Telefonszám:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon6">
-              <i class="fas fa-user-secret"></i>
-            </span>
-          </div>
-          <input class="form-control" id="telefon" type="text" placeholder="telefonszám" [(ngModel)]="user.tel">
-        </div>
-        <label for="name">Jogosultság:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-          </div>
-          <select class="form-control" id="permission" type="text" placeholder="telefonszám" [(ngModel)]="user.perm">
-            <option value="admin">Admin</option>
-            <option value="customer">Customer</option>
-          </select>
-        </div>
-      </div>
-      <div class="modal-body" *ngIf="logreg == -1">
+      <div class="modal-body">
         <label for="email">E-mail:</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -136,8 +61,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline-danger" (click)="switchRegLog()">{{modalTitle=="Register"?"Login Page":"Register Page"}}</button>
-        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="signIn()">{{modalTitle=="Register"?"Create New Account":"Sign In"}}</button>
+        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="signIn()">Sign In</button>
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@ import { HttpLocalService } from '../http.service';
 })
 export class NavbarComponent implements OnInit {
 
-  modalTitle: string = 'Login';
+  // modalTitle: string = 'Login';
   logreg: number = -1;
   log: any;
   logged: boolean = false;
@@ -32,15 +32,13 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  switchRegLog() {
-    this.modalTitle = this.modalTitle === 'Register' ? 'Login' : 'Register';
-    this.logreg = this.logreg * -1;
-  }
+  /*
+    switchRegLog() {
+      this.modalTitle = this.modalTitle === 'Register' ? 'Login' : 'Register';
+      this.logreg = this.logreg * -1;
+    }*/
   async signIn() {
     if (this.logreg === 1) {
-      this.register();
-    } else {
       this.login();
     }
     setTimeout(() => {
@@ -61,12 +59,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('user');
     location.reload();
   }
-  register() {
-    if (document.querySelector('#repass')['value'] === this.user['password'] &&
-      this.user['username'] !== '' && this.user['email'] !== '') {
-      this.http.register();
-    }
-  }
+
   login(): any {
     this.http.login();
   }
