@@ -1,12 +1,15 @@
 .full_width {
   color: white;
-  margin: 15px;
 }
 
 .header_title {
-  background-color: #3366CC;
+  background-image: url("../../assets/img/chart32.png"), linear-gradient(rgba(27, 38, 185, 0.7), rgba(0, 0, 0, 0.5));
+  background-blend-mode: overlay;
   border-radius: 5px;
   padding: 1%;
+  -webkit-box-shadow: 10px 10px 28px -7px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 28px -7px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 28px -7px rgba(0, 0, 0, 0.75);
 }
 
 .header_title .row {
@@ -14,15 +17,17 @@
 }
 
 .header_title_data {
-  font-size: 25px;
+  font-size: 40px;
   font-weight: bold;
   padding-top: 10px;
   text-align: right;
+  text-transform: uppercase;
 }
 
 .header_title_hint {
-  padding-top: 10px;
+  padding-top: 0;
   text-align: right;
+  text-transform: uppercase
 }
 
 .fa-user,
@@ -30,7 +35,7 @@
 .fa-shopping-basket,
 .fa-money-bill-alt {
   color: rgb(255, 255, 255);
-  font-size: 40px;
+  font-size: 50px;
   margin-top: 5%;
   padding-top: 5%;
 }
