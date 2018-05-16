@@ -15,11 +15,20 @@ const User = require('./models/user');
 const userRouter = require('./route/user.route');
 const orderRouter = require('./route/order.route');
 
+/**
+ * @constant logDirectory - Logging directory
+ */
 const logDirectory = path.join(__dirname, 'log');
+/**
+ * @constant port - The port where the server is running
+ */
 const port = process.env.PORT || 8080;
 const app = express();
 
-// Logging
+/**
+ * Logging with morgan
+ * @module morgan -Initialize logging file
+ */
 if (!fs.existsSync(logDirectory)) {
   fs.mkdirSync(logDirectory);
 }
@@ -32,20 +41,36 @@ app.use(morgan('combined', {
   skip: (req, res) => res.statusCode < 400,
 }));
 
-// Security
+/**
+ * Scurity middleware with helmet
+ * @module helmet
+ */
 app.use(helmet());
 
-// Body Parse middleware
+/**
+ * Body Parser middleware
+ * @module bodyParser
+ */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
-// use public folder
+
+/**
+ * Use public folder for images
+ */
 app.use(express.static('public'));
 app.get('/images/:img', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/img/', req.params.img));
 });
-// Session handling
+
+/**
+ * Session handling with middleware
+ * @module express-session
+ * @property {String} secret - Secret code
+ * @property {Boolean} resave - Enable resaving session
+ * @property {Object} cookie - Maximum age of cookies
+ */
 app.use(session({
   secret: 'secret',
   resave: true,
@@ -56,14 +81,21 @@ app.use(session({
   },
 }));
 
-// Passport - Auth
+/**
+ * Authentication middleware with passport
+ * @module passport
+ */
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Connect to MongoDB
+/**
+ * Connecting to MongoDB datebase
+ * @module mongoose
+ * @returns {String} - Success message
+ */
 mongoose.connect(db.uri, db.options)
   .then(() => {
     console.log('MongoDB connected.');
@@ -72,17 +104,26 @@ mongoose.connect(db.uri, db.options)
     console.error(`MongoDB error.:${err}`);
   });
 
-// Enable CORS
+/**
+ * Middleware for CORS Enabling
+ * @module cors
+ * @property {Boolean} credentials - Enable header
+ * @property {String} origin - Server url
+ */
 app.use(cors({
   credentials: true,
   origin: 'http://localhost:4200',
 }));
 
-// User User router
+/**
+ * Routing middlewares
+ */
 app.use('/user/', userRouter);
 app.use('/order/', orderRouter);
 app.use('/product/', require('./route/product.route'));
 
 
-// Start server
+/**
+ * Start server
+ */
 app.listen(port);
