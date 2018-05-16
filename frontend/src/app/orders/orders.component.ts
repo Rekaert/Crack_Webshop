@@ -15,6 +15,12 @@ export class OrdersComponent implements OnInit {
     quantity: "",
     cost: "",
   }
+  orders2New: object = {
+    orderId: "",
+    productId: "",
+    quantity: "",
+    price: "",
+  }
 
   orders: any = [];
   orders2: any = [];
@@ -50,6 +56,7 @@ export class OrdersComponent implements OnInit {
     this.http.get('http://localhost:8080/order/all').subscribe(
       data => {
         this.orders = JSON.parse(data['_body']);
+        console.log(this.httpLocalService.users);
       });
   }
 
@@ -59,6 +66,7 @@ export class OrdersComponent implements OnInit {
         this.orders2 = JSON.parse(data['_body']);
         console.log(this.orders2);
       });
+    this.orders2New['orderId'] = id;
   }
 
   create() {
@@ -71,10 +79,11 @@ export class OrdersComponent implements OnInit {
   }
 
   createOne() {
-    console.log(this.ordersNew);
-    this.http.post('http://localhost:8080/order/one/create', this.ordersNew)
+    console.log(this.orders2New);
+    this.http.post('http://localhost:8080/order/one/create', this.orders2New)
       .subscribe((data) => {
         this.orders.push(JSON.parse(data['_body']));
+        this.details(this.orders2New['orderId']);
       }
       );
   }
@@ -89,10 +98,10 @@ export class OrdersComponent implements OnInit {
 
   updateOne(editOrder) {
     console.log(editOrder);
-    this.http.put('http://localhost:8080/order/one/update/' + editOrder._id, editOrder)
+    /* this.http.put('http://localhost:8080/order/one/update/' + editOrder._id, editOrder)
       .subscribe((data) => {
         this.getAll();
-      })
+      }) */
   }
 
   delete(deleteOrder) {

@@ -57,30 +57,32 @@
       <th>Methods</th>
     </thead>
     <tbody>
-      <!--  <tr>
+      <tr>
         <td>
-          <select name="" id="" [(ngModel)]="products._id" class="form-control">
+          <select name="" id="" [(ngModel)]="orders2New.productId" class="form-control">
             <option *ngFor="let prod of httpLocalService.products" value={{prod._id}}>{{prod.name}}</option>
           </select>
         </td>
         <td>
-          {{prod.quantity}}
+          1000 termek ara
         </td>
         <td>
-          {{ordersNew.cost}}
+          <input type="text" class="form-control" [(ngModel)]="orders2New.quantity">
         </td>
         <td>
-          <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="add()">
+          <input type="text" class="form-control" [(ngModel)]="orders2New.price">
+        </td>
+        <td>
+          <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="createOne()">
         </td>
       </tr>
- -->
+
       <tr *ngFor="let ord of orders2">
         <td>
-          <select name="" id="" [(ngModel)]="orders2.asda" class="form-control">
-            <option *ngFor="let prod of httpLocalService.products" value={{prod._id}}>{{prod.name}}</option>
+          <select name="" id="" [(ngModel)]="ord.productId" class="form-control">
+            <option *ngFor="let prod of httpLocalService.products;index as i" value={{prod._id}}>{{prod.name}}</option>
           </select>
         </td>
-
         <td>
           1000 termek ara
         </td>
@@ -91,8 +93,8 @@
           {{ord.price}}
         </td>
         <td class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary" (click)="update(order)">Frissítés</button>
-          <button type="button" class="btn btn-danger" (click)="delete(order)">Törlés</button>
+          <button type="button" class="btn btn-primary" (click)="updateOne(ord)">Frissítés</button>
+          <button type="button" class="btn btn-danger" (click)="deleteOne(ord)">Törlés</button>
         </td>
       </tr>
     </tbody>
