@@ -63,6 +63,7 @@ export class NavbarComponent implements OnInit {
   login(): any {
     this.http.login();
     this.logged = true;
+    this.http.getUsers();
     this.log = this.user['username'];
   }
   logout(): any {

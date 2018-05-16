@@ -18,9 +18,9 @@
           <a class="nav-item nav-link" routerLink="/users">Users</a>
           <a class="nav-item nav-link" routerLink="/products">Products</a>
           <a class="nav-item nav-link" routerLink="/orders">Orders</a>
-          <span class="header-text" *ngIf="logged" style="color:white">Üdv, sikeres belépés {{log}} &nbsp; &nbsp; &nbsp; </span>
+          <span class="header-text" *ngIf="logged" style="color:white">{{log[0].username}} &nbsp; &nbsp; &nbsp; </span>
           <button *ngIf="!logged" data-toggle="modal" data-target="#loginModal" class="btn btn-warning button_signin">Sign in</button>
-          <button *ngIf="logged" (click)="logout()" class="btn btn-warning">Sign out</button>
+          <button *ngIf="logged" (click)="logout()" class="btn btn-warning button_signout">Sign out</button>
         </div>
       </div>
     </nav>
