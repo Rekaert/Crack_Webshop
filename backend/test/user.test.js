@@ -1,11 +1,13 @@
 const chai = require('chai');
+
 const should = chai.should();
 const User = require('../models/user');
 const userController = require('../controller/user.controller');
 const expect = require('chai').expect;
 const chaiHttp = require('chai-http');
 
-const baseUrl = 'http://localhost:8080/user';
+const baseUrl = 'http://localhost:8080/user/';
+const userId = '5afc8d128ec0691788342495';
 chai.use(chaiHttp);
 
 const theAccount = {
@@ -27,172 +29,143 @@ let cookie;
 */
 
 describe('user.controller functions', () => {
-      describe('all()', () => {
-        it('response statusCode equal to 200 and object in res', (done) => {
-          chai.request(baseUrl)
+  // test - get user profile
+  describe('profile()', () => {
+    it('response statusCode equal to 200 and object in res', (done) => {
+      chai.request(baseUrl)
 
-            .get('/')
+        .get('/profile')
 
-            .end((err, res) => {
+        .end((err, res) => {
+          expect(res).to.have.status(200);
 
-              expect(res).to.have.status(200);
+          expect(res).to.be.an('object');
 
-              expect(res).to.be.an('array');
-
-              done();
-
-            });
-
+          done();
         });
+    });
+  });
 
-      });
+  // test - get all users
 
-      describe('update()', () => {
-        // Login során kapunk egy sütit a http headerbe, ezt lementjük a süti változóba
+  describe('all()', () => {
+    it('response statusCode equal to 200 and object in res', (done) => {
+      chai.request(baseUrl)
 
-        // Ez azért kell mert minden kérésnél, amihez szükséges a belépett user,
+        .get('/')
 
-        // el kell küldeni a kapott sütit is. Hiszen ez azonosítja a usert
+        .end((err, res) => {
+          expect(res).to.have.status(200);
 
-        // Itt nincs böngésző ami lementse, így manuálisan kell
+          expect(res).to.be.an('array');
 
-        before((done) => {
-
-          chai.request('http://localhost:8080/user')
-
-            .post('/login')
-
-            .send(theAccount)
-
-            .end((err, res) => {
-
-              if (err) {
-
-                throw err;
-
-              }
-
-              cookie = res.headers['set-cookie'].pop().split(';')[0];
-
-              done();
-
-            });
-
+          done();
         });
+    });
+  });
 
-        it('response statusCode equal to 200', (done) => {
+  // test - register a new user
 
-          chai.request(baseUrl)
+  describe('register()', () => {
+    it('response statusCode equal to 200 and object in res', (done) => {
+      chai.request(baseUrl)
 
-            .put('/5afb52e7d17dc124d4783668')
+        .post('/register')
 
-            // A sütit visszaküldjük minden kérésnél, ahol kell a user azonosítása
+        .end((err, res) => {
+          expect(res).to.have.status(200);
 
-            .set('Cookie', cookie)
+          expect(res).to.be.an('object');
 
-            .end((err, res) => {
-
-              expect(res).to.have.status(200);
-
-              console.log(cookie);
-
-              done();
-
-            });
-
+          expect(res).to.have.property('username');
+          expect(res).to.have.property('email');
+          expect(res).to.have.property('szmlcim');
+          expect(res).to.have.property('szallcim');
+          expect(res).to.have.property('tel');
+          expect(res).to.have.property('perm');
+          expect(res).to.have.property('password');
+          done();
         });
+    });
+  });
 
-      });
+  // test - update a specific user - logged in
 
-      describe('delete()', () => {
+  describe('update()', () => {
+    // Login során kapunk egy sütit a http headerbe, ezt lementjük a süti változóba
 
-        it('response statusCode equal to 200', (done) => {
+    // Ez azért kell mert minden kérésnél, amihez szükséges a belépett user,
 
-          chai.request(baseUrl)
+    // el kell küldeni a kapott sütit is. Hiszen ez azonosítja a usert
 
-            .delete('/5afc36d874f57e1a5ca9dd3f')
+    // Itt nincs böngésző ami lementse, így manuálisan kell
 
-            // A sütit visszaküldjük minden kérésnél, ahol kell a user azonosítása
+    before((done) => {
+      chai.request('http://localhost:8080/user')
 
-            .set('Cookie', cookie)
+        .post('/login')
 
-            .end((err, res) => {
+        .send(theAccount)
 
-              expect(res).to.have.status(200);
-              expect(res).body.should.have.property('_id').eql(post._id);
-
-              done();
-
-            });
-
+        .end((err, res) => {
+          if (err) {
+            throw err;
+          }
+          cookie = res.headers['set-cookie'].pop().split(';')[0];
+          done();
         });
+    });
 
-      });
+    it('response statusCode equal to 200', (done) => {
+      chai.request(baseUrl)
 
-      describe('profile()', () => {
-        it('response statusCode equal to 200 and object in res', (done) => {
-          chai.request(baseUrl)
+        .post('/5afc8d128ec0691788342495')
 
-            .get('/profile')
+        // A sütit visszaküldjük minden kérésnél, ahol kell a user azonosítása
 
-            .end((err, res) => {
+        .set('Cookie', cookie)
 
-              expect(res).to.have.status(200);
+        .end((err, res) => {
+          expect(res).to.have.status(200);
 
-              expect(res).to.be.an('object');
+          console.log(cookie);
 
-              done();
-
-            });
-
+          done();
         });
+    });
+  });
 
-      });
+  // test - update user? logout?
+  describe('update()', () => {
+    it('response statusCode equal to 200 and object in res', (done) => {
+      chai.request(baseUrl)
 
-      describe('register()', () => {
-        it('response statusCode equal to 200 and object in res', (done) => {
-          chai.request(baseUrl)
+        .post('/update/5afc8d128ec069178834249')
+        .end((err, res) => {
+          expect(res).to.have.status(200);
 
-            .post('/register')
-
-            .end((err, res) => {
-
-              expect(res).to.have.status(200);
-
-              expect(res).to.be.an('object');
-
-              expect(res).to.have.property('username');
-              expect(res).to.have.property('email');
-              expect(res).to.have.property('szmlcim');
-              expect(res).to.have.property('szallcim');
-              expect(res).to.have.property('tel');
-              expect(res).to.have.property('perm');
-              expect(res).to.have.property('password');
-              done();
-
-            });
-
+          expect(res).to.be.an('object');
+          expect(res).body.should.have.property('_id').eql(userId);
+          done();
         });
+    });
+  });
+  // test - delete user
+  describe('delete()', () => {
+    it('response statusCode equal to 200', (done) => {
+      chai.request(baseUrl)
 
-      });
+        .delete('/delete/5afc8d128ec0691788342495')
 
-      describe('update()', () => {
-        it('response statusCode equal to 200 and object in res', (done) => {
-          chai.request(baseUrl)
+        // A sütit visszaküldjük minden kérésnél, ahol kell a user azonosítása
 
-            .post('/update/5afc080725e7b621b4ea4dea')
+        .set('Cookie', cookie)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res).body.should.have.property('_id').eql(userId);
 
-            .end((err, res) => {
-
-              expect(res).to.have.status(200);
-
-              expect(res).to.be.an('object');
-              expect(res).body.should.have.property('_id').eql(post._id);
-              done();
-
-            });
-
+          done();
         });
-
-
-      });
+    });
+  });
+});
