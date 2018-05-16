@@ -1,5 +1,4 @@
 const Order = require('../models/order');
-const Order2 = require('../models/order2');
 /**
  * @module Order
  */
@@ -10,6 +9,7 @@ module.exports = {
    * @returns {Array} - List of orders
    */
   list: (req, res) => {
+    // így lehet keresni
     Order.find({}, (err, post) => {
       if (err) {
         res.send(err);
@@ -17,20 +17,7 @@ module.exports = {
       res.json(post);
     });
   },
-  /**
-   * Function to get specified order detalis
-   * @returns {Array} - List of ordered products
-   */
-  detalis: (req, res) => {
-    Order2.find({
-      productId: req.params.id,
-    }, (err, post) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json(post);
-    });
-  },
+
 
   /**
    * Functioon to find an order
@@ -59,18 +46,7 @@ module.exports = {
       res.json(post);
     });
   },
-  /**
-   * Function to create a new order
-   * @returns {Object} - The created order
-   */
-  createOne: (req, res) => {
-    Order2.create(req.body, (err, post) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json(post);
-    });
-  },
+
 
   /**
    * Function to update an order
@@ -85,19 +61,7 @@ module.exports = {
       res.json(post);
     });
   },
-  /**
-   * Function to update an order
-   * @param {Number} id - The id property of the order
-   * @returns {Object} - The order before the update
-   */
-  updateOne: (req, res) => {
-    Order2.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json(post);
-    });
-  },
+
 
   /**
    * Functiopn to delete on order
@@ -106,19 +70,6 @@ module.exports = {
    */
   remove: (req, res) => {
     Order.findByIdAndRemove(req.params.id, (err, post) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json(post);
-    });
-  },
-  /**
-   * Functiopn to delete on order
-   * @param {String} id - The id property of the order
-   * @returns {Object} - The deleted order
-   */
-  removeOne: (req, res) => {
-    Order2.findByIdAndRemove(req.params.id, (err, post) => {
       if (err) {
         res.send(err);
       }
