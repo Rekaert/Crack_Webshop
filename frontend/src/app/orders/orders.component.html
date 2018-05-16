@@ -7,6 +7,8 @@
     <th>UserID</th>
     <th>Quantity</th>
     <th>Cost</th>
+    <th>CreatedAt</th>
+    <th>UpdatedAt</th>
     <th>Details</th>
   </thead>
   <tbody>
@@ -17,13 +19,19 @@
         </select>
       </td>
       <td>
-        {{ordersNew.quantity}}
+        0
       </td>
       <td>
-        {{ordersNew.cost}}
+        0
       </td>
       <td>
-        <input type="button" class="btn btn-success" value="Részletek" name="" id="" (click)="details()">
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="create()">
       </td>
     </tr>
 
@@ -40,13 +48,22 @@
         {{order.cost}}
       </td>
       <td>
+        {{order.createdAt | date}}
+      </td>
+      <td>
+        {{order.updatedAt | date}}
+      </td>
+      <td class="btn-group" role="group" aria-label="Basic example">
+
+        <button type="button" class="btn btn-danger" (click)="delete(order)">Törlés</button>
         <input type="button" class="btn btn-success" value="Részletek" name="" id="" (click)="details(order._id)">
       </td>
+
     </tr>
   </tbody>
 </table>
 
-<div class="orderDetails">
+<div *ngIf="showDetails" class="orderDetails">
   <h1>ORDER ID</h1>
   <table class="table table-bordered text-center table-striped">
     <thead>
@@ -87,10 +104,10 @@
           1000 termek ara
         </td>
         <td>
-          {{ord.quantity}}
+          <input type="text" class="form-control" [(ngModel)]="ord.quantity">
         </td>
         <td>
-          {{ord.price}}
+          <input type="text" class="form-control" [(ngModel)]="ord.price">
         </td>
         <td class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-primary" (click)="updateOne(ord)">Frissítés</button>

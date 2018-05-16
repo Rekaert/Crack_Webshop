@@ -16,9 +16,8 @@ export class NavbarComponent implements OnInit {
   name: string = '';
   datas: any;
   user: object = {
-    email: '',
-    password: '',
-    username: ''
+    username: '',
+    password: ''
   };
 
   constructor(public http: HttpLocalService) {
@@ -61,7 +60,9 @@ export class NavbarComponent implements OnInit {
   }*/
 
   login(): any {
-    this.http.login();
+
+    console.log(this.user);
+    this.http.login(this.user);
     this.logged = true;
     this.http.getUsers();
     this.log = this.user['username'];

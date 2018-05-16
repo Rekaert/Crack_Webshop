@@ -35,16 +35,20 @@ export class DashboardComponent implements OnInit {
   };
 
   createDataForChart(data) {
-    const now = new Date();
-    let found = false;
 
+    const now = new Date();
+    for (let i = 1; i <= now.getDate(); i++) {
+      this.chartData.push([i, 0]);
+    }
+    let found = false;
+    /*  console.log(data); */
     for (let i in data) {
       let order = new Date(data[i].createdAt);
-
+      /* console.log(order); */
       if (now.getFullYear() == order.getFullYear() && now.getMonth() == order.getMonth()) {
-        for (let j in this.chartData) {
-          found = false;
-          /*  console.log(this.chartData[j][0], this.chartData[j][1]) */
+        found = false;
+        for (let j = 1; j < this.chartData.length; j++) {
+          /* console.log(this.chartData[j][0], this.chartData[j][1]) */
           if (this.chartData[j][0] == order.getDate()) {
             this.chartData[j][1] += parseInt(data[i].cost);
             found = true;
@@ -55,6 +59,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     }
+    console.log(this.chartData);
     this.formatChartData();
   }
   formatChartData() {

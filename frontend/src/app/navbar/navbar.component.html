@@ -18,9 +18,9 @@
           <a class="nav-item nav-link" routerLink="/users">Users</a>
           <a class="nav-item nav-link" routerLink="/products">Products</a>
           <a class="nav-item nav-link" routerLink="/orders">Orders</a>
-          <span class="header-text" *ngIf="logged" style="color:white">{{log[0].username}} &nbsp; &nbsp; &nbsp; </span>
-          <button *ngIf="!logged" data-toggle="modal" data-target="#loginModal" class="btn btn-warning button_signin">Sign in</button>
-          <button *ngIf="logged" (click)="logout()" class="btn btn-warning button_signout">Sign out</button>
+          <!-- <span class="header-text" *ngIf="logged" style="color:white">{{log.username}} &nbsp; &nbsp; &nbsp; </span> -->
+          <button *ngIf="!http.isLoggedIn" data-toggle="modal" data-target="#loginModal" class="btn btn-warning button_signin">Sign in</button>
+          <button *ngIf="http.isLoggedIn" (click)="logout()" class="btn btn-warning button_signout">Sign out</button>
         </div>
       </div>
     </nav>
@@ -45,7 +45,7 @@
               <i class="far fa-user"></i>
             </span>
           </div>
-          <input class="form-control" id="loginEmail" type="email" placeholder="email" [(ngModel)]="user.email">
+          <input class="form-control" id="loginEmail" type="email" placeholder="email" [(ngModel)]="user.username">
         </div>
         <label for="pass">Jelszó:</label>
         <div class="input-group mb-3">
