@@ -5,5 +5,5 @@ export class User {
     szallcim: string;
     perm: number;
     password: string;
-    id: string;
+    _id: string;
 }
