@@ -17,13 +17,17 @@ export class OrdersComponent implements OnInit {
   }
 
   orders: any = [];
+  orders2: any = [];
 
 
   constructor(public http: Http, public httpLocalService: HttpLocalService) {
 
     this.httpLocalService.getUsers();
     this.httpLocalService.getProducts();
-    setTimeout(() => { this.countCost() }, 1000)
+    this.httpLocalService.getOrders();
+
+    setTimeout(() => { console.log(this.httpLocalService.orders); }, 1000)
+    //setTimeout(() => { this.countCost() }, 1000)
     this.getAll();
     //setTimeout(() => { console.log(this.httpLocalService.users); }, 1000);
     //setTimeout(() => { console.log(this.httpLocalService.products); }, 1000);
@@ -33,7 +37,7 @@ export class OrdersComponent implements OnInit {
 
   }
 
-  countCost() {
+  /* countCost() {
     for (let i = 0; i < this.orders.length; i++) {
       if (this.orders[i].quantity > 1) {
         this.orders[i].cost = this.orders[i].cost * this.orders[i].quantity;
@@ -41,7 +45,7 @@ export class OrdersComponent implements OnInit {
       console.log(this.orders);
     }
   }
-
+ */
   getAll() {
     this.http.get('http://localhost:8080/order/all').subscribe(
       data => {
@@ -49,9 +53,26 @@ export class OrdersComponent implements OnInit {
       });
   }
 
+  details(id) {
+    this.http.get('http://localhost:8080/order/one/' + id).subscribe(
+      data => {
+        this.orders2 = JSON.parse(data['_body']);
+        console.log(this.orders2);
+      });
+  }
+
   create() {
     console.log(this.ordersNew);
-    this.http.post('http://localhost:8080/order/create', this.ordersNew)
+    this.http.post('http://localhost:8080/order/all/create', this.ordersNew)
+      .subscribe((data) => {
+        this.orders.push(JSON.parse(data['_body']));
+      }
+      );
+  }
+
+  createOne() {
+    console.log(this.ordersNew);
+    this.http.post('http://localhost:8080/order/one/create', this.ordersNew)
       .subscribe((data) => {
         this.orders.push(JSON.parse(data['_body']));
       }
@@ -60,7 +81,15 @@ export class OrdersComponent implements OnInit {
 
   update(editOrder) {
     console.log(editOrder);
-    this.http.put('http://localhost:8080/order/update/' + editOrder._id, editOrder)
+    this.http.put('http://localhost:8080/order/all/update/' + editOrder._id, editOrder)
+      .subscribe((data) => {
+        this.getAll();
+      })
+  }
+
+  updateOne(editOrder) {
+    console.log(editOrder);
+    this.http.put('http://localhost:8080/order/one/update/' + editOrder._id, editOrder)
       .subscribe((data) => {
         this.getAll();
       })
@@ -68,7 +97,15 @@ export class OrdersComponent implements OnInit {
 
   delete(deleteOrder) {
 
-    this.http.delete('http://localhost:8080/order/delete/' + deleteOrder._id)
+    this.http.delete('http://localhost:8080/order/all/delete/' + deleteOrder._id)
+      .subscribe((data) => {
+        this.getAll();
+      })
+  }
+
+  deleteOne(deleteOrder) {
+
+    this.http.delete('http://localhost:8080/order/one/delete/' + deleteOrder._id)
       .subscribe((data) => {
         this.getAll();
       })

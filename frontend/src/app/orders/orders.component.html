@@ -27,20 +27,20 @@
       </td>
     </tr>
 
-    <tr *ngFor="let order of orders">
+    <tr *ngFor="let order of httpLocalService.orders">
       <td>
         <select name="" id="" [(ngModel)]="order.userId" class="form-control">
           <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
         </select>
       </td>
       <td>
-        {{ordersNew.quantity}}
+        {{order.quantity}}
       </td>
       <td>
-        {{ordersNew.cost}}
+        {{order.cost}}
       </td>
       <td>
-        <input type="button" class="btn btn-success" value="Részletek" name="" id="" (click)="details()">
+        <input type="button" class="btn btn-success" value="Részletek" name="" id="" (click)="details(order._id)">
       </td>
     </tr>
   </tbody>
@@ -50,20 +50,21 @@
   <h1>ORDER ID</h1>
   <table class="table table-bordered text-center table-striped">
     <thead>
-      <th>ProductId</th>
+      <th>Termek nev</th>
+      <th>Termek ara</th>
       <th>Quantity</th>
-      <th>Price</th>
+      <th>Cost</th>
       <th>Methods</th>
     </thead>
     <tbody>
-      <tr>
+      <!--  <tr>
         <td>
-          <select name="" id="" [(ngModel)]="ordersNew.userId" class="form-control">
-            <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
+          <select name="" id="" [(ngModel)]="products._id" class="form-control">
+            <option *ngFor="let prod of httpLocalService.products" value={{prod._id}}>{{prod.name}}</option>
           </select>
         </td>
         <td>
-          {{ordersNew.quantity}}
+          {{prod.quantity}}
         </td>
         <td>
           {{ordersNew.cost}}
@@ -72,18 +73,22 @@
           <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="add()">
         </td>
       </tr>
-
-      <tr *ngFor="let order of orders">
+ -->
+      <tr *ngFor="let ord of orders2">
         <td>
-          <select name="" id="" [(ngModel)]="order.userId" class="form-control">
-            <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
+          <select name="" id="" [(ngModel)]="orders2.asda" class="form-control">
+            <option *ngFor="let prod of httpLocalService.products" value={{prod._id}}>{{prod.name}}</option>
           </select>
         </td>
+
         <td>
-          {{ordersNew.quantity}}
+          1000 termek ara
         </td>
         <td>
-          {{ordersNew.cost}}
+          {{ord.quantity}}
+        </td>
+        <td>
+          {{ord.price}}
         </td>
         <td class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-primary" (click)="update(order)">Frissítés</button>
