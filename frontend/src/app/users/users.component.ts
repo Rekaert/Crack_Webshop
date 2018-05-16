@@ -29,6 +29,8 @@ export class UsersComponent implements OnInit {
   delete(id) {
     this.userService.delete(id).subscribe(data => {
       this.ngOnInit();
+    }, err => {
+      console.log(err);
     });
   }
 
@@ -36,6 +38,26 @@ export class UsersComponent implements OnInit {
     this.userService.create(this.user).subscribe(data => {
       this.ngOnInit();
     });
+  }
+
+  clearFormData() {
+    this.user = new User();
+  }
+
+  fillUpdateForm(userID: string) {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i]._id === userID) {
+        this.user = new User();
+        this.user.username =  this.users[i].username;
+        this.user.email =  this.users[i].email;
+        this.user.perm =  this.users[i].perm;
+        this.user.szallcim =  this.users[i].szallcim;
+        this.user.szmlcim =  this.users[i].szmlcim;
+        this.user._id =  this.users[i]._id;
+        this.user.password =  this.users[i].password;
+        return;
+      }
+    }
   }
 
   update() {
