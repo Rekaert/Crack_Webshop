@@ -1,12 +1,12 @@
-/**
- * Load modules
- */
 const Order = require('../models/order');
-
+/**
+ * @module Order
+ */
 module.exports = {
 
   /**
    * Function to get all orders
+   * @returns {Array} - List of orders
    */
   list: (req, res) => {
     // így lehet keresni
@@ -21,6 +21,8 @@ module.exports = {
 
   /**
    * Functioon to find an order
+   * @param {Number} id - The id property of the order
+   * @returns {Object} - The selected order
    */
   find: (req, res) => {
     Order.findById(req.params.id, (err, post) => {
@@ -34,6 +36,7 @@ module.exports = {
 
   /**
    * Function to create a new order
+   * @returns {Object} - The created order
    */
   create: (req, res) => {
     Order.create(req.body, (err, post) => {
@@ -47,6 +50,8 @@ module.exports = {
 
   /**
    * Function to update an order
+   * @param {Number} id - The id property of the order
+   * @returns {Object} - The order before the update
    */
   update: (req, res) => {
     Order.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
@@ -60,6 +65,8 @@ module.exports = {
 
   /**
    * Functiopn to delete on order
+   * @param {String} id - The id property of the order
+   * @returns {Object} - The deleted order
    */
   remove: (req, res) => {
     Order.findByIdAndRemove(req.params.id, (err, post) => {
