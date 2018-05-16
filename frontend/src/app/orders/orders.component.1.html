@@ -1,0 +1,63 @@
+<br>
+<h2>Orders</h2>
+<hr>
+
+<table class="table table-bordered text-center table-striped">
+  <thead>
+    <th>UserID</th>
+    <th>ProductID</th>
+    <th>Quantity</th>
+    <th>Cost</th>
+    <th>Methods</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <select name="" id="" [(ngModel)]="ordersNew.userId" class="form-control">
+          <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
+        </select>
+      </td>
+      <td>
+        <select name="" id="" [(ngModel)]="ordersNew.productId" class="form-control">
+          <option *ngFor="let product of httpLocalService.products" value={{product._id}}>{{product.name}}</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.quantity">
+      </td>
+      <td>
+        <input type="text" class="form-control" name="" id="" [(ngModel)]="ordersNew.cost">
+      </td>
+      <td>
+        <input type="button" class="btn btn-success" value="Create" name="" id="" (click)="create()">
+      </td>
+    </tr>
+
+    <tr *ngFor="let order of orders">
+      <td>
+        <select name="" id="" [(ngModel)]="order.userId" class="form-control">
+          <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
+        </select>
+      </td>
+      <td>
+        <select name="" id="" [(ngModel)]="order.productId" class="form-control">
+          <option *ngFor="let product of httpLocalService.products" value={{product._id}}>{{product.name}}</option>
+        </select>
+      </td>
+
+      <td>
+        <input type="text" class="form-control" [(ngModel)]="order.quantity">
+      </td>
+      <td>
+        <input type="text" class="form-control" [(ngModel)]="order.cost">
+      </td>
+      <td class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" (click)="update(order)">Update</button>
+        <button type="button" class="btn btn-danger" (click)="delete(order)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<pre>
+  {{userNew | json}}
+</pre>
