@@ -4,3 +4,12 @@
   margin: 1%;
   width: 30%;
 }
+
+.product input {
+  margin-top: 5%;
+}
+
+.product img {
+  width: 290px;
+  height: 290px;
+}

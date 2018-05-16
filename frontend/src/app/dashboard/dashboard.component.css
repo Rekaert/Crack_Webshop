@@ -1,15 +1,35 @@
 .full_width {
   color: white;
+  height: 50vh;
 }
 
 .header_title {
-  background-image: url("../../assets/img/chart32.png"), linear-gradient(rgba(27, 38, 185, 0.7), rgba(0, 0, 0, 0.5));
-  background-blend-mode: overlay;
   border-radius: 5px;
   padding: 1%;
   -webkit-box-shadow: 10px 10px 28px -7px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 28px -7px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 28px -7px rgba(0, 0, 0, 0.75);
+  opacity: 0.95;
+}
+
+.h_graph_1 {
+  background-image: url("../../assets/img/chart36.png"), linear-gradient(rgba(27, 38, 185, 0.7), rgba(0, 0, 0, 0.7));
+  background-blend-mode: overlay;
+}
+
+.h_graph_2 {
+  background-image: url("../../assets/img/chart33.png"), linear-gradient(rgba(27, 38, 185, 0.7), rgba(0, 0, 0, 0.7));
+  background-blend-mode: overlay;
+}
+
+.h_graph_3 {
+  background-image: url("../../assets/img/chart34.png"), linear-gradient(rgba(27, 38, 185, 0.7), rgba(0, 0, 0, 0.7));
+  background-blend-mode: overlay;
+}
+
+.h_graph_4 {
+  background-image: url("../../assets/img/chart35.png"), linear-gradient(rgba(27, 38, 185, 0.7), rgba(0, 0, 0, 0.7));
+  background-blend-mode: overlay;
 }
 
 .header_title .row {
