@@ -60,9 +60,11 @@ module.exports = {
    */
   update: (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
-      post.changePassword(req.body.oldpassword, req.body.newpassword, () => {
-        post.save();
-      });
+      if (post) {
+        post.changePassword(req.body.oldpassword, req.body.newpassword, () => {
+          post.save();
+        });
+      }
       if (err) {
         res.send(err);
       }
