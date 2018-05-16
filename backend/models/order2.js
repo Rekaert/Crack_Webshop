@@ -6,25 +6,23 @@ const mongoose = require('mongoose');
  * @param userId - Identicator for user
  * @param productId - Identicator for product
  * @param quantity - How much products are ordered
- * @param cost - The cost of the ordered products
+ * @param price - The price of the ordered products
  */
-const orderSchema = mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
+const order2Schema = mongoose.Schema({
+  productId: {
+    type: String,
     required: true,
   },
   quantity: {
     type: String,
     required: true,
-    default: 0,
   },
-  cost: {
+  price: {
     type: String,
     required: true,
-    default: 0,
   },
 }, {
   timestamps: true,
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model('Order2', order2Schema);
