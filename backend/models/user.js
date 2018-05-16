@@ -28,7 +28,6 @@ const userSchema = mongoose.Schema({
   },
   perm: {
     type: String,
-    unique: true,
     default: '0',
   },
 }, {
