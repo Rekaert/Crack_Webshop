@@ -50,7 +50,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <table>
+              <table class="table">
                 <tr>
                   <td class="row text-center">
                     <label for="name">Username</label>
@@ -73,8 +73,11 @@
                     <input type="text" name="tel" id="tel" [(ngModel)]="user.tel" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="name">Permission</label>
-                    <input type="text" name="perm" id="perm" [(ngModel)]="user.perm" class="form-control" />
+                    <label for="perm">Permission</label>
+                    <select type="text" name="perm" id="perm" [(ngModel)]="user.perm" class="form-control">
+                      <option value="administrator">Administrator</option>
+                      <option value="customer">Customer</option>
+                    </select>
                   </td>
                   <td class="row">
                     <label for="name">Password</label>
@@ -102,7 +105,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <table>
+              <table class="table">
                 <tr>
                   <td class="row text-center">
                     <label for="name">Username</label>
@@ -125,12 +128,19 @@
                     <input type="text" name="tel" id="tel" [(ngModel)]="user.tel" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="name">Permission</label>
-                    <input type="text" name="perm" id="perm" [(ngModel)]="user.perm" class="form-control" />
+                    <label for="perm">Permission</label>
+                    <select type="text" name="perm" id="perm" [(ngModel)]="user.perm" class="form-control">
+                      <option value="administrator">Administrator</option>
+                      <option value="customer">Customer</option>
+                    </select>
                   </td>
                   <td class="row">
-                    <label for="name">Password</label>
-                    <input type="password" name="password" id="password" [(ngModel)]="user.password" class="form-control" />
+                    <label for="name">Password old</label>
+                    <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" />
+                  </td>
+                  <td class="row">
+                    <label for="name">Password new</label>
+                    <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" />
                   </td>
                 </tr>
               </table>

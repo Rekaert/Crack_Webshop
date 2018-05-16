@@ -41,7 +41,6 @@ const userSchema = mongoose.Schema({
   },
   perm: {
     type: String,
-    default: '0',
   },
 }, {
   timestamps: true,

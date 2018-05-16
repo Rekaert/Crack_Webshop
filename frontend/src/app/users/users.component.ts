@@ -48,13 +48,15 @@ export class UsersComponent implements OnInit {
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i]._id === userID) {
         this.user = new User();
-        this.user.username =  this.users[i].username;
-        this.user.email =  this.users[i].email;
-        this.user.perm =  this.users[i].perm;
-        this.user.szallcim =  this.users[i].szallcim;
-        this.user.szmlcim =  this.users[i].szmlcim;
-        this.user._id =  this.users[i]._id;
-        this.user.password =  this.users[i].password;
+        this.user.username = this.users[i].username;
+        this.user.email = this.users[i].email;
+        this.user.perm = this.users[i].perm;
+        this.user.szallcim = this.users[i].szallcim;
+        this.user.szmlcim = this.users[i].szmlcim;
+        this.user._id = this.users[i]._id;
+        this.user.oldpassword = this.users[i].oldpassword;
+        this.user.newpassword = this.users[i].newpassword;
+        this.user.tel = this.users[i].tel;
         return;
       }
     }
