@@ -77,6 +77,7 @@ export class OrdersComponent implements OnInit {
     this.http.post('http://localhost:8080/order/all/create', this.ordersNew)
       .subscribe((data) => {
         this.orders.push(JSON.parse(data['_body']));
+        this.httpLocalService.getOrders();
       }
       );
   }
@@ -145,8 +146,3 @@ export class OrdersComponent implements OnInit {
 
 }
 
-/*orderRouter.get('/all', OrderController.list);
-orderRouter.get('/find/:id', OrderController.find);
-orderRouter.post('/create', OrderController.create);
-orderRouter.put('/update/:id', OrderController.update);
-orderRouter.delete('/delete/:id', OrderController.remove);*/
