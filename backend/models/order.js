@@ -15,12 +15,10 @@ const orderSchema = mongoose.Schema({
   },
   quantity: {
     type: String,
-    required: true,
     default: 0,
   },
   cost: {
     type: String,
-    required: true,
     default: 0,
   },
 }, {

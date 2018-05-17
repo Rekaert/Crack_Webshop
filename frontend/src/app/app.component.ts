@@ -24,9 +24,7 @@ export class AppComponent {
     constructor(public http: HttpLocalService) {
 
     }
-    login() {
-        this.http.login();
-    }
+
     /*     profile() {
             this.http.get(this.baseUrl + 'profile', this.options)
                 .subscribe(data => {

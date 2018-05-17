@@ -12,8 +12,8 @@ export class OrdersComponent implements OnInit {
   ordersNew: object = {
     userId: "",
     productId: "",
-    quantity: "",
-    cost: "",
+    quantity: 0,
+    cost: 0,
   }
   orders2New: object = {
     orderId: "",
@@ -22,6 +22,7 @@ export class OrdersComponent implements OnInit {
     price: "",
   }
 
+  showDetails: boolean = false;
   orders: any = [];
   orders2: any = [];
 
@@ -61,12 +62,14 @@ export class OrdersComponent implements OnInit {
   }
 
   details(id) {
+    this.showDetails = true;
     this.http.get('http://localhost:8080/order/one/' + id).subscribe(
       data => {
         this.orders2 = JSON.parse(data['_body']);
         console.log(this.orders2);
       });
     this.orders2New['orderId'] = id;
+
   }
 
   create() {
@@ -79,11 +82,16 @@ export class OrdersComponent implements OnInit {
   }
 
   createOne() {
-    console.log(this.orders2New);
+    let edited = this.orders.filter(item => item._id == this.orders2New['orderId'])[0];
+    edited.quantity = parseInt(edited.quantity) + parseInt(this.orders2New['quantity']);
+    edited.cost = parseInt(edited.cost) + parseInt(this.orders2New['price']);
     this.http.post('http://localhost:8080/order/one/create', this.orders2New)
       .subscribe((data) => {
-        this.orders.push(JSON.parse(data['_body']));
+        /* this.orders.push(JSON.parse(data['_body'])); */
         this.details(this.orders2New['orderId']);
+        this.update(edited);
+        this.httpLocalService.getOrders();
+
       }
       );
   }
@@ -92,16 +100,24 @@ export class OrdersComponent implements OnInit {
     console.log(editOrder);
     this.http.put('http://localhost:8080/order/all/update/' + editOrder._id, editOrder)
       .subscribe((data) => {
-        this.getAll();
+        this.httpLocalService.getOrders();
       })
   }
 
   updateOne(editOrder) {
-    console.log(editOrder);
+    let edited = this.orders.filter(item => item._id == this.orders2New['orderId'])[0];
+    let edited2 = this.orders2.filter(item => item._id == editOrder._id)[0];
+    edited.quantity = 0;
+    edited.cost = 0;
+    for (let i in this.orders2) {
+      edited.quantity = parseInt(edited.quantity) + parseInt(this.orders2[i]['quantity']);
+      edited.cost = parseInt(edited.cost) + parseInt(this.orders2[i]['price']);
+    }
     this.http.put('http://localhost:8080/order/one/update/' + editOrder._id, editOrder)
       .subscribe((data) => {
-        this.getAll();
         this.details(this.orders2New['orderId']);
+        this.update(edited);
+        this.httpLocalService.getOrders();
       })
   }
 
@@ -109,16 +125,20 @@ export class OrdersComponent implements OnInit {
 
     this.http.delete('http://localhost:8080/order/all/delete/' + deleteOrder._id)
       .subscribe((data) => {
-        this.getAll();
+        this.httpLocalService.getOrders();
       })
   }
 
   deleteOne(deleteOrder) {
-
+    let edited = this.orders.filter(item => item._id == this.orders2New['orderId'])[0];
+    let edited2 = this.orders2.filter(item => item._id == deleteOrder._id)[0];
+    edited.quantity = parseInt(edited.quantity) - parseInt(edited2['quantity']);
+    edited.cost = parseInt(edited.cost) - parseInt(edited2['price']);
     this.http.delete('http://localhost:8080/order/one/delete/' + deleteOrder._id)
       .subscribe((data) => {
-        this.getAll();
         this.details(this.orders2New['orderId']);
+        this.update(edited);
+        this.httpLocalService.getOrders();
       })
   }
 

@@ -1,16 +1,18 @@
 <div class="container-fluid-userstop">
   <div class="row justify-content-center">
     <div class="col-12">
-      <table class="table table-hover table-bordered text-center">
+      <table class="table table-bordered text-center table-striped">
         <thead>
           <tr>
             <th>UserID</th>
-            <th>Username</th>
+            <th>Felhaszn. név</th>
             <th>Email</th>
-            <th>Billing address</th>
-            <th>Postal address</th>
-            <th>Phone</th>
-            <th>Permission</th>
+            <th>Szám. cím</th>
+            <th>Száll. cím</th>
+            <th>Telefonszám</th>
+            <th>Jogosultság</th>
+            <th>Metódusok</th>
+
           </tr>
         </thead>
         <tbody>
@@ -22,11 +24,9 @@
             <td>{{user.szallcim}}</td>
             <td>{{user.tel}}</td>
             <td>{{user.perm}}</td>
-            <td>
-              <button type="button" class="btn btn-info" (click)="delete(user._id)" class="btn btn-danger">Delete</button>
-            </td>
-            <td>
-              <button type="button" class="btn btn-info" (click)="fillUpdateForm(user._id)" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Update</button>
+            <td class="btn-group">
+              <button type="button" class="btn btn-info" (click)="fillUpdateForm(user._id)" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Frissítés</button>
+              <button type="button" class="btn btn-info" (click)="delete(user._id)" class="btn btn-danger">Törlés</button>
             </td>
           </tr>
         </tbody>
@@ -35,9 +35,10 @@
       <div>
         <!-- Button trigger modal -->
         <button (click)="clearFormData()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-          New user creation
+          Felhasználó hozzáadása
         </button>
       </div>
+      <br>
 
       <!-- Modal creation-->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,10 +75,13 @@
                   </td>
                   <td class="row">
                     <label for="perm">Permission</label>
-                    <input type="text" name="perm" id="perm" [(ngModel)]="user.perm" class="form-control">
+                    <select class="form-control" name="" id="perm2" [(ngModel)]="user.perm">
+                      <option value="0">Admin</option>
+                      <option value="1">Felhasználó</option>
+                    </select>
                   </td>
                   <td class="row">
-                    <label for="name">Password</label>
+                    <label for="pass">Password</label>
                     <input type="text" name="pass" id="pass" [(ngModel)]="user.password" class="form-control" />
                   </td>
                 </tr>
@@ -105,35 +109,38 @@
               <table class="table">
                 <tr>
                   <td class="row text-center">
-                    <label for="name">Username</label>
-                    <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+                    <label for="name2">Username</label>
+                    <input type="text" name="username" id="name2" [(ngModel)]="user.username" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="name">Email</label>
-                    <input type="text" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
+                    <label for="email2">Email</label>
+                    <input type="text" name="email" id="email2" [(ngModel)]="user.email" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="name">Billing</label>
-                    <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
+                    <label for="szmlcim2">Billing</label>
+                    <input type="text" name="szmlcim" id="szmlcim2" [(ngModel)]="user.szmlcim" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="name">Postal</label>
-                    <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+                    <label for="szallcim2">Postal</label>
+                    <input type="text" name="szallcim" id="szallcim2" [(ngModel)]="user.szallcim" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="name">Phone</label>
-                    <input type="text" name="tel" id="tel" [(ngModel)]="user.tel" class="form-control" />
+                    <label for="tel2">Phone</label>
+                    <input type="text" name="tel" id="tel2" [(ngModel)]="user.tel" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="perm">Permission</label>
-                    <input type="text" name="perm" id="perm" [(ngModel)]="user.perm" class="form-control">
+                    <label for="perm2">Permission</label>
+                    <select class="form-control" name="" id="perm2" [(ngModel)]="user.perm">
+                      <option value="0">Admin</option>
+                      <option value="1">Felhasználó</option>
+                    </select>
                   </td>
                   <td class="row">
-                    <label for="name">Password old</label>
+                    <label for="oldpassword">Password old</label>
                     <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="name">Password new</label>
+                    <label for="newpassword">Password new</label>
                     <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" />
                   </td>
                 </tr>

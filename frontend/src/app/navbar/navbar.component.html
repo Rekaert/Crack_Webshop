@@ -3,7 +3,9 @@
   <div class="col-12">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark navbar__nav">
       <a class="navbar-brand" routerLink="/">
-        <img src="http://chittagongit.com/images/lego-icon/lego-icon-9.jpg" alt="Smiley face" height="42" width="42"> cRaCk
+
+        <img src="../../assets/img/lego-icon-9.jpg" alt="Smiley face" height="42" width="42">cRaCk
+
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -14,13 +16,13 @@
           <a class="nav-item nav-link active" routerLink="">
             <span class="sr-only">(current)</span>
           </a>
-          <a class="nav-item nav-link" routerLink="/dashboard">Dashboard</a>
-          <a class="nav-item nav-link" routerLink="/users">Users</a>
-          <a class="nav-item nav-link" routerLink="/products">Products</a>
-          <a class="nav-item nav-link" routerLink="/orders">Orders</a>
-          <span class="header-text" *ngIf="logged" style="color:white">{{log[0].username}} &nbsp; &nbsp; &nbsp; </span>
-          <button *ngIf="!logged" data-toggle="modal" data-target="#loginModal" class="btn btn-warning button_signin">Sign in</button>
-          <button *ngIf="logged" (click)="logout()" class="btn btn-warning button_signout">Sign out</button>
+          <a class="nav-item nav-link" routerLink="/dashboard">Statisztika</a>
+          <a class="nav-item nav-link" routerLink="/users">Felhasználók</a>
+          <a class="nav-item nav-link" routerLink="/products">Termékek</a>
+          <a class="nav-item nav-link" routerLink="/orders">Rendelések</a>
+          <!-- <span class="header-text" *ngIf="logged" style="color:white">{{log.username}} &nbsp; &nbsp; &nbsp; </span> -->
+          <button *ngIf="!http.isLoggedIn" data-toggle="modal" data-target="#loginModal" class="btn btn-warning button_signin">Belépés</button>
+          <button *ngIf="http.isLoggedIn" (click)="logout()" class="btn btn-warning button_signout">Kilépés</button>
         </div>
       </div>
     </nav>
@@ -32,7 +34,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Belépés</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -45,7 +47,7 @@
               <i class="far fa-user"></i>
             </span>
           </div>
-          <input class="form-control" id="loginEmail" type="email" placeholder="email" [(ngModel)]="user.email">
+          <input class="form-control" id="loginEmail" type="email" placeholder="email" [(ngModel)]="user.username">
         </div>
         <label for="pass">Jelszó:</label>
         <div class="input-group mb-3">
@@ -58,8 +60,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="login()">Sign In</button>
+        <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Bezárás</button>
+        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="login()">Belépés</button>
       </div>
     </div>
   </div>
