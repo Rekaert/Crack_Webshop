@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { Http, RequestOptions } from '@angular/http';
 import { User } from './users/user';
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import 'rxjs/add/operator/toPromise';
@@ -10,15 +11,16 @@ export class HttpLocalService {
   users: any = [];
   products: any = [];
   orders: any = [];
-
+  options = new RequestOptions({ withCredentials: true });
+  baseUrl = 'http://localhost:8080/user/';
   isLoggedIn: boolean = false;
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: Http) { }
 
   getUsers() {
-    this.httpClient.get(this.url + '/user/')
+    this.httpClient.get(this.url + '/user/', this.options)
       .subscribe((data) => {
-        this.users = data;
-
+        this.users = JSON.parse(data['_body']);
+        console.log(this.users);
       });
   }
   getCost(): Promise<any> {
@@ -27,12 +29,12 @@ export class HttpLocalService {
       .toPromise()
   }
   getOrders() {
-    this.httpClient.get(this.url + '/order/all')
-      .subscribe((data) => this.orders = data);
+    this.httpClient.get(this.url + '/order/all', this.options)
+      .subscribe((data) => this.orders = JSON.parse(data['_body']));
   }
   getProducts() {
-    this.httpClient.get(this.url + '/product')
-      .subscribe((data) => this.products = data);
+    this.httpClient.get(this.url + '/product', this.options)
+      .subscribe((data) => this.products = JSON.parse(data['_body']));
   }
   register() {
     this.httpClient.post(this.url + '/user/register', {
@@ -42,22 +44,34 @@ export class HttpLocalService {
   }
 
   login(user) {
-    this.httpClient.post(this.url + '/user/login', user)
+    this.httpClient.post(this.url + '/user/login', user, this.options)
       .subscribe((data) => {
+        data = JSON.parse(data['_body']);
         if (data['success']) {
-          this.isLoggedIn = true;
-
+          this.auth();
         }
-        if (!this.isLoggedIn) {
-          alert('Hibás adatokat adtál meg!')
-        };
-
       });
 
   }
+  auth() {
+    this.httpClient.get(this.url + '/user/profile', this.options)
+      .subscribe((data2) => {
+        data2 = JSON.parse(data2['_body']).user;
+        console.log(data2);
+        if (data2['perm'] == 0) {
+          this.isLoggedIn = true;
+        } else {
+          alert('Nem rendelkezel megfelelő jogosultságokkal!')
+        }
+        if (this.isLoggedIn == false) {
+          alert('Hibás adatokat adtál meg!')
+        };
+      });
+  }
   logout() {
-    this.httpClient.get(this.url + '/user/logout')
+    this.httpClient.get(this.url + '/user/logout', this.options)
       .subscribe((data) => {
+        data = JSON.parse(data['_body']);
         if (data['success']) {
           this.isLoggedIn = false;
 
