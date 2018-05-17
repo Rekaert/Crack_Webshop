@@ -35,9 +35,15 @@ export class UsersComponent implements OnInit {
   }
 
   create() {
-    this.userService.create(this.user).subscribe(data => {
-      this.ngOnInit();
-    });
+    if (this.user['password'] && this.user['password'].length >= 8) {
+      this.userService.create(this.user).subscribe(data => {
+
+        this.ngOnInit();
+      });
+    } else {
+      alert('Minimum 8 hosszú legyen a jelszó')
+    }
+
   }
 
   clearFormData() {
@@ -70,7 +76,7 @@ export class UsersComponent implements OnInit {
         this.ngOnInit();
       });
     } else {
-      console.log('Minimum 8 hosszú legyen a jelszó')
+      alert('Minimum 8 hosszú legyen a jelszó')
     }
 
   }

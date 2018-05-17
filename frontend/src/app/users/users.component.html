@@ -81,15 +81,15 @@
                     </select>
                   </td>
                   <td class="row">
-                    <label for="pass">Password</label>
+                    <label for="pass">Password (Minimum 8 karakter)</label>
                     <input type="text" name="pass" id="pass" [(ngModel)]="user.password" class="form-control" />
                   </td>
                 </tr>
               </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button (click)="create()" type="button" class="btn btn-info">Create new user</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
+              <button (click)="create()" type="button" class="btn btn-info" data-dismiss="modal">Felhasználó hozzáadása</button>
             </div>
           </div>
         </div>
@@ -140,15 +140,15 @@
                     <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="newpassword">Password new</label>
+                    <label for="newpassword">Password new (Minimum 8 karakter)</label>
                     <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" />
                   </td>
                 </tr>
               </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button (click)="update()" type="button" class="btn btn-info">Update user</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
+              <button (click)="update()" type="button" class="btn btn-info" data-dismiss="modal">Frissítés</button>
             </div>
           </div>
         </div>
