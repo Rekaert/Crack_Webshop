@@ -66,6 +66,7 @@ describe('Order', () => {
     it('response statusCode equal to 200', (done) => {
       chai.request(baseUrl)
         .get('/all/find/' + '5afc350eca8a46309017c533')
+        .send(theOrder)
         .end(function (err, res) {
           expect(res).to.have.status(200);
           done();
@@ -74,6 +75,7 @@ describe('Order', () => {
     it('response type equal to object', (done) => {
       chai.request(baseUrl)
         .get('/all/find/' + '5afc350eca8a46309017c533')
+        .send(theOrder)
         .end(function (err, res) {
           expect(res).to.be.an('object');
           done();
@@ -82,7 +84,7 @@ describe('Order', () => {
     it('response properties of an order by given id', (done) => {
       chai.request(baseUrl)
         .get('/all/find/' + '5afc350eca8a46309017c533')
-        //.send(theOrder)
+        .send(theOrder)
         .end((err, res) => {
           console.log(res.body);
           res.body.should.have.property('userId');
