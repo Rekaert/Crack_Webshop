@@ -1,118 +1,120 @@
-<table class="table table-bordered text-center table-striped">
-  <thead>
-    <th>UserID</th>
-    <th>Mennyiség</th>
-    <th>Ár</th>
-    <th>Létrehozva</th>
-    <th>Frissítve</th>
-    <th>Metódusok</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <select name="" id="" [(ngModel)]="ordersNew.userId" class="form-control">
-          <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
-        </select>
-      </td>
-      <td>
-        0
-      </td>
-      <td>
-        0
-      </td>
-      <td>
-        -
-      </td>
-      <td>
-        -
-      </td>
-      <td>
-        <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="create()">
-      </td>
-    </tr>
-
-    <tr *ngFor="let order of httpLocalService.orders">
-      <td>
-        <select name="" id="" [(ngModel)]="order.userId" class="form-control">
-          <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
-        </select>
-      </td>
-      <td>
-        {{order.quantity}}
-      </td>
-      <td>
-        {{order.cost}}
-      </td>
-      <td>
-        {{order.createdAt | date}}
-      </td>
-      <td>
-        {{order.updatedAt | date}}
-      </td>
-      <td class="btn-group" role="group" aria-label="Basic example">
-
-        <button type="button" class="btn btn-danger" (click)="delete(order)">Törlés</button>
-        <input type="button" class="btn btn-secondary" value="Részletek" name="" id="" (click)="details(order._id)">
-      </td>
-
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="showDetails" class="orderDetails">
-  <h3>Rendeléshez tartozó termékek</h3>
+<div class="container">
   <table class="table table-bordered text-center table-striped">
     <thead>
-      <th>Termek nev</th>
-      <th>Termek ara</th>
+      <th>UserID</th>
       <th>Mennyiség</th>
       <th>Ár</th>
+      <th>Létrehozva</th>
+      <th>Frissítve</th>
       <th>Metódusok</th>
     </thead>
     <tbody>
       <tr>
         <td>
-          <select name="" id="" [(ngModel)]="orders2New.productId" class="form-control">
-            <option *ngFor="let prod of httpLocalService.products" value={{prod._id}}>{{prod.name}}</option>
+          <select name="" id="" [(ngModel)]="ordersNew.userId" class="form-control">
+            <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
           </select>
         </td>
         <td>
-          8000
+          0
         </td>
         <td>
-          <input type="text" class="form-control" [(ngModel)]="orders2New.quantity">
+          0
         </td>
         <td>
-          <input type="text" class="form-control" [(ngModel)]="orders2New.price">
+          -
         </td>
         <td>
-          <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="createOne()">
+          -
+        </td>
+        <td>
+          <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="create()">
         </td>
       </tr>
 
-      <tr *ngFor="let ord of orders2">
+      <tr *ngFor="let order of httpLocalService.orders">
         <td>
-          <select name="" id="" [(ngModel)]="ord.productId" class="form-control">
-            <option *ngFor="let prod of httpLocalService.products;index as i" value={{prod._id}}>{{prod.name}}</option>
+          <select name="" id="" [(ngModel)]="order.userId" class="form-control">
+            <option *ngFor="let user of httpLocalService.users" value={{user._id}}>{{user.username}}</option>
           </select>
         </td>
         <td>
-          1000 termek ara
+          {{order.quantity}}
         </td>
         <td>
-          <input type="text" class="form-control" [(ngModel)]="ord.quantity">
+          {{order.cost}}
         </td>
         <td>
-          <input type="text" class="form-control" [(ngModel)]="ord.price">
+          {{order.createdAt | date}}
+        </td>
+        <td>
+          {{order.updatedAt | date}}
         </td>
         <td class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary" (click)="updateOne(ord)">Frissítés</button>
-          <button type="button" class="btn btn-danger" (click)="deleteOne(ord)">Törlés</button>
+
+          <button type="button" class="btn btn-danger" (click)="delete(order)">Törlés</button>
+          <input type="button" class="btn btn-secondary" value="Részletek" name="" id="" (click)="details(order._id)">
         </td>
+
       </tr>
     </tbody>
   </table>
-</div>
-<pre>
+
+  <div *ngIf="showDetails" class="orderDetails">
+    <h3>Rendeléshez tartozó termékek</h3>
+    <table class="table table-bordered text-center table-striped">
+      <thead>
+        <th>Termek nev</th>
+        <th>Termek ara</th>
+        <th>Mennyiség</th>
+        <th>Ár</th>
+        <th>Metódusok</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <select name="" id="" [(ngModel)]="orders2New.productId" class="form-control">
+              <option *ngFor="let prod of httpLocalService.products" value={{prod._id}}>{{prod.name}}</option>
+            </select>
+          </td>
+          <td>
+            8000
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="orders2New.quantity">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="orders2New.price">
+          </td>
+          <td>
+            <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="createOne()">
+          </td>
+        </tr>
+
+        <tr *ngFor="let ord of orders2">
+          <td>
+            <select name="" id="" [(ngModel)]="ord.productId" class="form-control">
+              <option *ngFor="let prod of httpLocalService.products;index as i" value={{prod._id}}>{{prod.name}}</option>
+            </select>
+          </td>
+          <td>
+            1000 termek ara
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="ord.quantity">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="ord.price">
+          </td>
+          <td class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" (click)="updateOne(ord)">Frissítés</button>
+            <button type="button" class="btn btn-danger" (click)="deleteOne(ord)">Törlés</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pre>
   {{userNew | json}}
 </pre>
+</div>
