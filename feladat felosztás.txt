@@ -1,0 +1,51 @@
+Miro 
+Ha belépsz senkiként:
+index, kapcsolat, sign in gomb látszik  Index oldalhoz kategoria link
+Ha belépsz userként:
++ kosár ikon, profil oldal.
+Ha belépsz adminként:
+minden ami eddig bentvolt az megy egy dropdowbna + egy kategoria fül
+
+Kapcsolat oldalhoz teljes design, és ha megy nodemailer is.
+
+Réka
+
+Kosár nézet: 
+- bejelentkezett felhasználó rendeléseit megjeleníteni
+- kosár akkor legyen elérhetõ, ha be vagyok jelentkezve
+- ngIf a html-be => az egész tartalom ebben az ngIf divben legyen
+- sessionstorageból lékérdezni az adatokat, h. mi van a kosárban
+(pl. kosarTartalma = sessionstorage.kosar) => nem külön adatbázisban lesz letárolva akosár tartalma, hanem a sessionstorage-ból kell lekérni
+- crud a rendelésekrõl, táblázatban megjeleníteni + sum + lehessen módosítani a termék darabszámát
+- egy gomb, ami átvisz a rendelés nézetre
+
+Rendelés nézet: 
+- kilistázni ugyanazt mint a kosárban, összegezzük a rendelést
+- ha nincs megadva a felhasználó számlázási és szállítási adata, akkor
+ngIf= ha meg van adva a szállítási és számlázási adat, akkor rákattinthat a rendelés gombra
+
+Andi:
+
+-profil oldal elkészítése
+- akkor jelenik meg, amikor a user belogol
+- az adott a jelszót vizsgálni kell - 8 hoszzúugyanaz-e, ne adja meg ugyanazt
+- angular beépített patternt használni
+-mindent külön adjon meg - város, utca stb - ezt összekell fûzni és úgy elküldeni a backend
+- user frendly üzenetek 
+-
+ 
+Dani:
+
+- Tesztek befejezése
+- *Kategóriák backend, frontend
+	-lowercase
+	-unique
+-JSDOC
+-Regisztráció, belépés modal
+
+Olivér:
+
+Index oldal
+temék oldal- nincs külön link a navbarban
+értékelések
+képfeltöltés
