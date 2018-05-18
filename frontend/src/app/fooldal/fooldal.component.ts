@@ -11,12 +11,24 @@ export class FooldalComponent implements OnInit {
   item: any = 3;
   constructor(public http: Http) {
     this.getAll();
+   
   }
   getAll() {
     this.http.get('http://localhost:8080/product').subscribe(
       data => {
         data = JSON.parse(data['_body']);
-        this.fillRow(data, this.item);
+        this.http.get('http://localhost:8080/kategoria').subscribe(
+          cat => {
+            cat = JSON.parse(cat['_body']);
+            data = this.matchCat(cat, data);
+            this.http.get('http://localhost:8080/rate').subscribe(
+              rate => {
+                rate = JSON.parse(rate['_body']);
+                data = this.getRate(rate, data);
+                this.fillRow(data, this.item);
+              });
+          });
+
       });
   }
   fillRow(data, num) {
@@ -29,15 +41,44 @@ export class FooldalComponent implements OnInit {
       }
       this.products.push(arr);
     }
-    console.log(this.products);
+    /* console.log(this.products); */
   }
   changeRow(num) {
     this.products = [];
-    this.http.get('http://localhost:8080/product').subscribe(
-      data => {
-        data = JSON.parse(data['_body']);
-        this.fillRow(data, num);
-      });
+    this.item=num;
+    this.getAll();
+  }
+  matchCat(cat, data) {
+    for (let i in data) {
+      for (let j in cat) {
+        if (data[i].catId == cat[j]._id) {
+          data[i].cat = cat[j].name;
+        }
+      }
+    }
+    return data;
+  }
+  getRate(rate, data) {
+    for (let i in data) {
+      data[i].rateCost = 0;
+      data[i].rateQuality = 0;
+      data[i].rateSatis = 0;
+      data[i].rateCost = 0;
+      data[i].rateNumber = 0;
+      for (let j in rate) {
+        if (data[i]._id == rate[j].productId) {
+          data[i].rateCost += parseInt(rate[j].rateCost);
+          data[i].rateQuality += parseInt(rate[j].rateQuality);
+          data[i].rateSatis += parseInt(rate[j].rateSatis);
+          data[i].rateNumber++;
+        }
+      }
+      data[i].rateQuality = data[i].rateNumber == 0 ? 0 : data[i].rateQuality / data[i].rateNumber;
+      data[i].rateSatis = data[i].rateNumber == 0 ? 0 : data[i].rateSatis / data[i].rateNumber;
+      data[i].rateCost = data[i].rateNumber == 0 ? 0 : data[i].rateCost / data[i].rateNumber;
+    }
+    console.log(rate, data);
+    return data;
   }
   ngOnInit() {
   }
