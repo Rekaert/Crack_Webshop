@@ -1,12 +1,12 @@
-<div class="container">
-  <app-navbar></app-navbar>
+<app-navbar>
+</app-navbar>
 
-  <div *ngIf="http.isLoggedIn">
-    <router-outlet></router-outlet>
-  </div>
+<div *ngIf="http.isLoggedIn">
+  <router-outlet></router-outlet>
+</div>
 
 
-  <!--  <footer class="text-center">
+<!--  <footer class="text-center">
     <div class="row">
       <div class="col-12 text-center">
         <a href="https://twitter.com/?lang=en" data-toggle="tooltip" data-placement="top" title="Twitter">
@@ -30,5 +30,4 @@
       </div>
     </div>
   </footer> -->
-  <!-- <button (click)="login()">Valami</button> -->
-</div>
+<!-- <button (click)="login()">Valami</button> -->
