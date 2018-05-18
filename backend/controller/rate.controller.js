@@ -1,11 +1,11 @@
-const Kategoria = require('../models/kategoria');
+const Rate = require('../models/rate');
 
 /**
- * @module Értékelés
+ * @module Rate
  */
 module.exports = {
   list: (req, res) => {
-    Kategoria.find({}, (err, post) => {
+    Rate.find({}, (err, post) => {
       if (err) {
         res.send(err);
       }
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   find: (req, res) => {
-    Kategoria.findById(req.params.id, (err, post) => {
+    Rate.findById(req.params.id, (err, post) => {
       if (err) {
         res.send(err);
       }
@@ -23,7 +23,7 @@ module.exports = {
   },
 
   create: (req, res) => {
-    Kategoria.create(req.body, (err, post) => {
+    Rate.create(req.body, (err, post) => {
       if (err) {
         res.send(err);
       } else {
@@ -33,7 +33,7 @@ module.exports = {
   },
 
   update: (req, res) => {
-    Kategoria.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
+    Rate.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
       if (err) {
         res.send(err);
       } else {
@@ -43,7 +43,7 @@ module.exports = {
   },
 
   remove: (req, res) => {
-    Kategoria.findByIdAndRemove(req.params.id, (err, post) => {
+    Rate.findByIdAndRemove(req.params.id, (err, post) => {
       if (err) {
         res.send(err);
       } else {

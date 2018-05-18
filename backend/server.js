@@ -16,6 +16,7 @@ const userRouter = require('./route/user.route');
 const orderRouter = require('./route/order.route');
 const productRouter = require('./route/product.route');
 const kategoriaRouter = require('./route/kategoria.route');
+const rateRouter = require('./route/rate.route');
 
 /**
  * @constant logDirectory - Logging directory
@@ -124,6 +125,7 @@ app.use('/user/', userRouter);
 app.use('/order/', orderRouter);
 app.use('/product/', productRouter);
 app.use('/kategoria/', kategoriaRouter);
+app.use('/rate/', rateRouter);
 
 
 /**
