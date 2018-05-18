@@ -16,13 +16,20 @@
           <a class="nav-item nav-link active" routerLink="">
             <span class="sr-only">(current)</span>
           </a>
-          <a class="nav-item nav-link" routerLink="/dashboard">Dashboard</a>
-          <a class="nav-item nav-link" routerLink="/users">Users</a>
-          <a class="nav-item nav-link" routerLink="/products">Products</a>
-          <a class="nav-item nav-link" routerLink="/orders">Orders</a>
+          <a class="nav-item nav-link" routerLink="/fooldal">fooldal</a>
+          <a class="nav-item nav-link" routerLink="/kategoriak">kategoriak</a>
+          <a class="nav-item nav-link" routerLink="/kosar">kosar</a>
+          <a class="nav-item nav-link" routerLink="/profil">profil</a>
+          <a class="nav-item nav-link" routerLink="/rendeles">rendeles</a>
+          <a class="nav-item nav-link" routerLink="/kapcsolat">kapcsolat</a>
+          <a class="nav-item nav-link" routerLink="/selectedproduct">selectedproduct</a>
+          <a class="nav-item nav-link" routerLink="/dashboard">Statisztika</a>
+          <a class="nav-item nav-link" routerLink="/users">Felhasználók</a>
+          <a class="nav-item nav-link" routerLink="/products">Termékek</a>
+          <a class="nav-item nav-link" routerLink="/orders">Rendelések</a>
           <!-- <span class="header-text" *ngIf="logged" style="color:white">{{log.username}} &nbsp; &nbsp; &nbsp; </span> -->
-          <button *ngIf="!http.isLoggedIn" data-toggle="modal" data-target="#loginModal" class="btn btn-warning button_signin">Sign in</button>
-          <button *ngIf="http.isLoggedIn" (click)="logout()" class="btn btn-warning button_signout">Sign out</button>
+          <button *ngIf="!http.isLoggedIn" data-toggle="modal" data-target="#loginModal" class="btn btn-warning button_signin">Belépés</button>
+          <button *ngIf="http.isLoggedIn" (click)="logout()" class="btn btn-warning button_signout">Kilépés</button>
         </div>
       </div>
     </nav>
@@ -34,7 +41,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Belépés</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -60,8 +67,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="login()">Sign In</button>
+        <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Bezárás</button>
+        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="login()">Belépés</button>
       </div>
     </div>
   </div>

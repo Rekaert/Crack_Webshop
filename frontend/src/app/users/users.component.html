@@ -1,16 +1,18 @@
 <div class="container-fluid-userstop">
   <div class="row justify-content-center">
     <div class="col-12">
-      <table class="table table-hover table-bordered text-center">
+      <table class="table table-bordered text-center table-striped">
         <thead>
           <tr>
             <th>UserID</th>
-            <th>Username</th>
+            <th>Felhaszn. név</th>
             <th>Email</th>
-            <th>Billing address</th>
-            <th>Postal address</th>
-            <th>Phone</th>
-            <th>Permission</th>
+            <th>Szám. cím</th>
+            <th>Száll. cím</th>
+            <th>Telefonszám</th>
+            <th>Jogosultság</th>
+            <th>Metódusok</th>
+
           </tr>
         </thead>
         <tbody>
@@ -22,11 +24,9 @@
             <td>{{user.szallcim}}</td>
             <td>{{user.tel}}</td>
             <td>{{user.perm}}</td>
-            <td>
-              <button type="button" class="btn btn-info" (click)="delete(user._id)" class="btn btn-danger">Delete</button>
-            </td>
-            <td>
-              <button type="button" class="btn btn-info" (click)="fillUpdateForm(user._id)" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Update</button>
+            <td class="btn-group">
+              <button type="button" class="btn btn-info" (click)="fillUpdateForm(user._id)" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Frissítés</button>
+              <button type="button" class="btn btn-info" (click)="delete(user._id)" class="btn btn-danger">Törlés</button>
             </td>
           </tr>
         </tbody>
@@ -35,7 +35,7 @@
       <div>
         <!-- Button trigger modal -->
         <button (click)="clearFormData()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-          New user creation
+          Felhasználó hozzáadása
         </button>
       </div>
       <br>
@@ -81,15 +81,15 @@
                     </select>
                   </td>
                   <td class="row">
-                    <label for="pass">Password</label>
+                    <label for="pass">Password (Minimum 8 karakter)</label>
                     <input type="text" name="pass" id="pass" [(ngModel)]="user.password" class="form-control" />
                   </td>
                 </tr>
               </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button (click)="create()" type="button" class="btn btn-info">Create new user</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
+              <button (click)="create()" type="button" class="btn btn-info" data-dismiss="modal">Felhasználó hozzáadása</button>
             </div>
           </div>
         </div>
@@ -140,15 +140,15 @@
                     <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" />
                   </td>
                   <td class="row">
-                    <label for="newpassword">Password new</label>
+                    <label for="newpassword">Password new (Minimum 8 karakter)</label>
                     <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" />
                   </td>
                 </tr>
               </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button (click)="update()" type="button" class="btn btn-info">Update user</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
+              <button (click)="update()" type="button" class="btn btn-info" data-dismiss="modal">Frissítés</button>
             </div>
           </div>
         </div>

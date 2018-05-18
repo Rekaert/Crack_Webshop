@@ -12,27 +12,32 @@ import { HttpLocalService } from '../http.service';
 export class DashboardComponent implements OnInit {
   x: any = document.querySelector('.container')['offsetWidth'];
   cost: number = 0;
+  chartData: any;
+  monthlyIncome: any;
   constructor(public httpreq: HttpLocalService) {
     this.httpreq.getOrders();
     this.httpreq.getUsers();
     this.httpreq.getProducts();
     console.log(this.monthlyIncome);
     this.httpreq.getCost().then((data) => {
+      data = JSON.parse(data['_body']);
       for (let x in data) {
         this.cost += parseInt(data[x].cost);
       }
+      this.chartData = [
+        ['Task', 'Forint'],
+      ]
+
+      this.monthlyIncome = {
+        chartType: 'ColumnChart',
+        dataTable: this.chartData,
+        options: { 'title': 'BEVÉTEL A HÓNAPBAN', chartArea: { width: '100%' }, colors: ['#3366CC'] },
+      };
       this.createDataForChart(data);
     });
-  }
-  chartData: any = [
-    ['Task', 'Forint']
-  ]
 
-  monthlyIncome = {
-    chartType: 'ColumnChart',
-    dataTable: this.chartData,
-    options: { 'title': 'BEVÉTEL A HÓNAPBAN', chartArea: { width: '100%' }, colors: ['#3366CC'] },
-  };
+  }
+
 
   createDataForChart(data) {
 

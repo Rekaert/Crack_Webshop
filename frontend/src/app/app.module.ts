@@ -16,13 +16,27 @@ import { OrdersComponent } from './orders/orders.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { UsersService } from './users/users.service';
+import { RendelesComponent } from './rendeles/rendeles.component';
+import { KosarComponent } from './kosar/kosar.component';
+import { ProfilComponent } from './profil/profil.component';
+import { KategoriakComponent } from './kategoriak/kategoriak.component';
+import { FooldalComponent } from './fooldal/fooldal.component';
+import { SelectedproductComponent } from './selectedproduct/selectedproduct.component';
+import { KapcsolatComponent } from './kapcsolat/kapcsolat.component';
 
 const routes: Routes = [
   { path: '', component: NavbarComponent, pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: UsersComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'orders', component: OrdersComponent }
+  { path: 'fooldal', component: FooldalComponent },
+  { path: 'kategoriak', component: KategoriakComponent },
+  { path: 'kosar', component: KosarComponent },
+  { path: 'profil', component: ProfilComponent },
+  { path: 'rendeles', component: RendelesComponent },
+  { path: 'kapcsolat', component: KapcsolatComponent },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'selectedproduct', component: SelectedproductComponent }
 ];
 
 @NgModule({
@@ -32,7 +46,14 @@ const routes: Routes = [
     UsersComponent,
     ProductsComponent,
     OrdersComponent,
-    NavbarComponent
+    NavbarComponent,
+    RendelesComponent,
+    KosarComponent,
+    ProfilComponent,
+    KategoriakComponent,
+    FooldalComponent,
+    SelectedproductComponent,
+    KapcsolatComponent
   ],
   imports: [
     BrowserModule,
