@@ -1,3 +1,103 @@
-<p>
-  profil works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <h3>Felhasználói adataim módosítása:</h3>
+    </div>
+    <div class="col-sm-12 text-left">
+      <p>A *-al jelölt mezők kitöltése kötelező!</p>
+    </div>
+    <div class="col-sm-4 text-left">
+      <form action="change_profile_loggedInUser">
+        <h5>Személyes adatok:</h5>
+        <label for="teljes_nev">Teljes név*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+
+        <label for="teljes_nev">E-mail cím*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+
+        <label for="teljes_nev">Értesítési telefonszám*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+      </form>
+    </div>
+    <br>
+    <br>
+    <div class="col-sm-4 text-left">
+      <form action="change_password_loggedInUser">
+        <h5>Jelszócsere:</h5>
+        <label for="teljes_nev">Jelszó*:</label>
+        <p>Minimum 8 karakter hosszú, tartalmaznia kell számot és szöveget.</p>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+
+        <label for="teljes_nev">Jelszó újra*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+      </form>
+    </div>
+    <div class="col-sm-4 text-left">
+      <form action="change_szmlcim_loggedInUser">
+        <h5>Számlázási cím:</h5>
+        <label for="teljes_nev">Ország*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+
+        <label for="teljes_nev">Irányítószám*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+
+        <label for="teljes_nev">Város*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+
+        <label for="teljes_nev">Utca és házszám*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+      </form>
+    </div>
+    <div class="col-sm-4 text-left">
+      <form action="change_szallcim_loggedInUser">
+        <h5>Szállítási cím:</h5>
+        <label for="teljes_nev">Ország*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+
+        <label for="teljes_nev">Irányítószám*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+
+        <label for="teljes_nev">Város*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+
+        <label for="teljes_nev">Utca és házszám*:</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+      </form>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+      <div class="row justify-content-beetween">
+        <div class="col-sm-4">
+          <label for="checkbox">A szállítási cím megegyezik a számlázási címmel.</label>
+          <input type="checkbox" name="checkbox" id="checkbox" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 text-center">
+        <h3>Megrendeléseim:</h3>
+        <table class="table table-bordered text-center table-striped">
+          <thead class="text-left">
+            <tr>
+              <th>Termék neve</th>
+              <th>Termék ára</th>
+              <th>Mennyiség</th>
+              <th>Ár</th>
+              <th>Megrendelés státusza</th>
+              <th>Metódusok</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

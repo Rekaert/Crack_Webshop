@@ -3,7 +3,7 @@ import { HttpLocalService } from '../http.service';
 import { Observable } from 'rxjs/Observable';
 import { Headers, RequestOptions } from '@angular/http';
 import { User } from './user';
-import { UsersService } from './users.service';
+import { UsersService } from '../users.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 

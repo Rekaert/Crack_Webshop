@@ -15,7 +15,7 @@ import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-import { UsersService } from './users/users.service';
+import { UsersService } from './users.service';
 import { RendelesComponent } from './rendeles/rendeles.component';
 import { KosarComponent } from './kosar/kosar.component';
 import { ProfilComponent } from './profil/profil.component';
