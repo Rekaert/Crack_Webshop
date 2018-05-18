@@ -14,6 +14,7 @@ export class HttpLocalService {
   options = new RequestOptions({ withCredentials: true });
   baseUrl = 'http://localhost:8080/user/';
   isLoggedIn: boolean = false;
+  categories: any = [];
   constructor(private httpClient: Http) { }
 
   getUsers() {
@@ -80,6 +81,40 @@ export class HttpLocalService {
 
       });
 
+  }
+
+  /**
+   * Kategoriak CRUD
+   */
+  getCategories() {
+    this.httpClient.get('http://localhost:8080/kategoria')
+      .subscribe((data) => {
+        this.categories = JSON.parse(data['_body']);
+      });
+  }
+
+  createCategory(newCategory) {
+    this.httpClient.post('http://localhost:8080/kategoria', newCategory)
+      .subscribe(() => {
+        this.getCategories();
+      }
+      );
+  }
+
+  updateCategory(category) {
+    this.httpClient.put(`http://localhost:8080/kategoria/${category._id}`, category)
+      .subscribe(() => {
+        this.getCategories();
+      }
+      );
+  }
+
+  deleteCategory(category) {
+    this.httpClient.delete(`http://localhost:8080/kategoria/${category._id}`)
+      .subscribe(() => {
+        this.getCategories();
+      }
+      );
   }
 }
   /*

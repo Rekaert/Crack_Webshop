@@ -39,13 +39,13 @@ module.exports = {
    */
   register: (req, res) => {
     User.register(new User({
-      username: req.body.username,
-      email: req.body.email,
-      szmlcim: req.body.szmlcim,
-      szallcim: req.body.szallcim,
-      tel: req.body.tel,
-      perm: req.body.perm,
-    }), req.body.password)
+        username: req.body.username,
+        email: req.body.email,
+        szmlcim: req.body.szmlcim,
+        szallcim: req.body.szallcim,
+        tel: req.body.tel,
+        perm: req.body.perm,
+      }), req.body.password)
       .then(() => res.json({
         success: 'Sikeres regisztráció',
         user: req.body,
@@ -92,6 +92,7 @@ module.exports = {
    */
   login: (req, res) => res.json({
     success: 'Sikeres belépés',
+    user: req.body,
   }),
 
 

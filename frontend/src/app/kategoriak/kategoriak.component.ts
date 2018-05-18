@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpLocalService } from '../http.service';
 
 @Component({
   selector: 'app-kategoriak',
@@ -7,9 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KategoriakComponent implements OnInit {
 
-  constructor() { }
+  kategoriak: any = [];
+  newKategoria: Object = {
+    name: '',
+  };
+
+  constructor(private http: HttpLocalService) {
+    this.getDatas();
+  }
+
+  getDatas() {
+    this.http.getCategories();
+    setTimeout(() => {
+      this.kategoriak = this.http.categories;
+    }, 200);
+  }
 
   ngOnInit() {
+  }
+
+  create(newKategoria) {
+    this.http.createCategory(newKategoria);
+    this.getDatas();
+  }
+
+  remove(category) {
+    this.http.deleteCategory(category);
+    this.getDatas();
+  }
+
+  update(category) {
+    this.http.updateCategory(category);
+    this.getDatas();
   }
 
 }

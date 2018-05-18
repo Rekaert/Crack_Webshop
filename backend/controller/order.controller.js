@@ -18,7 +18,7 @@ module.exports = {
     });
   },
   /**
-   * Function to get specified order detalis
+   * Function to get specified order details
    * @returns {Array} - List of ordered products
    */
   detalis: (req, res) => {
@@ -101,7 +101,7 @@ module.exports = {
 
   /**
    * Functiopn to delete on order
-   * @param {String} id - The id property of the order
+   * @param {Number} id - The id property of the order
    * @returns {Object} - The deleted order
    */
   remove: (req, res) => {
@@ -114,7 +114,7 @@ module.exports = {
   },
   /**
    * Functiopn to delete on order
-   * @param {String} id - The id property of the order
+   * @param {Number} id - The id property of the order
    * @returns {Object} - The deleted order
    */
   removeOne: (req, res) => {
