@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpLocalService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 
@@ -25,7 +26,7 @@ import { SelectedproductComponent } from './selectedproduct/selectedproduct.comp
 import { KapcsolatComponent } from './kapcsolat/kapcsolat.component';
 
 const routes: Routes = [
-  { path: '', component: NavbarComponent, pathMatch: 'full' },
+  { path: '', component: FooldalComponent, pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: UsersComponent },
   { path: 'products', component: ProductsComponent },
@@ -60,6 +61,9 @@ const routes: Routes = [
     HttpModule,
     HttpClientModule,
     FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCK4I3-yXZYYjG1SNmcsn55wABdYfAS7xY'
+    }),
     Ng2GoogleChartsModule,
     RouterModule.forRoot(routes),
   ],

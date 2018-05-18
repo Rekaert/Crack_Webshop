@@ -14,6 +14,7 @@ export class HttpLocalService {
   options = new RequestOptions({ withCredentials: true });
   baseUrl = 'http://localhost:8080/user/';
   isLoggedIn: boolean = false;
+  typeOfUser: number = 2;
   categories: any = [];
   constructor(private httpClient: Http) { }
 
@@ -61,7 +62,14 @@ export class HttpLocalService {
         console.log(data2);
         if (data2['perm'] == 0) {
           this.isLoggedIn = true;
-        } else {
+          this.typeOfUser = 0;
+          console.log(this.typeOfUser);
+        } else if (data2['perm'] == 1) {
+          this.typeOfUser = 1;
+          this.isLoggedIn = true;
+          console.log(this.typeOfUser);
+        }
+        else {
           alert('Nem rendelkezel megfelelő jogosultságokkal!')
         }
         if (this.isLoggedIn == false) {
@@ -69,15 +77,15 @@ export class HttpLocalService {
         };
       });
   }
+
   logout() {
     this.httpClient.get(this.url + '/user/logout', this.options)
       .subscribe((data) => {
         data = JSON.parse(data['_body']);
         if (data['success']) {
           this.isLoggedIn = false;
-
+          location.reload();
         }
-        console.log(this.isLoggedIn)
 
       });
 

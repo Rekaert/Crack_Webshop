@@ -1,0 +1,24 @@
+agm-map {
+  height: 450px;
+}
+
+.map {
+  position: relative;
+  top: -100px;
+}
+
+.bgGray {
+  background-color: rgb(243, 243, 243);
+  padding: 6%;
+  border-radius: 20px;
+}
+
+.smpics {
+  margin-top: 5%;
+}
+
+.smpics img {
+  width: 100px;
+  height: 100px;
+  fill: gainsboro;
+}

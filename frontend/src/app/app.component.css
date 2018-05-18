@@ -1,10 +1,13 @@
+body {
+  font-family: 'Skranji', cursive;
+}
+
 .background {
-  background: url("../assets/img/legoWall5Resized.png") no-repeat center center fixed;
+  background: url("../assets/img/legoWall5Resized.png") center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 100vh;
   z-index: -1;
 }
 
