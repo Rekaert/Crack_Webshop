@@ -13,10 +13,10 @@
         <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
 
         <label for="teljes_nev">E-mail cím*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="email" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
 
         <label for="teljes_nev">Értesítési telefonszám*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="text" name="tel" id="tel" [(ngModel)]="user.tel" class="form-control" />
       </form>
     </div>
     <br>
@@ -24,44 +24,44 @@
     <div class="col-sm-4 text-left">
       <form action="change_password_loggedInUser">
         <h5>Jelszócsere:</h5>
-        <label for="teljes_nev">Jelszó*:</label>
+        <label for="teljes_nev">Korábbi jelszó*:</label>
         <p>Minimum 8 karakter hosszú, tartalmaznia kell számot és szöveget.</p>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" />
 
-        <label for="teljes_nev">Jelszó újra*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <label for="teljes_nev">Új jelszó*:</label>
+        <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" />
       </form>
     </div>
     <div class="col-sm-4 text-left">
       <form action="change_szmlcim_loggedInUser">
         <h5>Számlázási cím:</h5>
         <label for="teljes_nev">Ország*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
 
         <label for="teljes_nev">Irányítószám*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
 
         <label for="teljes_nev">Város*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
 
         <label for="teljes_nev">Utca és házszám*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
       </form>
     </div>
     <div class="col-sm-4 text-left">
       <form action="change_szallcim_loggedInUser">
         <h5>Szállítási cím:</h5>
         <label for="teljes_nev">Ország*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
 
         <label for="teljes_nev">Irányítószám*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
 
         <label for="teljes_nev">Város*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
 
         <label for="teljes_nev">Utca és házszám*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+        <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
       </form>
     </div>
     <br>
@@ -83,6 +83,7 @@
         <table class="table table-bordered text-center table-striped">
           <thead class="text-left">
             <tr>
+              <th>Rendelésazonosító</th>
               <th>Termék neve</th>
               <th>Termék ára</th>
               <th>Mennyiség</th>
