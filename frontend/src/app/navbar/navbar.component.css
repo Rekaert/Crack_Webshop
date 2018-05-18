@@ -2,6 +2,11 @@
   margin-bottom: 100px;
 }
 
+#navLego {
+  background-image: url("../../assets/img/lego4navbarRemake.png");
+  height: 100px;
+}
+
 .navbar-brand {
   text-shadow: 1px 1px 2px white, 0 0 25px rgb(219, 219, 92), 0 0 5px white;
 }
@@ -10,19 +15,27 @@
   color: #0056B3
 }
 
-#brand_small {
-  font-size: 10px;
+.navLegoman {
+  width: 100px;
+  filter: drop-shadow(5px 5px 20px rgb(0, 0, 0));
 }
 
-.nav-item {
+.nav-link {
+  position: relative;
+  padding-top: 0;
+  top: 0;
   font-family: sans-serif;
   margin-right: 30px;
+  color: red;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .navbar {
   cursor: pointer;
+  margin-top: 0;
   font-size: 15px;
-  text-shadow: 1px 1px 2px white, 0 0 25px rgb(219, 219, 92), 0 0 5px white;
+  text-shadow: 2px 2px 8px white, 0 0 25px rgb(219, 219, 92), 0 0 5px white;
 }
 
 .navbar .nav-item:hover {

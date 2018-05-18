@@ -1,10 +1,10 @@
 <!--nav-->
 <div class="row navbar__nav_margin">
   <div class="col-12">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark navbar__nav">
+    <nav class="navbar fixed-top navbar-expand-lg navbar__nav" id="navLego">
       <a class="navbar-brand" routerLink="/">
 
-        <img src="../../assets/img/lego-icon-9.jpg" alt="Smiley face" height="42" width="42">cRaCk
+        <!-- <img src="../../assets/img/lego-icon-9.jpg" alt="Smiley face" height="42" width="42">cRaCk -->
 
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -36,39 +36,136 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!--Modal-->
+<div id="loginModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true" class="modal fade">
+  <div role="document" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Belépés</h5>
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item">
+            <a id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true" class="nav-link active">Bejelentkezés</a>
+          </li>
+          <li class="nav-item">
+            <a id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false" class="nav-link">Regisztráció</a>
+          </li>
+        </ul>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <label for="email">E-mail:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon11">
-              <i class="far fa-user"></i>
-            </span>
+      <div id="userTabContent" class="tab-content">
+        <div id="login" role="tabpanel" aria-labelledby="login-tab" class="tab-pane fade show active">
+          <!-- Login Form-->
+          <div class="modal-body">
+            <label for="email">E-mail:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon11">
+                  <i class="far fa-user"></i>
+                </span>
+              </div>
+              <input class="form-control" id="loginEmail" type="email" placeholder="email" [(ngModel)]="user.username">
+            </div>
+            <label for="pass">Jelszó:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon22">
+                  <i class="fas fa-key"></i>
+                </span>
+              </div>
+              <input class="form-control" id="loginPass" type="password" placeholder="password" [(ngModel)]="user.password">
+            </div>
           </div>
-          <input class="form-control" id="loginEmail" type="email" placeholder="email" [(ngModel)]="user.username">
-        </div>
-        <label for="pass">Jelszó:</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon22">
-              <i class="fas fa-key"></i>
-            </span>
+          <div class="modal-footer">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Bezárás</button>
+              <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="login()">Belépés</button>
+            </div>
           </div>
-          <input class="form-control" id="loginPass" type="password" placeholder="password" [(ngModel)]="user.password">
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Bezárás</button>
-        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="login()">Belépés</button>
+        <div id="register" role="tabpanel" aria-labelledby="register-tab" class="tab-pane fade">
+          <!-- Register Form-->
+          <div class="modal-body">
+            <label for="email">Név:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon0">
+                  <i class="far fa-user"></i>
+                </span>
+              </div>
+              <input class="form-control" id="username" type="text" placeholder="username">
+            </div>
+            <label for="email">E-mail:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  <i class="far fa-user"></i>
+                </span>
+              </div>
+              <input class="form-control" id="email" type="email" placeholder="valami@valami.hu">
+            </div>
+            <label for="pass">Jelszó:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">
+                  <i class="fas fa-key"></i>
+                </span>
+              </div>
+              <input class="form-control" id="pass" type="password" placeholder="Password">
+            </div>
+            <label for="repass">Jelszó újra:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">
+                  <i class="fas fa-key"></i>
+                </span>
+              </div>
+              <input class="form-control" id="repass" type="password" placeholder="Repeat Password">
+            </div>
+            <label for="name">Számlázási cím:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon4">
+                  <i class="fas fa-map-marker"></i>
+                </span>
+              </div>
+              <input class="form-control" id="szamlacim" type="text" placeholder="számlázási cím">
+            </div>
+            <label for="name">Szállítási cím:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon5">
+                  <i class="fas fa-map-marker"></i>
+                </span>
+              </div>
+              <input class="form-control" id="szalliasicim" type="text" placeholder="szállítási cím">
+            </div>
+            <label for="name">Telefonszám:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon6">
+                  <i class="fas fa-phone"></i>
+                </span>
+              </div>
+              <input class="form-control" id="telefon" type="text" placeholder="telefonszám">
+            </div>
+            <label for="name">Jogosultság:</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+              </div>
+              <select class="form-control" id="permission" type="text" placeholder="telefonszám">
+                <option value="admin">Admin</option>
+                <option value="customer">Customer</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Bezárás</button>
+              <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="register()">Regisztráció</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
