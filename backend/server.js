@@ -14,6 +14,8 @@ const db = require('./config/database.js');
 const User = require('./models/user');
 const userRouter = require('./route/user.route');
 const orderRouter = require('./route/order.route');
+const productRouter = require('./route/product.route');
+const kategoriaRouter = require('./route/kategoria.route');
 
 /**
  * @constant logDirectory - Logging directory
@@ -120,7 +122,8 @@ app.use(cors({
  */
 app.use('/user/', userRouter);
 app.use('/order/', orderRouter);
-app.use('/product/', require('./route/product.route'));
+app.use('/product/', productRouter);
+app.use('/kategoria/', kategoriaRouter);
 
 
 /**
