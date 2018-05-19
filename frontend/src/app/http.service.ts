@@ -8,6 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HttpLocalService {
   private url = 'http://localhost:8080';
+  user: any;
   users: any = [];
   products: any = [];
   orders: any = [];
@@ -22,7 +23,7 @@ export class HttpLocalService {
     this.httpClient.get(this.url + '/user/', this.options)
       .subscribe((data) => {
         this.users = JSON.parse(data['_body']);
-        console.log(this.users);
+
       });
   }
   getCost(): Promise<any> {
@@ -59,7 +60,7 @@ export class HttpLocalService {
     this.httpClient.get(this.url + '/user/profile', this.options)
       .subscribe((data2) => {
         data2 = JSON.parse(data2['_body']).user;
-        console.log(data2);
+        this.user = data2;
         if (data2['perm'] == 0) {
           this.isLoggedIn = true;
           this.typeOfUser = 0;

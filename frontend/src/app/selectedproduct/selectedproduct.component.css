@@ -6,4 +6,10 @@
 img {
   border-radius: 5px;
   box-shadow: 0 0 5px grey;
+  max-height: 800px;
+  max-width: 80%;
+}
+
+ul {
+  width: 80%;
 }
