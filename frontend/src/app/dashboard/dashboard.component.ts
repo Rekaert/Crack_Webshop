@@ -10,7 +10,9 @@ import { HttpLocalService } from '../http.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  x: any = document.querySelector('.container')['offsetWidth'];
+
+
+
   cost: number = 0;
   chartData: any;
   monthlyIncome: any;

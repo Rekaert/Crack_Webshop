@@ -1,103 +1,111 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <h3>Felhasználói adataim módosítása:</h3>
-    </div>
-    <div class="col-sm-12 text-left">
-      <p>A *-al jelölt mezők kitöltése kötelező!</p>
-    </div>
-    <div class="col-sm-4 text-left">
-      <form action="change_profile_loggedInUser">
-        <h5>Személyes adatok:</h5>
-        <label for="teljes_nev">Teljes név*:</label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+<div class="stop_lego" *ngIf="http.typeOfUser >=2">
+  <h1>Nincs megfelelo jogosultságod, az oldal megtekintéséhez!</h1>
+  <h2>A megtekintéshez bejelentkezés szükséges</h2>
+  <img src="../../assets/img/stopLego.png" alt="">
+</div>
+<div *ngIf="http.typeOfUser <=1">
 
-        <label for="teljes_nev">E-mail cím*:</label>
-        <input type="email" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h3>Felhasználói adataim módosítása:</h3>
+      </div>
+      <div class="col-sm-12 text-left">
+        <p>A *-al jelölt mezők kitöltése kötelező!</p>
+      </div>
+      <div class="col-sm-4 text-left">
+        <form action="change_profile_loggedInUser">
+          <h5>Személyes adatok:</h5>
+          <label for="teljes_nev">Teljes név*:</label>
+          <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
 
-        <label for="teljes_nev">Értesítési telefonszám*:</label>
-        <input type="text" name="tel" id="tel" [(ngModel)]="user.tel" class="form-control" />
-      </form>
-    </div>
-    <br>
-    <br>
-    <div class="col-sm-4 text-left">
-      <form action="change_password_loggedInUser">
-        <h5>Jelszócsere:</h5>
-        <label for="teljes_nev">Korábbi jelszó*:</label>
-        <p>Minimum 8 karakter hosszú, tartalmaznia kell számot és szöveget.</p>
-        <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" />
+          <label for="teljes_nev">E-mail cím*:</label>
+          <input type="email" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
 
-        <label for="teljes_nev">Új jelszó*:</label>
-        <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" />
-      </form>
-    </div>
-    <div class="col-sm-4 text-left">
-      <form action="change_szmlcim_loggedInUser">
-        <h5>Számlázási cím:</h5>
-        <label for="teljes_nev">Ország*:</label>
-        <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
+          <label for="teljes_nev">Értesítési telefonszám*:</label>
+          <input type="text" name="tel" id="tel" [(ngModel)]="user.tel" class="form-control" />
+        </form>
+      </div>
+      <br>
+      <br>
+      <div class="col-sm-4 text-left">
+        <form action="change_password_loggedInUser">
+          <h5>Jelszócsere:</h5>
+          <label for="teljes_nev">Korábbi jelszó*:</label>
+          <p>Minimum 8 karakter hosszú, tartalmaznia kell számot és szöveget.</p>
+          <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" />
 
-        <label for="teljes_nev">Irányítószám*:</label>
-        <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
+          <label for="teljes_nev">Új jelszó*:</label>
+          <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" />
+        </form>
+      </div>
+      <div class="col-sm-4 text-left">
+        <form action="change_szmlcim_loggedInUser">
+          <h5>Számlázási cím:</h5>
+          <label for="teljes_nev">Ország*:</label>
+          <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
 
-        <label for="teljes_nev">Város*:</label>
-        <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
+          <label for="teljes_nev">Irányítószám*:</label>
+          <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
 
-        <label for="teljes_nev">Utca és házszám*:</label>
-        <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
-      </form>
-    </div>
-    <div class="col-sm-4 text-left">
-      <form action="change_szallcim_loggedInUser">
-        <h5>Szállítási cím:</h5>
-        <label for="teljes_nev">Ország*:</label>
-        <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+          <label for="teljes_nev">Város*:</label>
+          <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
 
-        <label for="teljes_nev">Irányítószám*:</label>
-        <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+          <label for="teljes_nev">Utca és házszám*:</label>
+          <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
+        </form>
+      </div>
+      <div class="col-sm-4 text-left">
+        <form action="change_szallcim_loggedInUser">
+          <h5>Szállítási cím:</h5>
+          <label for="teljes_nev">Ország*:</label>
+          <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
 
-        <label for="teljes_nev">Város*:</label>
-        <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+          <label for="teljes_nev">Irányítószám*:</label>
+          <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
 
-        <label for="teljes_nev">Utca és házszám*:</label>
-        <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
-      </form>
-    </div>
-    <br>
-    <br>
-    <div class="container">
-      <div class="row justify-content-beetween">
-        <div class="col-sm-4">
-          <label for="checkbox">A szállítási cím megegyezik a számlázási címmel.</label>
-          <input type="checkbox" name="checkbox" id="checkbox" />
+          <label for="teljes_nev">Város*:</label>
+          <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+
+          <label for="teljes_nev">Utca és házszám*:</label>
+          <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+        </form>
+      </div>
+      <br>
+      <br>
+      <div class="container">
+        <div class="row justify-content-beetween">
+          <div class="col-sm-4">
+            <label for="checkbox">A szállítási cím megegyezik a számlázási címmel.</label>
+            <input type="checkbox" name="checkbox" id="checkbox" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <hr>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-sm-12 text-center">
-        <h3>Megrendeléseim:</h3>
-        <table class="table table-bordered text-center table-striped">
-          <thead class="text-left">
-            <tr>
-              <th>Rendelésazonosító</th>
-              <th>Termék neve</th>
-              <th>Termék ára</th>
-              <th>Mennyiség</th>
-              <th>Ár</th>
-              <th>Megrendelés státusza</th>
-              <th>Metódusok</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
+    <hr>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 text-center">
+          <h3>Megrendeléseim:</h3>
+          <table class="table table-bordered text-center table-striped">
+            <thead class="text-left">
+              <tr>
+                <th>Rendelésazonosító</th>
+                <th>Termék neve</th>
+                <th>Termék ára</th>
+                <th>Mennyiség</th>
+                <th>Ár</th>
+                <th>Megrendelés státusza</th>
+                <th>Metódusok</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
 
-            </tr>
-          </tbody>
-        </table>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

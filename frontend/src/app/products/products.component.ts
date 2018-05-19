@@ -5,6 +5,7 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpLocalService } from '../http.service';
 
 @Component({
   selector: 'app-products',
@@ -24,7 +25,7 @@ export class ProductsComponent implements OnInit {
   products: any = [];
 
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public httpLocalService: HttpLocalService) {
     this.getAll();
   }
 

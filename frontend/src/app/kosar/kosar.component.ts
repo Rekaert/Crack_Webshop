@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpLocalService } from '../http.service';
 
 @Component({
   selector: 'app-kosar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KosarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public http: HttpLocalService) { }
 
   ngOnInit() {
   }

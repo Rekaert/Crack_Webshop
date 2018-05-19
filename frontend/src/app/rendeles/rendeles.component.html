@@ -1,3 +1,9 @@
-<p>
-  rendeles works!
-</p>
+<div class="stop_lego" *ngIf="http.typeOfUser >=2">
+  <h1>Nincs megfelelo jogosultságod, az oldal megtekintéséhez!</h1>
+  <h2>A megtekintéshez bejelentkezés szükséges</h2>
+  <img src="../../assets/img/stopLego.png" alt="">
+</div>
+<div *ngIf="http.typeOfUser <=1">
+  IDE DOLGOZZ
+
+</div>
