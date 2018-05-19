@@ -13,16 +13,16 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class ProfilComponent implements OnInit {
 
-  users: User[];
   user = new User();
 
   constructor(private http: HttpLocalService,
     private userService: UsersService) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(users => {
-      this.users = users;
-    });
+    this.userService.getProfile().subscribe(data => {
+      console.log(data);
+      this.user = data.user;
+    })
   }
 
 }
