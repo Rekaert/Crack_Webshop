@@ -15,10 +15,10 @@ body {
 }
 
 #totalWidth {
-  width: 90%;
+  width: 80%;
   background: rgb(247, 243, 225);
   border-radius: 20px;
-  margin: 0 5%;
+  margin: 0 10%;
 }
 
 h1,
