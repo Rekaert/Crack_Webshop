@@ -18,7 +18,16 @@ module.exports = {
       res.send(post);
     });
   },
-
+  findByUrl: (req, res) => {
+    Product.find({
+      url: req.params.url,
+    }, (err, post) => {
+      if (err) {
+        res.send(err);
+      }
+      res.send(post);
+    });
+  },
   find: (req, res) => {
     Product.findById(req.params.id, (err, post) => {
       if (err) {

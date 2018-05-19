@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'rendeles', component: RendelesComponent },
   { path: 'kapcsolat', component: KapcsolatComponent },
   { path: 'orders', component: OrdersComponent },
-  { path: 'selectedproduct', component: SelectedproductComponent }
+  { path: 'selectedproduct/:id', component: SelectedproductComponent }
 ];
 
 @NgModule({

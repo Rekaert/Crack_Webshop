@@ -11,7 +11,7 @@ export class FooldalComponent implements OnInit {
   item: any = 3;
   constructor(public http: Http) {
     this.getAll();
-   
+
   }
   getAll() {
     this.http.get('http://localhost:8080/product').subscribe(
@@ -45,7 +45,7 @@ export class FooldalComponent implements OnInit {
   }
   changeRow(num) {
     this.products = [];
-    this.item=num;
+    this.item = num;
     this.getAll();
   }
   matchCat(cat, data) {
@@ -56,6 +56,7 @@ export class FooldalComponent implements OnInit {
         }
       }
     }
+    console.log(data);
     return data;
   }
   getRate(rate, data) {
