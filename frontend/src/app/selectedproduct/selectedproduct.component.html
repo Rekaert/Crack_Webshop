@@ -31,7 +31,7 @@
         </li>
       </ul>
       <br>
-      <div class="input-group">
+      <div class="input-group" *ngIf="httpLocal.isLoggedIn">
         <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" pattern="[0-9]*" [(ngModel)]="quantity">
         <div class="input-group-append">
           <span class="input-group-text">{{quantity>1 && quantity%1==0?prod.cost*quantity:prod.cost}}</span>
@@ -44,6 +44,9 @@
         </p>
       </div>
       <h3 *ngIf="shop">Rakodás a kosárba</h3>
+      <div *ngIf="!httpLocal.isLoggedIn">
+        <h3>Kérlek jelentkezz be a vásárláshoz!</h3>
+      </div>
     </div>
   </div>
   <br>
