@@ -1,5 +1,5 @@
 <div class="card-deck" *ngFor="let termek of products;">
-  <div class="card border-secondary" *ngFor="let prod of termek">
+  <div class="card border-secondary" *ngFor="let prod of termek" [ngStyle]="{'opacity':prod?1:0}">
     <div *ngIf="prod">
       <img class="card-img-top" src="{{ 'http://localhost:8080/images/'+prod.image}}" alt="Card image cap">
       <div class="card-body">
@@ -40,7 +40,7 @@
         <span> Megjelenés: {{prod.createdAt}}</span>
       </div>
     </div>
-    <div *ngIf="!prod">Dísz</div>
+
   </div>
 </div>
 <div class="selector">

@@ -12,6 +12,16 @@ export class SelectedproductComponent implements OnInit {
   prod: any;
   blog: any;
   rateMe: boolean = false;
+  quantity: any = 1;
+  shop: string = "";
+  ownRate: any = {
+    userId: "",
+    productId: "",
+    text: "",
+    rateCost: "5",
+    rateQuality: "5",
+    rateSatis: "5",
+  }
   constructor(private route: ActivatedRoute, public http: Http, public httpLocal: HttpLocalService) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getOne();
@@ -27,7 +37,9 @@ export class SelectedproductComponent implements OnInit {
             this.getRate(rates);
             this.blog = rates.filter(item => item.productId == this.prod._id);
             this.getUser();
-            this.checkMe();
+            if (this.httpLocal.isLoggedIn) {
+              this.checkMe();
+            }
           });
       });
   }
@@ -71,12 +83,57 @@ export class SelectedproductComponent implements OnInit {
         let order = JSON.parse(orders['_body']);
         console.log(this.httpLocal.user);
         for (let i in order) {
-          if (order[i].userId == this.httpLocal.users._id) {
-            console.log(order[i], this.rateMe);
+          if (order[i].userId == this.httpLocal.user._id) {
+            this.isBought(order[i]._id);
           }
         }
 
       });
+  }
+  isBought(id) {
+    this.http.get('http://localhost:8080/order/one/' + id).subscribe(
+      orders => {
+        let termek = JSON.parse(orders['_body']);
+        for (let i in termek) {
+          if (termek[i].productId == this.prod._id) {
+            this.rateMe = true;
+          }
+        }
+      });
+  }
+  toBasket() {
+    this.quantity = this.quantity > 1 && this.quantity % 1 == 0 ? this.quantity : 1;
+    let basket = sessionStorage.basket ? JSON.parse(sessionStorage.basket) : [];
+    basket.push({
+      productId: this.prod._id,
+      productName: this.prod.name,
+      quantity: this.quantity,
+      productCost: this.prod.cost,
+      totalCost: this.prod.cost * this.quantity,
+    });
+    let session = JSON.stringify(basket);
+    sessionStorage.setItem("basket", session);
+    this.shoppingAnimation();
+  }
+  shoppingAnimation() {
+    this.shop = "shop";
+    setTimeout(() => {
+      this.shop = "";
+    }, this.quantity * 500);
+    if (this.quantity > 20) {
+      setTimeout(() => {
+        this.shop = "";
+      }, 10000);
+    }
+  }
+  createRate() {
+    this.ownRate.userId = this.httpLocal.user._id;
+    this.ownRate.productId = this.prod._id;
+    this.ownRate.text = this.ownRate.text == "" ? "Nincs hozzáfűznivalóm" : this.ownRate.text;
+    /* console.log(this.ownRate); */
+    this.http.post('http://localhost:8080/rate/', this.ownRate).subscribe((data) => {
+      location.reload();
+    });
   }
   ngOnInit() {
 
