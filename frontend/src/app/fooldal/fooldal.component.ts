@@ -56,6 +56,7 @@ export class FooldalComponent implements OnInit {
         }
       }
     }
+    console.log(data);
     return data;
   }
   getRate(rate, data) {

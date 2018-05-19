@@ -1,0 +1,9 @@
+.col-md-6 {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  border-radius: 5px;
+  box-shadow: 0 0 5px grey;
+}

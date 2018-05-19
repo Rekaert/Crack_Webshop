@@ -17,6 +17,12 @@ productRouter.get('/', ProductController.list);
  */
 productRouter.get('/:id', ProductController.find);
 /**
+ * @method find - get request to '/'
+ * @desc Find a product by url
+ * @param {Number} url - The url of the product
+ */
+productRouter.get('/url/:url', ProductController.findByUrl);
+/**
  * @method create - post request to '/'
  * @desc Create a new product
  */

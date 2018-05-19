@@ -1,3 +1,91 @@
-<p>
-  selectedproduct works!
-</p>
+<div *ngIf="prod">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ 'http://localhost:8080/images/'+prod.image}}" alt="">
+    </div>
+    <div class="col-md-6">
+      <ul class="list-group text-center">
+        <li class="list-group-item list-group-item-primary">
+          <h2>{{prod.name}}</h2>
+        </li>
+        <li class="list-group-item list-group-item-secondary">
+          <h3>Termék Ára:
+            <b>{{prod.cost}} FT</b>
+          </h3>
+        </li>
+        <li class="list-group-item list-group-item-success">
+          <h5>Gyártó: {{prod.manufacturer}}</h5>
+        </li>
+        <li class="list-group-item list-group-item-danger">Ár-érték arány: </li>
+        <li class="list-group-item list-group-item-warning">Minőség:</li>
+        <li class="list-group-item list-group-item-dark">Elégedettség: </li>
+      </ul>
+    </div>
+  </div>
+  <br>
+  <h2 class="text-center">Vásárlói vélemények:</h2>
+  <div class="jumbotron">
+    <h3 class="display-4">Értékeld a terméket!</h3>
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-6">
+        <label for="ar">Ár-érték arány</label>
+        <select class="form-control" name="" id="ar">
+          <option value="1">1 - Nagyon rossz</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 - Álagos</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10 - Nagyon jó</option>
+        </select>
+        <label for="qu">Ár-érték arány</label>
+        <select class="form-control" name="" id="qu">
+          <option value="1">1 - Nagyon rossz</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 - Álagos</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10 - Nagyon jó</option>
+        </select>
+        <label for="el">Ár-érték arány</label>
+        <select class="form-control" name="" id="el">
+          <option value="1">1 - Nagyon alacsony</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 - Álagos</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10 - Nagyon magas</option>
+        </select>
+      </div>
+      <div class="col-6">
+        <label for="">Véleményed a termékről:</label>
+        <textarea class="form-control" placeholder="Oszdd meg a véleményed!" rows="7"></textarea>
+      </div>
+    </div>
+    <br>
+    <button class="btn btn-block btn-primary">Elküld!</button>
+  </div>
+  <div class="jumbotron">
+    <h3 class="display-4">Hello, world!</h3>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </div>
+</div>
+<div *ngIf="!prod">
+  <h1 class="text-center">A keresett termék nem található.</h1>
+  <br>
+</div>
