@@ -25,4 +25,13 @@ export class ProfilComponent implements OnInit {
     })
   }
 
+  updateProfile() {
+    this.userService.update(this.user).subscribe(user => {
+      console.log('update succesfully happened');
+      this.user = user;
+    })
+  }
+
+  
+
 }

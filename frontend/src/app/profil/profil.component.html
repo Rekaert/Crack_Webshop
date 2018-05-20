@@ -74,10 +74,13 @@
       <br>
       <br>
       <div class="container">
-        <div class="row justify-content-beetween">
+        <div class="row justify-content-around">
           <div class="col-sm-4">
             <label for="checkbox">A szállítási cím megegyezik a számlázási címmel.</label>
             <input type="checkbox" name="checkbox" id="checkbox" />
+          </div>
+          <div class="col-sm-4">
+            <button type="button" (click)="updateProfile()" class="btn btn-info">Adatok frissítése</button>
           </div>
         </div>
       </div>
@@ -86,7 +89,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-sm-12 text-center">
-          <h3>Megrendeléseim:</h3>
+          <h3>Rendeléseim:</h3>
           <table class="table table-bordered text-center table-striped">
             <thead class="text-left">
               <tr>
