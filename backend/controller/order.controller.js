@@ -17,6 +17,25 @@ module.exports = {
       res.json(post);
     });
   },
+/**
+   * Function to get own orders
+   * @returns {Array} - List of own orders
+   */
+  listOwnOrders: (req, res) => {
+    if (req.user) {
+      Order.find({
+        userId: req.user.id
+      }, (err, post) => {
+        if (err) {
+          res.send(err);
+        }
+        res.json(post);
+      });
+    } else {
+      res.sendStatus(401);
+    }
+  },
+
   /**
    * Function to get specified order details
    * @returns {Array} - List of ordered products

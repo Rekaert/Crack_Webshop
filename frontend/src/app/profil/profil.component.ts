@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpLocalService } from '../http.service';
 import { Observable } from 'rxjs/Observable';
-import { Headers, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { NavbarComponent } from '../navbar/navbar.component';
 import { User } from '../users/user';
 import { UsersService } from '../users.service';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { HttpLocalService } from '../http.service';
+
+const baseUrl = 'http://localhost:8080';
 
 @Component({
   selector: 'app-profil',
@@ -14,8 +16,10 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class ProfilComponent implements OnInit {
 
   user = new User();
+  orders: any = [];
 
   constructor(private http: HttpLocalService,
+    private httpClient: HttpClient,
     private userService: UsersService) { }
 
   ngOnInit() {
@@ -23,6 +27,13 @@ export class ProfilComponent implements OnInit {
       console.log(data);
       this.user = data.user;
     })
+    this.httpClient.get<any>(baseUrl + '/order/all/own', { withCredentials: true })
+      .subscribe(orders => {
+        this.orders = orders;
+        for (let i = 0; i < this.orders.length; i++) {
+          this.orders[i].status = 'Lezárt';
+        }
+      });
   }
 
   updateProfile() {
@@ -31,7 +42,5 @@ export class ProfilComponent implements OnInit {
       this.user = user;
     })
   }
-
-  
 
 }

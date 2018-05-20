@@ -35,6 +35,15 @@ export class HttpLocalService {
     this.httpClient.get(this.url + '/order/all', this.options)
       .subscribe((data) => this.orders = JSON.parse(data['_body']));
   }
+  getOwnOrders() {
+    this.httpClient.get(this.url + '/order/all/own', this.options)
+      .subscribe((data) => {
+        this.orders = JSON.parse(data['_body'])
+        this.orders.forEach(order => {
+          order.status = 'Lezárt';
+        });
+      });
+  }
   getProducts() {
     this.httpClient.get(this.url + '/product', this.options)
       .subscribe((data) => this.products = JSON.parse(data['_body']));
