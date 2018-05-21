@@ -16,6 +16,7 @@ export class UsersComponent implements OnInit {
 
   users: User[];
   user = new User();
+  message: string = "";
 
   constructor(private http: HttpLocalService,
     private userService: UsersService) { }
@@ -23,6 +24,11 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers().subscribe(users => {
       this.users = users;
+      for (let i = 0; i < this.users.length; i++) {
+        const user = this.users[i];
+        user.szallcim = user.szallcim.split("|").join(" ");
+        user.szmlcim = user.szmlcim.split("|").join(" ");
+      }
     });
   }
 
@@ -35,9 +41,9 @@ export class UsersComponent implements OnInit {
   }
 
   create() {
+    this.convertAddressFields();
     if (this.user['password'] && this.user['password'].length >= 8) {
       this.userService.create(this.user).subscribe(data => {
-
         this.ngOnInit();
       });
     } else {
@@ -51,25 +57,32 @@ export class UsersComponent implements OnInit {
   }
 
   fillUpdateForm(userID: string) {
-    for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i]._id === userID) {
-        this.user = new User();
-        this.user.username = this.users[i].username;
-        this.user.email = this.users[i].email;
-        this.user.perm = this.users[i].perm;
-        this.user.szallcim = this.users[i].szallcim;
-        this.user.szmlcim = this.users[i].szmlcim;
-        this.user._id = this.users[i]._id;
-        this.user.oldpassword = this.users[i].oldpassword;
-        this.user.newpassword = this.users[i].newpassword;
-        this.user.tel = this.users[i].tel;
-        return;
+    this.userService.getUsers().subscribe(users => {
+
+      for (let i = 0; i < users.length; i++) {
+        if (users[i]._id === userID) {
+          this.user = new User();
+          this.user.username = users[i].username;
+          this.user.email = users[i].email;
+          this.user.perm = users[i].perm;
+          this.user.szallcim = users[i].szallcim;
+          this.user.szmlcim = users[i].szmlcim;
+          this.user._id = users[i]._id;
+          this.user.oldpassword = users[i].oldpassword;
+          this.user.newpassword = users[i].newpassword;
+          this.user.tel = users[i].tel;
+          this.convertAddressFieldsBack();
+          return;
+        }
       }
-    }
+
+    });
   }
 
   update() {
     console.log(this.user);
+    this.convertAddressFields();
+
     if (!this.user['newpassword'] || this.user['newpassword'].length >= 8) {
       this.userService.update(this.user).subscribe(data => {
         console.log(data);
@@ -78,7 +91,25 @@ export class UsersComponent implements OnInit {
     } else {
       alert('Minimum 8 hosszú legyen a jelszó')
     }
+  }
 
+  convertAddressFields() {
+    let u = this.user;
+    u.szallcim = u.szallcim_irszam + '|' + u.szallcim_varos + '|' + u.szallcim_utca;
+    u.szmlcim = u.szmlcim_irszam + '|' + u.szmlcim_varos + '|' + u.szmlcim_utca;
+  }
+
+  convertAddressFieldsBack() {
+    let u = this.user;
+    let szmlcimSplit = u.szmlcim.split('|');
+    u.szmlcim_irszam = szmlcimSplit[0];
+    u.szmlcim_varos = szmlcimSplit[1];
+    u.szmlcim_utca = szmlcimSplit[2];
+
+    let szallcimSplit = u.szallcim.split('|');
+    u.szallcim_irszam = szallcimSplit[0];
+    u.szallcim_varos = szallcimSplit[1];
+    u.szallcim_utca = szallcimSplit[2];
   }
 
 
