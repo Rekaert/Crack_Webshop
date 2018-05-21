@@ -65,18 +65,23 @@ module.exports = {
    * @param {Object} res - Response
    * @param id - The id of the user
    * @returns {Object} - The user before the update
+   * new:true - mongoose document - http://mongoosejs.com/docs/api.html#query_Query-findOneAndUpdate -
+   * "new: bool - if true, return the modified document rather than the original. defaults to false (changed in 4.0)"
    */
   update: (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
-      if (post) {
-        post.changePassword(req.body.oldpassword, req.body.newpassword, () => {
-          post.save();
+    User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    }, (err, doc) => {
+      if (doc && req.body.newpassword) {
+        doc.changePassword(req.body.oldpassword, req.body.newpassword, () => {
+          doc.save();
         });
       }
       if (err) {
         res.send(err);
       }
-      res.json(post);
+
+      res.json(doc);
     });
   },
 

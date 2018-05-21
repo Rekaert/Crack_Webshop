@@ -7,17 +7,17 @@
 
 
 
-  <div class="container-fluid-userstop">
-    <div class="row justify-content-center">
-      <div class="col-sm-12">
-        <table class="table table-bordered text-center table-striped">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-left">
+        <table class="col-sm-8 table table-bordered text-center">
           <thead>
             <tr>
               <th>UserID</th>
               <th>Felhaszn. név</th>
               <th>Email</th>
-              <th>Szám. cím</th>
-              <th>Száll. cím</th>
+              <th>Szám.cím</th>
+              <th>Száll.cím</th>
               <th>Telefonszám</th>
               <th>Jogosultság</th>
               <th>Metódusok</th>
@@ -71,12 +71,28 @@
                       <input type="text" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
                     </td>
                     <td class="row">
-                      <label for="name">Számlázási cím</label>
-                      <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
+                      <label for="szmlcim_irszam">Számlázási cím irányítószám</label>
+                      <input type="text" name="szmlcim_irszam" id="szmlcim_irszam" [(ngModel)]="user.szmlcim_irszam" class="form-control" />
                     </td>
                     <td class="row">
-                      <label for="name">Szállítási cím</label>
-                      <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+                      <label for="szmlcim_varos">Számlázási cím város</label>
+                      <input type="text" name="szmlcim_varos" id="szmlcim_varos" [(ngModel)]="user.szmlcim_varos" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szmlcim_utca">Számlázási cím utca és házszám</label>
+                      <input type="text" name="szmlcim_utca" id="szmlcim_utca" [(ngModel)]="user.szmlcim_utca" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szallcim_irszam">Szállítási cím irányítószám</label>
+                      <input type="text" name="szallcim_irszam" id="szallcim_irszam" [(ngModel)]="user.szallcim_irszam" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szallcim_varos">Szállítási cím város</label>
+                      <input type="text" name="szallcim_varos" id="szallcim_varos" [(ngModel)]="user.szallcim_varos" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szallcim_utca">Szállítási cím utca és házszám</label>
+                      <input type="text" name="szallcim_utca" id="szallcim_utca" [(ngModel)]="user.szallcim_utca" class="form-control" />
                     </td>
                     <td class="row">
                       <label for="name">Telefonszám</label>
@@ -126,12 +142,28 @@
                       <input type="text" name="email" id="email2" [(ngModel)]="user.email" class="form-control" />
                     </td>
                     <td class="row">
-                      <label for="szmlcim2">Számlázási cím</label>
-                      <input type="text" name="szmlcim" id="szmlcim2" [(ngModel)]="user.szmlcim" class="form-control" />
+                      <label for="szmlcim_irszam">Számlázási cím irányítószám</label>
+                      <input type="text" name="szmlcim_irszam" id="szmlcim_irszam" [(ngModel)]="user.szmlcim_irszam" class="form-control" />
                     </td>
                     <td class="row">
-                      <label for="szallcim2">Postázái cím</label>
-                      <input type="text" name="szallcim" id="szallcim2" [(ngModel)]="user.szallcim" class="form-control" />
+                      <label for="szmlcim_varos">Számlázási cím város</label>
+                      <input type="text" name="szmlcim_varos" id="szmlcim_varos" [(ngModel)]="user.szmlcim_varos" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szmlcim_utca">Számlázási cím utca ás házszám</label>
+                      <input type="text" name="szmlcim_utca" id="szmlcim_utca" [(ngModel)]="user.szmlcim_utca" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szallcim_irszam">Szállítási cím irányítószám</label>
+                      <input type="text" name="szall_irszam" id="szallcim_irszam" [(ngModel)]="user.szallcim_irszam" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szallcim_varos">Szállítási cím város</label>
+                      <input type="text" name="szallcim_varos" id="szallcim_varos" [(ngModel)]="user.szallcim_varos" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szallcim_utca">Szállítási cím utca és házszám</label>
+                      <input type="text" name="szallcim_utca" id="szallcim_utca" [(ngModel)]="user.szallcim_utca" class="form-control" />
                     </td>
                     <td class="row">
                       <label for="tel2">Telefonszám</label>

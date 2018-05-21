@@ -35,6 +35,8 @@ export class HttpLocalService {
     this.httpClient.get(this.url + '/order/all', this.options)
       .subscribe((data) => this.orders = JSON.parse(data['_body']));
   }
+
+  /**profile comp. - saját megrendelések lekérése */
   getOwnOrders() {
     this.httpClient.get(this.url + '/order/all/own', this.options)
       .subscribe((data) => {
