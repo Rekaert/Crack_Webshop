@@ -1,3 +1,137 @@
-<p>
-  selectedproduct works!
-</p>
+<br>
+<div *ngIf="prod">
+  <div class="row">
+    <div class="col-md-6 image-center">
+      <img src="{{ 'http://localhost:8080/images/'+prod.image}}" alt="">
+    </div>
+    <div class="col-md-6">
+      <ul class="list-group text-center">
+        <li class="list-group-item list-group-item-primary active">
+          <h2>{{prod.name}}</h2>
+        </li>
+        <li class="list-group-item list-group-item-secondary">
+          <h3>Termék Ára:
+            <b>{{prod.cost}} FT</b>
+          </h3>
+        </li>
+        <li class="list-group-item list-group-item-success">
+          <h5>Gyártó: {{prod.manufacturer}}</h5>
+        </li>
+        <li class="list-group-item list-group-item-danger">Ár-érték arány:
+          <b>{{prod.rateCost}} / 10</b>
+        </li>
+        <li class="list-group-item list-group-item-warning">Minőség:
+          <b>{{prod.rateQuality}} / 10</b>
+        </li>
+        <li class="list-group-item list-group-item-dark">Elégedettség:
+          <b>{{prod.rateSatis}} / 10</b>
+        </li>
+        <li class="list-group-item list-group-item-primary active">
+          <h5>Megjelenés :</h5>
+        </li>
+      </ul>
+      <br>
+      <div class="input-group" *ngIf="httpLocal.isLoggedIn">
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" pattern="[0-9]*" [(ngModel)]="quantity">
+        <div class="input-group-append">
+          <span class="input-group-text">{{quantity>1 && quantity%1==0?prod.cost*quantity:prod.cost}}</span>
+          <span class="input-group-text">FT</span>
+        </div>
+        <button [disabled]="shop" class="btn btn-success btn-block" style="margin-top:15px;" (click)="toBasket()">
+          <i class="fas fa-cart-plus"></i> &nbsp; Kosárba Vele!!!</button>
+        <p class="animate" [ngStyle]="{'animation-name': shop, 'animation-duration': '0.5s','animation-iteration-count': quantity}">
+          <i class="fas fa-cart-plus"></i>
+        </p>
+      </div>
+      <h3 *ngIf="shop">Rakodás a kosárba</h3>
+      <div *ngIf="!httpLocal.isLoggedIn">
+        <h3>Kérlek jelentkezz be a vásárláshoz!</h3>
+      </div>
+    </div>
+  </div>
+  <br>
+  <h2 class="text-center">Vásárlói vélemények:</h2>
+  <div class="jumbotron" *ngIf="rateMe">
+    <h3 class="display-4">Értékeld a terméket!</h3>
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-6">
+        <label for="ar">Ár-érték arány</label>
+        <select class="form-control" name="" id="ar" [(ngModel)]="ownRate.rateCost">
+          <option value="1">1 - Nagyon rossz</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 - Álagos</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10 - Nagyon jó</option>
+        </select>
+        <label for="qu">Minőség</label>
+        <select class="form-control" name="" id="qu" [(ngModel)]="ownRate.rateQuality">
+          <option value="1">1 - Nagyon rossz</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 - Álagos</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10 - Nagyon jó</option>
+        </select>
+        <label for="el">Elégedttség</label>
+        <select class="form-control" name="" id="el" [(ngModel)]="ownRate.rateSatis">
+          <option value="1">1 - Nagyon alacsony</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 - Álagos</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10 - Nagyon magas</option>
+        </select>
+      </div>
+      <div class="col-6">
+        <label for="">Véleményed a termékről:</label>
+        <textarea class="form-control" placeholder="Oszdd meg a véleményed!" rows="7" [(ngModel)]="ownRate.text"></textarea>
+      </div>
+    </div>
+    <br>
+    <button class="btn btn-block btn-primary" (click)="createRate()">Elküld!</button>
+  </div>
+  <div *ngIf="!rateMe">
+    <h1 class="text-center">A terméket megvásárolt, bejelentkezett felhasználók írhatnak véleményt.</h1>
+    <br>
+  </div>
+  <div class="jumbotron" *ngFor="let rate of blog">
+    <h3 class="display-4">{{rate.username}}</h3>
+    <p class="lead">{{rate.text}}</p>
+    <hr class="my-4">
+    <h6>Ár-érték arány</h6>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-info" role="progressbar" [ngStyle]="{'width':rate.rateCost*10+'%' }" aria-valuenow="50"
+        aria-valuemin="0" aria-valuemax="100">{{rate.rateCost}}/10</div>
+    </div>
+    <h6>Minőség</h6>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" [ngStyle]="{'width':rate.rateQuality*10+'%' }"
+        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{rate.rateQuality}}/10</div>
+    </div>
+    <h6>Elégedettség</h6>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [ngStyle]="{'width':rate.rateSatis*10+'%' }"
+        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{rate.rateSatis}}/10</div>
+    </div>
+    <br>
+    <p class="lead">Dátum: {{rate.createdAt | date:"yyyy:MM:dd HH:mm:ss"}}</p>
+  </div>
+</div>
+<div *ngIf="!prod">
+  <h1 class="text-center">A keresett termék nem található.</h1>
+  <br>
+</div>

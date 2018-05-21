@@ -1,43 +1,51 @@
-<div class="col-md-4 product">
-  <div class="card text-center">
-    <div class="card-header">
-      <input placeholder="Termék név" type="text" class="form-control" [(ngModel)]="newProduct.name">
-    </div>
-    <div class="card-body">
-      <div class="card-title">
-        <!-- <label class="form-control" for="newPic">Új kép </label> -->
-        <input placeholder="Kép link" id="newPic1" type="text" class="form-control" [(ngModel)]="newProduct.image">
+<div class="stop_lego" *ngIf="httpLocalService.typeOfUser >=1">
+  <h1>Nincs megfelelo jogosultságod, az oldal megtekintéséhez!</h1>
+  <h2>A megtekintéshez bejelentkezés szükséges</h2>
+  <img src="../../assets/img/stopLego.png" alt="">
+</div>
+<div *ngIf="httpLocalService.typeOfUser ==0">
+
+  <div class="col-md-4 product">
+    <div class="card text-center">
+      <div class="card-header">
+        <input placeholder="Termék név" type="text" class="form-control" [(ngModel)]="newProduct.name">
       </div>
-      <input type="text" placeholder="Kép név" class="form-control" [(ngModel)]="newProduct.url">
-      <input type="text" placeholder="Gyáró" class="form-control" name="manufact" [(ngModel)]="newProduct.manufacturer">
-      <input type="text" placeholder="Ár" class="form-control" name="manufact" [(ngModel)]="newProduct.cost">
-    </div>
-    <div class="card-footer btn-group">
-      <button type="button" class="btn btn-success" (click)="create()">Hozzáadás</button>
+      <div class="card-body">
+        <div class="card-title">
+          <!-- <label class="form-control" for="newPic">Új kép </label> -->
+          <input placeholder="Kép link" id="newPic1" type="text" class="form-control" [(ngModel)]="newProduct.image">
+        </div>
+        <input type="text" placeholder="Kép név" class="form-control" [(ngModel)]="newProduct.url">
+        <input type="text" placeholder="Gyáró" class="form-control" name="manufact" [(ngModel)]="newProduct.manufacturer">
+        <input type="text" placeholder="Ár" class="form-control" name="manufact" [(ngModel)]="newProduct.cost">
+      </div>
+      <div class="card-footer btn-group">
+        <button type="button" class="btn btn-success" (click)="create()">Hozzáadás</button>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="col-md-4 product" *ngFor="let product of products">
-  <div class="card text-center">
-    <div class="card-header">
-      <input type="text" class="form-control" [(ngModel)]="product.name">
-    </div>
-    <div class="card-body">
-      <div class="card-title">
-        <label class="form-control" for="">Kép neve: {{product.image}}</label>
-        <!-- <label class="form-control" for="newPic">Új kép link</label> -->
-        <input placeholder="Kép frissítéséhez linkelj be újat" type="text" class="form-control" [(ngModel)]="product.newImage">
+  <div class="col-md-4 product" *ngFor="let product of products">
+    <div class="card text-center">
+      <div class="card-header">
+        <input type="text" class="form-control" [(ngModel)]="product.name">
       </div>
-      <img src="{{ 'http://localhost:8080/images/'+product.image}}" alt="kép">
-      <input type="text" class="form-control" [(ngModel)]="product.url">
-      <input type="text" class="form-control" name="manufact" [(ngModel)]="product.manufacturer">
-      <input type="text" class="form-control" name="manufact" [(ngModel)]="product.cost">
-    </div>
-    <div class="card-footer btn-group">
-      <button type="button" class="btn btn-info" (click)="update(product,i)">Frissítés</button>
-      <!-- <button type="button" class="btn btn-success" (click)="update(product)">Update Image</button> -->
-      <button type="button" class="btn btn-danger" (click)="delete(product)">Törlés</button>
+      <div class="card-body">
+        <div class="card-title">
+          <label class="form-control" for="">Kép neve: {{product.image}}</label>
+          <!-- <label class="form-control" for="newPic">Új kép link</label> -->
+          <input placeholder="Kép frissítéséhez linkelj be újat" type="text" class="form-control" [(ngModel)]="product.newImage">
+        </div>
+        <img src="{{ 'http://localhost:8080/images/'+product.image}}" alt="kép">
+        <input type="text" class="form-control" [(ngModel)]="product.url">
+        <input type="text" class="form-control" name="manufact" [(ngModel)]="product.manufacturer">
+        <input type="text" class="form-control" name="manufact" [(ngModel)]="product.cost">
+      </div>
+      <div class="card-footer btn-group">
+        <button type="button" class="btn btn-info" (click)="update(product,i)">Frissítés</button>
+        <!-- <button type="button" class="btn btn-success" (click)="update(product)">Update Image</button> -->
+        <button type="button" class="btn btn-danger" (click)="delete(product)">Törlés</button>
+      </div>
     </div>
   </div>
 </div>

@@ -11,6 +11,11 @@ const OrderController = require('../controller/order.controller');
  */
 orderRouter.get('/all', OrderController.list);
 /**
+ * @method listOwnOrders - get request to '/all/own'
+ * @desc Get own orders
+ */
+orderRouter.get('/all/own', OrderController.listOwnOrders);
+/**
  * @method find - get request to '/all/find
  * @desc Find an order
  * @param {Number} id - The id of the order

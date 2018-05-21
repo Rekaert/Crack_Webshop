@@ -1,0 +1,37 @@
+.animate {
+  font-size: 60px;
+  opacity: 0;
+}
+
+.image-center {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  border-radius: 5px;
+  box-shadow: 0 0 5px grey;
+  max-height: 800px;
+  max-width: 80%;
+}
+
+.input-group {
+  width: 80%;
+}
+
+ul {
+  width: 80%;
+}
+
+@keyframes shop {
+  0% {
+    color: red;
+    margin-left: 0%;
+    opacity: 1;
+  }
+  100% {
+    color: green;
+    margin-left: 90%;
+    opacity: 0;
+  }
+}

@@ -1,70 +1,77 @@
-<div class="full_width">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="header_title h_graph_1">
-        <div class="row">
-          <div class="col-md-3">
-            <br>
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="col-md-9">
-            <p class="header_title_data">{{httpreq.users.length}}</p>
-            <p class="header_title_hint">Felhasználók</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="header_title h_graph_2">
-        <div class="row">
-          <div class="col-md-3">
-            <br>
-            <i class="fas fa-archive"></i>
-          </div>
-          <div class="col-md-9">
-            <p class="header_title_data">{{httpreq.products.length}}</p>
-            <p class="header_title_hint">Termékek</p>
+<div class="stop_lego" *ngIf="httpreq.typeOfUser >=1">
+  <h1>Nincs megfelelo jogosultságod, az oldal megtekintéséhez!</h1>
+  <h2>A megtekintéshez bejelentkezés szükséges</h2>
+  <img src="../../assets/img/stopLego.png" alt="">
+</div>
+<div *ngIf="httpreq.typeOfUser ==0">
+  <div class="full_width">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="header_title h_graph_1">
+          <div class="row">
+            <div class="col-md-3">
+              <br>
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="col-md-9">
+              <p class="header_title_data">{{httpreq.users.length}}</p>
+              <p class="header_title_hint">Felhasználók</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-3">
-      <div class="header_title h_graph_3">
-        <div class="row">
-          <div class="col-md-3">
-            <br>
-            <i class="fas fa-shopping-basket"></i>
-          </div>
-          <div class="col-md-9">
-            <p class="header_title_data">{{httpreq.orders.length}}</p>
-            <p class="header_title_hint">Rendelések</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="header_title h_graph_4">
-        <div class="row">
-          <div class="col-md-3">
-            <br>
-            <i class="far fa-money-bill-alt"></i>
-          </div>
-          <div class="col-md-9">
-            <p class="header_title_data">{{cost}}</p>
-            <p class="header_title_hint">Bevétel (ft)</p>
+      <div class="col-md-3">
+        <div class="header_title h_graph_2">
+          <div class="row">
+            <div class="col-md-3">
+              <br>
+              <i class="fas fa-archive"></i>
+            </div>
+            <div class="col-md-9">
+              <p class="header_title_data">{{httpreq.products.length}}</p>
+              <p class="header_title_hint">Termékek</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="g_chart">
-        <google-chart class="g_chart" style="margin:auto" [data]="monthlyIncome"></google-chart>
+      <div class="col-md-3">
+        <div class="header_title h_graph_3">
+          <div class="row">
+            <div class="col-md-3">
+              <br>
+              <i class="fas fa-shopping-basket"></i>
+            </div>
+            <div class="col-md-9">
+              <p class="header_title_data">{{httpreq.orders.length}}</p>
+              <p class="header_title_hint">Rendelések</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="header_title h_graph_4">
+          <div class="row">
+            <div class="col-md-3">
+              <br>
+              <i class="far fa-money-bill-alt"></i>
+            </div>
+            <div class="col-md-9">
+              <p class="header_title_data">{{cost}}</p>
+              <p class="header_title_hint">Bevétel (ft)</p>
+            </div>
+          </div>
+        </div>
       </div>
 
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="g_chart">
+          <google-chart class="g_chart" style="margin:auto" [data]="monthlyIncome"></google-chart>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

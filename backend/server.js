@@ -16,6 +16,8 @@ const userRouter = require('./route/user.route');
 const orderRouter = require('./route/order.route');
 const productRouter = require('./route/product.route');
 const kategoriaRouter = require('./route/kategoria.route');
+const rateRouter = require('./route/rate.route');
+const nodemailer = require('nodemailer');
 
 /**
  * @constant logDirectory - Logging directory
@@ -124,7 +126,39 @@ app.use('/user/', userRouter);
 app.use('/order/', orderRouter);
 app.use('/product/', productRouter);
 app.use('/kategoria/', kategoriaRouter);
+app.use('/rate/', rateRouter);
 
+
+//nodemailer
+
+app.post('/sendemail', (req, res) => {
+  const mailadr = req.body;
+  console.log(mailadr);
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'crcklegowebstore@gmail.com',
+      pass: 'Lego12345',
+    },
+  });
+  const mailOptions = {
+    from: mailadr.from,
+    to: 'crcklegowebstore@gmail.com',
+    subject: mailadr.subject,
+    html: `<i>${mailadr.html}</i>`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
+    res.render('index');
+  });
+});
 
 /**
  * Start server

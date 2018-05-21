@@ -1,3 +1,44 @@
-<p>
-  kapcsolat works!
-</p>
+<div class="map">
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+</div>
+
+<div class="container contact">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="subject">Tárgy:</label>
+        <input type="text" class="form-control" name="subject" [(ngModel)]="mailform.subject">
+        <br>
+        <label for="body">Üzenet:</label>
+        <textarea cols="5" rows="5" class="form-control" name="body" [(ngModel)]="mailform.html"></textarea>
+        <br>
+        <button class="btn btn-success float-right" (click)="sendmailform()">Küldés</button>
+      </div>
+
+    </div>
+    <div class="col-sm-6 smpics text-center">
+      <div class="row">
+        <div class="col-sm-6">
+          <img src="../../assets/img/phone.svg">
+          <p>+36 30 478 84 87</p>
+        </div>
+        <div class="col-sm-6">
+          <img src="../../assets/img/map-pin.svg">
+          <p>lego@lego.hu</p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <img src="../../assets/img/map-marker.svg">
+          <p>1117 Budapest, Budafoki út 56. 3. emelet</p>
+        </div>
+        <div class="col-sm-6">
+          <img src="../../assets/img/clock.svg">
+          <p>Weekdays: 9:00 - 17:00</p>
+        </div>
+      </div>
+    </div>
+  </div>

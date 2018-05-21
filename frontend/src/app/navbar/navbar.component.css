@@ -2,6 +2,11 @@
   margin-bottom: 100px;
 }
 
+#navLego {
+  background-image: url("../../assets/img/lego4navbarRemake.png");
+  height: 100px;
+}
+
 .navbar-brand {
   text-shadow: 1px 1px 2px white, 0 0 25px rgb(219, 219, 92), 0 0 5px white;
 }
@@ -10,48 +15,44 @@
   color: #0056B3
 }
 
-#brand_small {
-  font-size: 10px;
+.navLegoman {
+  width: 100px;
 }
 
-.nav-item {
-  font-family: sans-serif;
-  margin-right: 30px;
+.nav-link {
+  position: relative;
+  padding-top: 0;
+  top: 0;
+  font-family: 'Skranji', cursive;
+  margin-right: 15px;
+  color: rgb(240, 36, 9);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px darkslateblue;
 }
 
 .navbar {
   cursor: pointer;
-  font-size: 15px;
-  text-shadow: 1px 1px 2px white, 0 0 25px rgb(219, 219, 92), 0 0 5px white;
+  margin-top: 0;
+  font-size: 25px;
 }
 
 .navbar .nav-item:hover {
   cursor: pointer;
-  text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px darkslateblue;
+  color: #1D69BD
 }
 
-.button_signin {
-  color: #fff;
-  height: 50%;
-  left: 90%;
+.btn_cust {
+  color: rgb(240, 36, 9);
+  font-size: 15px;
+  font-family: 'Skranji', cursive;
+  background-color: rgb(29, 28, 28);
+  height: 40%;
+  right: 5%;
   position: absolute;
-  top: 25%;
+  top: 20%;
 }
 
-.button_signin:hover {
-  background-color: white;
-  color: rgb(235, 245, 91)
-}
-
-.button_signout {
-  color: #fff;
-  height: 50%;
-  left: 90%;
-  position: absolute;
-  top: 25%;
-}
-
-.button_signout:hover {
-  background-color: white;
-  color: rgb(235, 245, 91)
+.btn_cust:hover {
+  color: #1D69BD
 }

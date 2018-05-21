@@ -1,3 +1,129 @@
-<p>
-  profil works!
-</p>
+<div class="stop_lego" *ngIf="http.typeOfUser >=2">
+  <h1>Nincs megfelelo jogosultságod, az oldal megtekintéséhez!</h1>
+  <h2>A megtekintéshez bejelentkezés szükséges</h2>
+  <img src="../../assets/img/stopLego.png" alt="">
+</div>
+<div *ngIf="http.typeOfUser <=1">
+
+  <!--ADATMÓDOSÍTÁS RÉSZ -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h3>Felhasználói adataim módosítása</h3>
+      </div>
+      <div></div>
+      <hr>
+
+      <div class="col-sm-12 text-left">
+        <p>A *-al jelölt mezők kitöltése kötelező!</p>
+      </div>
+      <div class="col-sm-3">
+        <h5>Személyes adatok:</h5>
+        <form #validForm="ngForm">
+          <label for="teljes_nev">Teljes név*:</label>
+          <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" required/>
+
+          <label for="email">E-mail cím*:</label>
+          <input type="email" name="email" id="email" [(ngModel)]="user.email" class="form-control" aria-describedby="passwordHelpBlock"
+            required/>
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Érvényes e-mail cím szükséges.
+          </small>
+
+          <label for="tel">Értesítési telefonszám*:</label>
+          <input type="text" name="tel" id="tel" [(ngModel)]="user.tel" class="form-control" aria-describedby="passwordHelpBlock" required/>
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Értesítési telefonszám 0036201234567 formátumban.
+          </small>
+        </form>
+      </div>
+
+      <div class="col-sm-3">
+        <form action="change_password_loggedInUser">
+          <h5>Jelszócsere:</h5>
+          <label for="oldpassword">Jelenlegi jelszó*:</label>
+          <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" required/>
+
+          <label for="newpassword">Új jelszó*:</label>
+          <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" aria-describedby="passwordHelpBlock"
+            required/>
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Minimum 8 karakter hosszú, tartalmaznia kell számot és szöveget.
+          </small>
+        </form>
+      </div>
+
+      <div class="col-sm-3">
+        <form action="change_szmlcim_loggedInUser">
+          <h5>Számlázási cím:</h5>
+          <label for="orszag">Ország*:</label>
+          <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" required/>
+
+          <label for="irszam">Irányítószám*:</label>
+          <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" required/>
+
+          <label for="varos">Város*:</label>
+          <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" required/>
+
+          <label for="utca_hszam">Utca és házszám*:</label>
+          <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" required/>
+        </form>
+      </div>
+
+      <div class="col-sm-3">
+        <form action="change_szallcim_loggedInUser">
+          <h5>Szállítási cím:</h5>
+          <label for="teljes_nev">Ország*:</label>
+          <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" required/>
+
+          <label for="teljes_nev">Irányítószám*:</label>
+          <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" required/>
+
+          <label for="teljes_nev">Város*:</label>
+          <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" required/>
+
+          <label for="teljes_nev">Utca és házszám*:</label>
+          <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" required/>
+        </form>
+      </div>
+      <div class="col-sm-12 text-left">
+        <button type="button" (click)="updateProfile()" class="btn btn-info">Adatok frissítése</button>
+      </div>
+    </div>
+    <hr>
+
+
+    <!--RENDELÉSEK RÉSZ -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 text-center">
+          <h3>Rendeléseim</h3>
+          <table class="table table-bordered text-center table-striped">
+            <thead class="col-sm-12 text-left">
+              <tr>
+                <th>Rendelésazonosító</th>
+                <th>Dátum</th>
+                <th>Mennyiség</th>
+                <th>Ár</th>
+                <th>Megrendelés státusza</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders">
+                <td>{{order._id}}</td>
+                <td>{{order.createdAt | date : 'medium'}}</td>
+                <td>{{order.quantity}}</td>
+                <td>{{order.cost}}</td>
+                <td>{{order.status}}</td>
+                <td>
+                  <button type="button" class="btn btn-info">Rendelés folytatása</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

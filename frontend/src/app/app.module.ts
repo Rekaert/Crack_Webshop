@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpLocalService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 
@@ -15,7 +16,7 @@ import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-import { UsersService } from './users/users.service';
+import { UsersService } from './users.service';
 import { RendelesComponent } from './rendeles/rendeles.component';
 import { KosarComponent } from './kosar/kosar.component';
 import { ProfilComponent } from './profil/profil.component';
@@ -25,7 +26,7 @@ import { SelectedproductComponent } from './selectedproduct/selectedproduct.comp
 import { KapcsolatComponent } from './kapcsolat/kapcsolat.component';
 
 const routes: Routes = [
-  { path: '', component: NavbarComponent, pathMatch: 'full' },
+  { path: '', component: FooldalComponent, pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: UsersComponent },
   { path: 'products', component: ProductsComponent },
@@ -36,7 +37,7 @@ const routes: Routes = [
   { path: 'rendeles', component: RendelesComponent },
   { path: 'kapcsolat', component: KapcsolatComponent },
   { path: 'orders', component: OrdersComponent },
-  { path: 'selectedproduct', component: SelectedproductComponent }
+  { path: 'selectedproduct/:id', component: SelectedproductComponent }
 ];
 
 @NgModule({
@@ -60,6 +61,9 @@ const routes: Routes = [
     HttpModule,
     HttpClientModule,
     FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCK4I3-yXZYYjG1SNmcsn55wABdYfAS7xY'
+    }),
     Ng2GoogleChartsModule,
     RouterModule.forRoot(routes),
   ],

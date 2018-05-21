@@ -1,159 +1,168 @@
-<div class="container-fluid-userstop">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <table class="table table-bordered text-center table-striped">
-        <thead>
-          <tr>
-            <th>UserID</th>
-            <th>Felhaszn. név</th>
-            <th>Email</th>
-            <th>Szám. cím</th>
-            <th>Száll. cím</th>
-            <th>Telefonszám</th>
-            <th>Jogosultság</th>
-            <th>Metódusok</th>
+<div class="stop_lego" *ngIf="http.typeOfUser >=1">
+  <h1>Nincs megfelelo jogosultságod, az oldal megtekintéséhez!</h1>
+  <h2>A megtekintéshez bejelentkezés szükséges</h2>
+  <img src="../../assets/img/stopLego.png" alt="">
+</div>
+<div *ngIf="http.typeOfUser <=0">
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td>{{user._id}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.szmlcim}}</td>
-            <td>{{user.szallcim}}</td>
-            <td>{{user.tel}}</td>
-            <td>{{user.perm}}</td>
-            <td class="btn-group">
-              <button type="button" class="btn btn-info" (click)="fillUpdateForm(user._id)" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Frissítés</button>
-              <button type="button" class="btn btn-info" (click)="delete(user._id)" class="btn btn-danger">Törlés</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
 
-      <div>
-        <!-- Button trigger modal -->
-        <button (click)="clearFormData()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-          Felhasználó hozzáadása
-        </button>
-      </div>
-      <br>
 
-      <!-- Modal creation-->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Create new user</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+  <div class="container-fluid-userstop">
+    <div class="row justify-content-center">
+      <div class="col-sm-12">
+        <table class="table table-bordered text-center table-striped">
+          <thead>
+            <tr>
+              <th>UserID</th>
+              <th>Felhaszn. név</th>
+              <th>Email</th>
+              <th>Szám. cím</th>
+              <th>Száll. cím</th>
+              <th>Telefonszám</th>
+              <th>Jogosultság</th>
+              <th>Metódusok</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{user._id}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.szmlcim}}</td>
+              <td>{{user.szallcim}}</td>
+              <td>{{user.tel}}</td>
+              <td>{{user.perm}}</td>
+              <td class="btn-group">
+                <button type="button" class="btn btn-info" (click)="fillUpdateForm(user._id)" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Frissítés</button>
+                <button type="button" class="btn btn-info" (click)="delete(user._id)" class="btn btn-danger">Törlés</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div>
+          <!-- Button trigger modal -->
+          <button (click)="clearFormData()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+            Felhasználó hozzáadása
+          </button>
+        </div>
+        <br>
+
+        <!-- Modal creation-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Új felhasználó hozzáadása</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table">
+                  <tr>
+                    <td class="row text-center">
+                      <label for="name">Felhasználó neve</label>
+                      <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="name">Email</label>
+                      <input type="text" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="name">Számlázási cím</label>
+                      <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="name">Szállítási cím</label>
+                      <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="name">Telefonszám</label>
+                      <input type="text" name="tel" id="tel" [(ngModel)]="user.tel" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="perm">Jogosultság</label>
+                      <select class="form-control" name="" id="perm2" [(ngModel)]="user.perm">
+                        <option value="0">Adminisztrátor</option>
+                        <option value="1">Felhasználó</option>
+                      </select>
+                    </td>
+                    <td class="row">
+                      <label for="pass">Jelszó (Minimum 8 karakter, számot és betűt tartalmazzon)</label>
+                      <input type="text" name="pass" id="pass" [(ngModel)]="user.password" class="form-control" />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
+                <button (click)="create()" type="button" class="btn btn-info" data-dismiss="modal">Felhasználó hozzáadása</button>
+              </div>
             </div>
-            <div class="modal-body">
-              <table class="table">
-                <tr>
-                  <td class="row text-center">
-                    <label for="name">Username</label>
-                    <input type="text" name="username" id="username" [(ngModel)]="user.username" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="name">Email</label>
-                    <input type="text" name="email" id="email" [(ngModel)]="user.email" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="name">Billing</label>
-                    <input type="text" name="szmlcim" id="szmlcim" [(ngModel)]="user.szmlcim" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="name">Postal</label>
-                    <input type="text" name="szallcim" id="szallcim" [(ngModel)]="user.szallcim" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="name">Phone</label>
-                    <input type="text" name="tel" id="tel" [(ngModel)]="user.tel" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="perm">Permission</label>
-                    <select class="form-control" name="" id="perm2" [(ngModel)]="user.perm">
-                      <option value="0">Admin</option>
-                      <option value="1">Felhasználó</option>
-                    </select>
-                  </td>
-                  <td class="row">
-                    <label for="pass">Password (Minimum 8 karakter)</label>
-                    <input type="text" name="pass" id="pass" [(ngModel)]="user.password" class="form-control" />
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
-              <button (click)="create()" type="button" class="btn btn-info" data-dismiss="modal">Felhasználó hozzáadása</button>
+          </div>
+        </div>
+
+        <!-- Modal update-->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Felhasználói adatok módosítása</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table">
+                  <tr>
+                    <td class="row text-center">
+                      <label for="name2">Felhasználó neve</label>
+                      <input type="text" name="username" id="name2" [(ngModel)]="user.username" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="email2">Email</label>
+                      <input type="text" name="email" id="email2" [(ngModel)]="user.email" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szmlcim2">Számlázási cím</label>
+                      <input type="text" name="szmlcim" id="szmlcim2" [(ngModel)]="user.szmlcim" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="szallcim2">Postázái cím</label>
+                      <input type="text" name="szallcim" id="szallcim2" [(ngModel)]="user.szallcim" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="tel2">Telefonszám</label>
+                      <input type="text" name="tel" id="tel2" [(ngModel)]="user.tel" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="perm2">Jogosultság</label>
+                      <select class="form-control" name="" id="perm2" [(ngModel)]="user.perm">
+                        <option value="0">Adminisztrátor</option>
+                        <option value="1">Felhasználó</option>
+                      </select>
+                    </td>
+                    <td class="row">
+                      <label for="oldpassword">Korábbi jelszó</label>
+                      <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" />
+                    </td>
+                    <td class="row">
+                      <label for="newpassword">Új jelszó (Minimum 8 karakter, számokból és betűkből álljon)</label>
+                      <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
+                <button (click)="update()" type="button" class="btn btn-info" data-dismiss="modal">Frissítés</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Modal update-->
-      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Update new user</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <tr>
-                  <td class="row text-center">
-                    <label for="name2">Username</label>
-                    <input type="text" name="username" id="name2" [(ngModel)]="user.username" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="email2">Email</label>
-                    <input type="text" name="email" id="email2" [(ngModel)]="user.email" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="szmlcim2">Billing</label>
-                    <input type="text" name="szmlcim" id="szmlcim2" [(ngModel)]="user.szmlcim" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="szallcim2">Postal</label>
-                    <input type="text" name="szallcim" id="szallcim2" [(ngModel)]="user.szallcim" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="tel2">Phone</label>
-                    <input type="text" name="tel" id="tel2" [(ngModel)]="user.tel" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="perm2">Permission</label>
-                    <select class="form-control" name="" id="perm2" [(ngModel)]="user.perm">
-                      <option value="0">Admin</option>
-                      <option value="1">Felhasználó</option>
-                    </select>
-                  </td>
-                  <td class="row">
-                    <label for="oldpassword">Password old</label>
-                    <input type="password" name="oldpassword" id="oldpassword" [(ngModel)]="user.oldpassword" class="form-control" />
-                  </td>
-                  <td class="row">
-                    <label for="newpassword">Password new (Minimum 8 karakter)</label>
-                    <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" />
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
-              <button (click)="update()" type="button" class="btn btn-info" data-dismiss="modal">Frissítés</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

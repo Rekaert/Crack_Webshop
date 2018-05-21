@@ -1,7 +1,7 @@
 const Kategoria = require('../models/kategoria');
 
 /**
- * @module Kategoria
+ * @module Értékelés
  */
 module.exports = {
 

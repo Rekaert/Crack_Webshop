@@ -14,6 +14,9 @@ const productsSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
+  catId: {
+    type: mongoose.Schema.Types.ObjectId,
+  },
   url: {
     type: String,
     required: true,
@@ -30,5 +33,7 @@ const productsSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+}, {
+  timestamps: true,
 });
 module.exports = mongoose.model('Product', productsSchema);

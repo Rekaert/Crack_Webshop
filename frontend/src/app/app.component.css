@@ -1,6 +1,24 @@
+body {
+  font-family: 'Skranji', cursive;
+}
+
+.background {
+  background: url("../assets/img/legoWall5Resized.png") center center fixed;
+  background-size: cover;
+  height: 200vh;
+  z-index: -1;
+}
+
 .container {
   background: rgb(247, 243, 225);
   border-radius: 20px;
+}
+
+#totalWidth {
+  width: 80%;
+  background: rgb(247, 243, 225);
+  border-radius: 20px;
+  margin: 0 10%;
 }
 
 h1,
@@ -10,6 +28,10 @@ h4,
 h5,
 h6 {
   font-family: sans-serif;
+}
+
+.stop_lego img {
+  width: 500px;
 }
 
 footer {

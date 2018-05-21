@@ -8,12 +8,14 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HttpLocalService {
   private url = 'http://localhost:8080';
+  user: any;
   users: any = [];
   products: any = [];
   orders: any = [];
   options = new RequestOptions({ withCredentials: true });
   baseUrl = 'http://localhost:8080/user/';
   isLoggedIn: boolean = false;
+  typeOfUser: number = 2;
   categories: any = [];
   constructor(private httpClient: Http) { }
 
@@ -21,7 +23,7 @@ export class HttpLocalService {
     this.httpClient.get(this.url + '/user/', this.options)
       .subscribe((data) => {
         this.users = JSON.parse(data['_body']);
-        console.log(this.users);
+
       });
   }
   getCost(): Promise<any> {
@@ -32,6 +34,15 @@ export class HttpLocalService {
   getOrders() {
     this.httpClient.get(this.url + '/order/all', this.options)
       .subscribe((data) => this.orders = JSON.parse(data['_body']));
+  }
+  getOwnOrders() {
+    this.httpClient.get(this.url + '/order/all/own', this.options)
+      .subscribe((data) => {
+        this.orders = JSON.parse(data['_body'])
+        this.orders.forEach(order => {
+          order.status = 'Lezárt';
+        });
+      });
   }
   getProducts() {
     this.httpClient.get(this.url + '/product', this.options)
@@ -58,10 +69,17 @@ export class HttpLocalService {
     this.httpClient.get(this.url + '/user/profile', this.options)
       .subscribe((data2) => {
         data2 = JSON.parse(data2['_body']).user;
-        console.log(data2);
+        this.user = data2;
         if (data2['perm'] == 0) {
           this.isLoggedIn = true;
-        } else {
+          this.typeOfUser = 0;
+          console.log(this.typeOfUser);
+        } else if (data2['perm'] == 1) {
+          this.typeOfUser = 1;
+          this.isLoggedIn = true;
+          console.log(this.typeOfUser);
+        }
+        else {
           alert('Nem rendelkezel megfelelő jogosultságokkal!')
         }
         if (this.isLoggedIn == false) {
@@ -69,15 +87,15 @@ export class HttpLocalService {
         };
       });
   }
+
   logout() {
     this.httpClient.get(this.url + '/user/logout', this.options)
       .subscribe((data) => {
         data = JSON.parse(data['_body']);
         if (data['success']) {
           this.isLoggedIn = false;
-
+          location.reload();
         }
-        console.log(this.isLoggedIn)
 
       });
 

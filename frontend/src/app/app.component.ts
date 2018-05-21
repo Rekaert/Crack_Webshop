@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Headers } from '@angular/http';
 import { User } from './users/user';
-import { UsersService } from './users/users.service';
+import { UsersService } from './users.service';
 import { HttpLocalService } from './http.service';
 
 @Component({

@@ -1,10 +1,10 @@
 <!--nav-->
 <div class="row navbar__nav_margin">
   <div class="col-12">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark navbar__nav">
-      <a class="navbar-brand" routerLink="/">
-
-        <img src="../../assets/img/lego-icon-9.jpg" alt="Smiley face" height="42" width="42">cRaCk
+    <nav class="navbar fixed-top navbar-expand-lg navbar__nav" id="navLego">
+      <a class="navbar-brand" routerLink="/fooldal">
+        <p>cRaCk</p>
+        <!-- <img src="../../assets/img/lego-icon-9.jpg" alt="Smiley face" height="42" width="42">cRaCk -->
 
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -16,20 +16,29 @@
           <a class="nav-item nav-link active" routerLink="">
             <span class="sr-only">(current)</span>
           </a>
-          <a class="nav-item nav-link" routerLink="/fooldal">fooldal</a>
-          <a class="nav-item nav-link" routerLink="/kategoriak">kategoriak</a>
-          <a class="nav-item nav-link" routerLink="/kosar">kosar</a>
-          <a class="nav-item nav-link" routerLink="/profil">profil</a>
-          <a class="nav-item nav-link" routerLink="/rendeles">rendeles</a>
-          <a class="nav-item nav-link" routerLink="/kapcsolat">kapcsolat</a>
-          <a class="nav-item nav-link" routerLink="/selectedproduct">selectedproduct</a>
-          <a class="nav-item nav-link" routerLink="/dashboard">Statisztika</a>
-          <a class="nav-item nav-link" routerLink="/users">Felhasználók</a>
-          <a class="nav-item nav-link" routerLink="/products">Termékek</a>
-          <a class="nav-item nav-link" routerLink="/orders">Rendelések</a>
+          <a *ngIf="http.typeOfUser <= 2" class="nav-item nav-link" routerLink="/fooldal">fooldal</a>
+          <a *ngIf="http.typeOfUser <= 2" class="nav-item nav-link" routerLink="/kategoriak">kategoriak</a>
+          <a *ngIf="http.typeOfUser <= 1" class="nav-item nav-link" routerLink="/kosar">kosar</a>
+          <a *ngIf="http.typeOfUser <= 1" class="nav-item nav-link" routerLink="/profil">profil</a>
+          <a *ngIf="http.typeOfUser <= 1" class="nav-item nav-link" routerLink="/rendeles">rendeles</a>
+          <a *ngIf="http.typeOfUser <= 2" class="nav-item nav-link" routerLink="/kapcsolat">kapcsolat</a>
+          <li *ngIf="http.typeOfUser <= 0" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Admin Tools
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <!-- <a *ngIf="http.typeOfUser <= 0" class="nav-item nav-link" routerLink="/selectedproduct">Selected product</a> -->
+              <a *ngIf="http.typeOfUser <= 0" class="nav-item nav-link" routerLink="/users">Felhasználók</a>
+              <a *ngIf="http.typeOfUser <= 0" class="nav-item nav-link" routerLink="/products">Termékek</a>
+              <a *ngIf="http.typeOfUser <= 0" class="nav-item nav-link" routerLink="/orders">Rendelések</a>
+              <div class="dropdown-divider"></div>
+              <a *ngIf="http.typeOfUser <= 0" class="nav-item nav-link" routerLink="/dashboard">Statisztika</a>
+            </div>
+          </li>
           <!-- <span class="header-text" *ngIf="logged" style="color:white">{{log.username}} &nbsp; &nbsp; &nbsp; </span> -->
-          <button *ngIf="!http.isLoggedIn" data-toggle="modal" data-target="#loginModal" class="btn btn-warning button_signin">Belépés</button>
-          <button *ngIf="http.isLoggedIn" (click)="logout()" class="btn btn-warning button_signout">Kilépés</button>
+          <button *ngIf="!http.isLoggedIn" data-toggle="modal" data-target="#loginModal" class="btn btn_cust button_signin">Belépés</button>
+          <button *ngIf="http.isLoggedIn" (click)="logout()" class="btn btn_cust button_signout">Kilépés</button>
         </div>
       </div>
     </nav>
