@@ -19,8 +19,11 @@ module.exports = {
       res.json(post);
     });
   },
-/**
+  /**
    * Function to get own orders
+   * @param {Object} req -Request
+   * @param {Object} res -Response
+   * @param {Object} id - The id of the order
    * @returns {Array} - List of own orders
    */
   listOwnOrders: (req, res) => {
