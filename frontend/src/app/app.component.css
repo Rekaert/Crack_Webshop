@@ -16,7 +16,7 @@ body {
 
 #totalWidth {
   width: 80%;
-  background: rgb(247, 243, 225);
+  background: rgba(247, 243, 225, 0.8);
   border-radius: 20px;
   margin: 0 10%;
 }
