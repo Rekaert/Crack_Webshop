@@ -5,6 +5,7 @@ body {
 .background {
   background: url("../assets/img/legoWall5Resized.png") center center fixed;
   background-size: cover;
+  min-height: 100vh;
   height: 100%;
   z-index: -1;
 }
@@ -18,7 +19,8 @@ body {
   width: 80%;
   background: rgba(247, 243, 225, 0.8);
   border-radius: 20px;
-  margin: 0 10%;
+  padding: 1% 2%;
+  margin: 0 10% 3% 10%;
 }
 
 h1,
