@@ -18,10 +18,12 @@ export class KosarComponent implements OnInit {
 
   // termékek végösszege
   totalPrice: number = 0;
+  quantity: number = 0;
 
   constructor(public http: HttpLocalService, public userService: UsersService) {
     this.getBasketFromStorage();
     this.getTotalPrice();
+    this.getTotalQuantity();
   }
 
   ngOnInit() {
@@ -46,6 +48,13 @@ export class KosarComponent implements OnInit {
     this.basket.map(item =>
       this.totalPrice += parseInt(item.totalCost))
     console.log(this.totalPrice, 'véösszeg');
+  }
+
+  getTotalQuantity() {
+    this.getBasketFromStorage();
+    this.basket.map(item =>
+      this.quantity += parseInt(item.quantity))
+    console.log(this.quantity, 'osszdb');
   }
 
 }

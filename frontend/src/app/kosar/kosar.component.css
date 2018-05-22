@@ -13,3 +13,11 @@
 a {
   text-decoration: none;
 }
+
+table {
+  border-radius: 15px;
+}
+
+button {
+  margin-left: 1%;
+}
