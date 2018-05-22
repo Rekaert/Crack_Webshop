@@ -114,6 +114,8 @@ export class RendelesComponent implements OnInit {
 
   sendOrder() {
     this.messageModal(this.customer);
+    // this.basket = sessionStorage.clear();
+
   }
 
 }
