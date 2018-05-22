@@ -6,6 +6,7 @@ const filePath = './public/img/';
 
 /**
  * @function deleteFile - Function to delete the saved image of a product 
+ * @param {String} fileName -The name of the file to be deleted
  */
 function deleteFile(fileName) {
   fs.unlinkSync(filePath + fileName);
@@ -125,7 +126,9 @@ module.exports = {
         res.send(err);
       } else {
         res.json(post);
-        deleteFile(post.image);
+        if (post.image) {
+          deleteFile(post.image);
+        }
       }
     });
   },

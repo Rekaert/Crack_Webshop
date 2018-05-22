@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: kategoriak.controller.js</title>
+    <title>JSDoc: Source: rate.controller.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: kategoriak.controller.js</h1>
+    <h1 class="page-title">Source: rate.controller.js</h1>
 
     
 
@@ -26,21 +26,21 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Kategoria = require('../models/kategoria');
+            <pre class="prettyprint source linenums"><code>const Rate = require('../models/rate');
 
 /**
- * @module Értékelés
+ * @module Rate
  */
 module.exports = {
 
   /**
-   * Function to list all categories
+   * Function to list all ratings
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @returns {Array} - All categories
+   * @returns {Array} - The list of all the ratings
    */
   list: (req, res) => {
-    Kategoria.find({}, (err, post) => {
+    Rate.find({}, (err, post) => {
       if (err) {
         res.send(err);
       }
@@ -48,15 +48,16 @@ module.exports = {
     });
   },
 
+
   /**
-   * Function to find category
+   * Function to find a rating
+   * @param {Number} id - The id property of the rating
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @param {Number} id - The id of the category
-   * @returns {Object} - The found category
+   * @returns {Object} - The found rating
    */
   find: (req, res) => {
-    Kategoria.findById(req.params.id, (err, post) => {
+    Rate.findById(req.params.id, (err, post) => {
       if (err) {
         res.send(err);
       }
@@ -64,15 +65,15 @@ module.exports = {
     });
   },
 
+
   /**
-   * Function to create a new category
+   * Function to create a rating
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @returns {Object} - The created category
-   * @prop {String} name -The name of the new category
+   * @returns {Object} - The created rating
    */
   create: (req, res) => {
-    Kategoria.create(req.body, (err, post) => {
+    Rate.create(req.body, (err, post) => {
       if (err) {
         res.send(err);
       } else {
@@ -81,16 +82,16 @@ module.exports = {
     });
   },
 
+
   /**
-   * Function to list all categories
+   * Function to update a rating
+   * @param {Number} id - The id property of the rating
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @param {Number} id - The id of the category
-   * @returns {Object} - The updated category
-   * @prop {String} name -The new name of the category
+   * @returns {Object} - The updated rating
    */
   update: (req, res) => {
-    Kategoria.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
+    Rate.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
       if (err) {
         res.send(err);
       } else {
@@ -99,15 +100,16 @@ module.exports = {
     });
   },
 
+
   /**
-   * Function to list all categories
+   * Function to delete a rating
+   * @param {Number} id - The id property of the rating
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @param {Number} id - The id of the category
-   * @returns {Object} - The deleted category
+   * @returns {Object} - The deleted rating
    */
   remove: (req, res) => {
-    Kategoria.findByIdAndRemove(req.params.id, (err, post) => {
+    Rate.findByIdAndRemove(req.params.id, (err, post) => {
       if (err) {
         res.send(err);
       } else {

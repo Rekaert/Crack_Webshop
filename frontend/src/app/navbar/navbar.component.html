@@ -105,7 +105,7 @@
                   <i class="far fa-user"></i>
                 </span>
               </div>
-              <input class="form-control" id="username" type="text" placeholder="username">
+              <input class="form-control" id="username" type="text" placeholder="username" [(ngModel)]="newUser.username">
             </div>
             <label for="email">E-mail:</label>
             <div class="input-group mb-3">
@@ -114,7 +114,7 @@
                   <i class="far fa-user"></i>
                 </span>
               </div>
-              <input class="form-control" id="email" type="email" placeholder="valami@valami.hu">
+              <input class="form-control" id="email" type="email" placeholder="valami@valami.hu" [(ngModel)]="newUser.email">
             </div>
             <label for="pass">Jelszó:</label>
             <div class="input-group mb-3">
@@ -123,7 +123,7 @@
                   <i class="fas fa-key"></i>
                 </span>
               </div>
-              <input class="form-control" id="pass" type="password" placeholder="Password">
+              <input class="form-control" id="pass" type="password" placeholder="Password" [(ngModel)]="newUser.password">
             </div>
             <label for="repass">Jelszó újra:</label>
             <div class="input-group mb-3">
@@ -132,7 +132,7 @@
                   <i class="fas fa-key"></i>
                 </span>
               </div>
-              <input class="form-control" id="repass" type="password" placeholder="Repeat Password">
+              <input class="form-control" id="repass" type="password" placeholder="Repeat Password" [(ngModel)]="newUser.passwordRe">
             </div>
             <label for="name">Számlázási cím:</label>
             <div class="input-group mb-3">
@@ -141,7 +141,7 @@
                   <i class="fas fa-map-marker"></i>
                 </span>
               </div>
-              <input class="form-control" id="szamlacim" type="text" placeholder="számlázási cím">
+              <input class="form-control" id="szamlacim" type="text" placeholder="számlázási cím" [(ngModel)]="newUser.szmlcim">
             </div>
             <label for="name">Szállítási cím:</label>
             <div class="input-group mb-3">
@@ -150,7 +150,7 @@
                   <i class="fas fa-map-marker"></i>
                 </span>
               </div>
-              <input class="form-control" id="szalliasicim" type="text" placeholder="szállítási cím">
+              <input class="form-control" id="szalliasicim" type="text" placeholder="szállítási cím" [(ngModel)]="newUser.szallcim">
             </div>
             <label for="name">Telefonszám:</label>
             <div class="input-group mb-3">
@@ -159,16 +159,7 @@
                   <i class="fas fa-phone"></i>
                 </span>
               </div>
-              <input class="form-control" id="telefon" type="text" placeholder="telefonszám">
-            </div>
-            <label for="name">Jogosultság:</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-              </div>
-              <select class="form-control" id="permission" type="text" placeholder="telefonszám">
-                <option value="admin">Admin</option>
-                <option value="customer">Customer</option>
-              </select>
+              <input class="form-control" id="telefon" type="text" placeholder="telefonszám" [(ngModel)]="newUser.tel">
             </div>
           </div>
           <div class="modal-footer">

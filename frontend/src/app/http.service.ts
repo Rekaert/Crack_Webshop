@@ -50,11 +50,9 @@ export class HttpLocalService {
     this.httpClient.get(this.url + '/product', this.options)
       .subscribe((data) => this.products = JSON.parse(data['_body']));
   }
-  register() {
-    this.httpClient.post(this.url + '/user/register', {
-      username: '', email: '',
-      szmlcim: '', szallcim: '', tel: '', perm: '', password: ''
-    }).subscribe((data) => console.log(data));
+  register(newUser) {
+    this.httpClient.post(this.url + '/user/register', newUser)
+      .subscribe((data) => console.log(data));
   }
 
   login(user) {
