@@ -46,14 +46,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let basketItem of basket">
+            <tr *ngFor="let basketItem of basket let i = index">
               <td>{{basketItem.productId}}</td>
               <td>{{basketItem.productName}}</td>
               <td>{{basketItem.productCost}} Ft</td>
               <td>{{basketItem.quantity}}</td>
               <td>
                 <div class="btn-group">
-                  <button id="addQuantity" type="button" class="btn btn-warning" (click)="addQuantity(basketItem)">+</button>
+                  <button id="addQuantity" type="button" class="btn btn-warning" (click)="addQuantity(basketItem, i)">+</button>
                   <button id="removeQuantity" type="button" class="btn btn-warning" (click)="removeQuantity(basketItem)">-</button>
                 </div>
               </td>

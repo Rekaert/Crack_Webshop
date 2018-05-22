@@ -43,7 +43,7 @@ export class RendelesComponent implements OnInit {
   // mevizsgálom, h. van-e a sessionStorage-ban basket key, ha van, lekérem belőle az adatokat
   getBasketFromStorage() {
     this.basket = sessionStorage.basket ? JSON.parse(sessionStorage.basket) : [];
-    console.log(sessionStorage.basket, 'baske');
+    //console.log(sessionStorage.basket, 'baske');
     return this.basket;
   }
 
@@ -56,11 +56,14 @@ export class RendelesComponent implements OnInit {
   }
 
   // mennyiség növelése
-  addQuantity(basketItem) {
-    console.log(this.basket, 'mennyis');
-    basketItem.quantity++;
-    // this.basket.filter(item => )
-    // this.getTotalPrice();
+  addQuantity(basketItem, i) { //basketitem a sor amit kiválasztasz, i az indexe a sornak ezt használjuk fel arra hogy tudjuk melyik termék mennyiségét módosítsuk
+    basketItem.quantity++; //növeljük a mennyiség rublika tartalmát adó változót
+    this.basket[i].quantity = basketItem.quantity; //az itt létrehozott kosárnak a quantityjét egyenlővé tesszük a megnöveltel
+    this.basket[i].totalCost = this.basket[i].quantity * this.basket[i].productCost; // újraszámoljuk az eredményt az új mennyiség alapján
+    let stringed = JSON.stringify(this.basket); // stringé alakítjuk a basket tartalmát és beletesszük egy változóba mert így tudjuk feltolni a sess storageba
+    sessionStorage.setItem("basket", stringed); //bementjük a session storageba
+    this.getBasketFromStorage() // újra lekérjük az adatokat a frissített sess storageből
+    this.getTotalPrice()  //újraszámoltatunk a friss adatok alapján
   }
 
   // mennyiség csökkentése
