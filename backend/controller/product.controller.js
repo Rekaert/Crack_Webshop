@@ -126,7 +126,9 @@ module.exports = {
         res.send(err);
       } else {
         res.json(post);
-        deleteFile(post.image);
+        if (post.image) {
+          deleteFile(post.image);
+        }
       }
     });
   },
