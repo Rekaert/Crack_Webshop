@@ -5,7 +5,7 @@ body {
 .background {
   background: url("../assets/img/legoWall5Resized.png") center center fixed;
   background-size: cover;
-  height: 200vh;
+  height: 100%;
   z-index: -1;
 }
 
