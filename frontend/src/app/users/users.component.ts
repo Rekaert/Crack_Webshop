@@ -44,6 +44,7 @@ export class UsersComponent implements OnInit {
     this.convertAddressFields();
     if (this.user['password'] && this.user['password'].length >= 8) {
       this.userService.create(this.user).subscribe(data => {
+        alert('Az új felhasználót sikeresen hozzáadtad.')
         this.ngOnInit();
       });
     } else {
@@ -52,9 +53,9 @@ export class UsersComponent implements OnInit {
 
   }
 
-  clearFormData() {
+  /*clearFormData() {
     this.user = new User();
-  }
+  }*/
 
   fillUpdateForm(userID: string) {
     this.userService.getUsers().subscribe(users => {
@@ -86,6 +87,7 @@ export class UsersComponent implements OnInit {
     if (!this.user['newpassword'] || this.user['newpassword'].length >= 8) {
       this.userService.update(this.user).subscribe(data => {
         console.log(data);
+        alert('Az adatokat sikeresen frissítetted.')
         this.ngOnInit();
       });
     } else {

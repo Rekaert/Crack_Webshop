@@ -37,7 +37,7 @@
         <a href="/selectedproduct/{{prod.url}}">
           <button class="btn btn-success">Részletek</button>
         </a>
-        <span> Megjelenés: {{prod.createdAt}}</span>
+        <span> Megjelenés: {{prod.createdAt | date:"yyyy.MM.dd"}}</span>
       </div>
     </div>
 
@@ -56,15 +56,8 @@
 
 <div class="categories">
   <h3>KATEGÓRIÁK</h3>
+  <div *ngFor="let cate  of httpLocal.categories">
+    <img src="{{''+cate.imgLink}}" alt=" " (click)="selectCategory(cate.name)">
 
-  <img src="../../assets/img/lego_technic.png" alt="">
-  <br>
-  <img src="../../assets/img/lego_super_heroes.png" alt="">
-  <br>
-  <img src="../../assets/img/ninja.png" alt="">
-  <br>
-  <img src="../../assets/img/lego_city.png" alt="">
-  <br>
-  <img src="../../assets/img/lego_batman_movie.png" alt="">
-  <br>
+  </div>
 </div>

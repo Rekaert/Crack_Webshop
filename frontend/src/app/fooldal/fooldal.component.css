@@ -36,9 +36,9 @@
 }
 
 .categories {
-  position: fixed;
+  position: absolute;
   left: 2%;
-  top: 11%;
+  top: 12%;
 }
 
 .categories h3 {
@@ -54,8 +54,8 @@
 
 .categories img {
   position: relative;
-  width: 90px;
-  filter: grayscale(80%);
+  width: 45%;
+  filter: grayscale(55%);
   transition: transform .2s;
   margin-bottom: 3%;
   z-index: 0;
@@ -66,4 +66,8 @@
   filter: grayscale(0%);
   transform: scale(1.6);
   z-index: 50;
+}
+
+a:hover {
+  text-decoration: none;
 }

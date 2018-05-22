@@ -44,11 +44,11 @@
 
 .btn_cust {
   color: rgb(240, 36, 9);
-  font-size: 15px;
+  font-size: 20px;
   font-family: 'Skranji', cursive;
   background-color: rgb(29, 28, 28);
-  height: 40%;
-  right: 5%;
+  height: 50%;
+  right: 15%;
   position: absolute;
   top: 20%;
 }

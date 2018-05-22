@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { HttpLocalService } from '../http.service';
 
 @Component({
   selector: 'app-fooldal',
@@ -8,19 +9,22 @@ import { Http } from '@angular/http';
 })
 export class FooldalComponent implements OnInit {
   products: any = [];
-  item: any = 3;
-  constructor(public http: Http) {
-    this.getAll();
+  item: any = 4;
+  kategoria: any = 'all';
+  constructor(public http: Http, public httpLocal: HttpLocalService) {
+    this.getAll(this.kategoria);
+    this.httpLocal.getCategories();
 
   }
-  getAll() {
+  getAll(category) {
     this.http.get('http://localhost:8080/product').subscribe(
       data => {
         data = JSON.parse(data['_body']);
         this.http.get('http://localhost:8080/kategoria').subscribe(
           cat => {
             cat = JSON.parse(cat['_body']);
-            data = this.matchCat(cat, data);
+            console.log(category);
+            data = this.matchCat(cat, data, category);
             this.http.get('http://localhost:8080/rate').subscribe(
               rate => {
                 rate = JSON.parse(rate['_body']);
@@ -32,6 +36,7 @@ export class FooldalComponent implements OnInit {
       });
   }
   fillRow(data, num) {
+    this.products = [];
     for (let i = 0; i < data.length / num; i++) {
       let arr = [];
       for (let j = 0; j < num; j++) {
@@ -46,9 +51,9 @@ export class FooldalComponent implements OnInit {
   changeRow(num) {
     this.products = [];
     this.item = num;
-    this.getAll();
+    this.getAll(this.kategoria);
   }
-  matchCat(cat, data) {
+  matchCat(cat, data, category) {
     for (let i in data) {
       for (let j in cat) {
         if (data[i].catId == cat[j]._id) {
@@ -56,8 +61,15 @@ export class FooldalComponent implements OnInit {
         }
       }
     }
-    console.log(data);
+    if (category == 'all') {
+      data = data.sort((a, b) => {
+        return a.createdAt > b.createdAt;
+      }).filter((item, index) => index < 10);
+    } else {
+      data = data.filter(item => item.cat == category);
+    }
     return data;
+
   }
   getRate(rate, data) {
     for (let i in data) {
@@ -78,8 +90,14 @@ export class FooldalComponent implements OnInit {
       data[i].rateSatis = data[i].rateNumber == 0 ? 0 : data[i].rateSatis / data[i].rateNumber;
       data[i].rateCost = data[i].rateNumber == 0 ? 0 : data[i].rateCost / data[i].rateNumber;
     }
-    console.log(rate, data);
+
     return data;
+  }
+  selectCategory(cat) {
+
+    this.kategoria = cat;
+    console.log(this.kategoria);
+    this.getAll(this.kategoria);
   }
   ngOnInit() {
   }

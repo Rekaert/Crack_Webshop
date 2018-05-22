@@ -17,7 +17,17 @@ export class NavbarComponent implements OnInit {
   datas: any;
   user: object = {
     username: '',
-    password: ''
+    password: '',
+  };
+
+  newUser: any = {
+    username: '',
+    password: '',
+    passwordRe: '',
+    email: '',
+    szallcim: '',
+    szmlcim: '',
+    tel: '',
   };
 
   constructor(public http: HttpLocalService) {
@@ -70,6 +80,16 @@ export class NavbarComponent implements OnInit {
   logout(): any {
     this.http.logout();
     this.logged = false;
+  }
+
+  register(): any {
+    if (this.newUser.password === this.newUser.passwordRe) {
+      this.newUser.perm = 0;
+      this.http.register(this.newUser);
+      alert('Sikeres regisztráció!');
+    } else {
+      alert('Nem egyeznek a megadot jelszavak !');
+    }
   }
 
 }

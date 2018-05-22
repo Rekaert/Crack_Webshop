@@ -1,31 +1,39 @@
 <div class="container">
-  <div class="row">
-    <div class="col-4 text-center">
-      <h1>Kategóriák</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-4 offset-4">
-      <table>
-        <tr>
-          <td>
-            <input type="text" class="form-control" [(ngModel)]="newKategoria.name">
-          </td>
-          <td>
-            <button type="button" class="btn btn-success" (click)="create(newKategoria)">Hozzáadás</button>
-          </td>
-        </tr>
-        <tr *ngFor="let kategoria of kategoriak">
-          <td>
-            <input type="text" [(ngModel)]="kategoria.name" class="form-control">
-          </td>
-          <td>
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary" (click)="update(kategoria)">Frissítés</button>
-              <button type="button" class="btn btn-danger" (click)="remove(kategoria)">Törlés</button>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
+  <h1 class="text-center">Kategóriák</h1>
+  <table class="table table-striped">
+    <thead>
+      <th>Kategória név</th>
+      <th>Kép cím link</th>
+      <th>-</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="newKategoria.name">
+        </td>
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="newKategoria.imgLink">
+        </td>
+        <td>
+          <button type="button" class="btn btn-success" (click)="create(newKategoria)">Hozzáadás</button>
+        </td>
+      </tr>
+      <tr *ngFor="let kategoria of kategoriak">
+        <td>
+          <input type="text" [(ngModel)]="kategoria.name" class="form-control">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="kategoria.imgLink" class="form-control">
+        </td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" (click)="update(kategoria)">Frissítés</button>
+            <button type="button" class="btn btn-danger" (click)="remove(kategoria)">Törlés</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+</div>

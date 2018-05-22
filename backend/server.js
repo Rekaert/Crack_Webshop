@@ -153,7 +153,10 @@ app.post('/sendemail', (req, res) => {
     from: mailadr.from,
     to: 'crcklegowebstore@gmail.com',
     subject: mailadr.subject,
-    html: `<i>${mailadr.html}</i>`,
+    html: `<p>${mailadr.html}
+    <br>
+    <strong>From: ${mailadr.from}</strong>
+    </p>`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
