@@ -84,13 +84,14 @@
               </select>
             </td>
             <td>
-              8000
+              {{price[orders2New.productId]}} FT
             </td>
             <td>
               <input type="text" class="form-control" [(ngModel)]="orders2New.quantity">
             </td>
             <td>
-              <input type="text" class="form-control" [(ngModel)]="orders2New.price">
+              {{orders2New.quantity>1 &&orders2New.quantity%1==0?price[orders2New.productId]*orders2New.quantity:price[orders2New.productId]}}
+              FT
             </td>
             <td>
               <input type="button" class="btn btn-success" value="Hozzáadás" name="" id="" (click)="createOne()">
@@ -104,13 +105,14 @@
               </select>
             </td>
             <td>
-              1000 termek ara
+              {{price[ord.productId]}} FT
             </td>
             <td>
               <input type="text" class="form-control" [(ngModel)]="ord.quantity">
             </td>
             <td>
-              <input type="text" class="form-control" [(ngModel)]="ord.price">
+              {{ord.quantity>1 &&ord.quantity%1==0?price[ord.productId]*ord.quantity:price[ord.productId]}} FT
+              <!-- <input type="text" class="form-control" [(ngModel)]="ord.price"> -->
             </td>
             <td class="btn-group" role="group" aria-label="Basic example">
               <button type="button" class="btn btn-primary" (click)="updateOne(ord)">Frissítés</button>
