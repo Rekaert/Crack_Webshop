@@ -11,13 +11,12 @@
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse navbar-dark justify-content-center" id="navbarNavAltMarkup">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link active" routerLink="">
             <span class="sr-only">(current)</span>
           </a>
           <a *ngIf="http.typeOfUser <= 2" class="nav-item nav-link" routerLink="/fooldal">fooldal</a>
-          <a *ngIf="http.typeOfUser <= 2" class="nav-item nav-link" routerLink="/kategoriak">kategoriak</a>
           <a *ngIf="http.typeOfUser <= 1" class="nav-item nav-link" routerLink="/kosar">kosar</a>
           <a *ngIf="http.typeOfUser <= 1" class="nav-item nav-link" routerLink="/profil">profil</a>
           <a *ngIf="http.typeOfUser <= 1" class="nav-item nav-link" routerLink="/rendeles">rendeles</a>
@@ -32,6 +31,7 @@
               <a *ngIf="http.typeOfUser <= 0" class="nav-item nav-link" routerLink="/users">Felhasználók</a>
               <a *ngIf="http.typeOfUser <= 0" class="nav-item nav-link" routerLink="/products">Termékek</a>
               <a *ngIf="http.typeOfUser <= 0" class="nav-item nav-link" routerLink="/orders">Rendelések</a>
+              <a *ngIf="http.typeOfUser <= 2" class="nav-item nav-link" routerLink="/kategoriak">kategoriak</a>
               <div class="dropdown-divider"></div>
               <a *ngIf="http.typeOfUser <= 0" class="nav-item nav-link" routerLink="/dashboard">Statisztika</a>
             </div>

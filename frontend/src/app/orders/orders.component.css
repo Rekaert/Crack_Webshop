@@ -9,3 +9,7 @@
   position: relative;
   width: 300px;
 }
+
+table {
+  border-radius: 15px;
+}

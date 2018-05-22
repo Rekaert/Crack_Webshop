@@ -21,3 +21,7 @@ thead {
 .container-fluid-userstop {
   margin-top: 100px;
 }
+
+table {
+  border-radius: 15px;
+}

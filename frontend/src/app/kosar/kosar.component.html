@@ -12,13 +12,14 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <table class="table">
+      <table class="table table-striped table-light">
         <thead>
           <tr>
             <th>Termék ID</th>
             <th>Termék</th>
             <th>Mennyiség</th>
-            <th>Ár</th>
+            <th>Egységár</th>
+            <th>Összár</th>
           </tr>
         </thead>
         <tbody>
@@ -27,24 +28,27 @@
             <td>{{basketItem.productName}}</td>
             <td>{{basketItem.quantity}}</td>
             <td>{{basketItem.productCost}} Ft</td>
+            <td>{{basketItem.productCost*basketItem.quantity}} Ft</td>
           </tr>
-          <hr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>-</td>
+            <td>-</td>
+            <td (onload)="getTotalQuantity()">
+              {{quantity}} termék</td>
+            <td>-</td>
             <td (onload)="getTotalPrice()">
               <strong>Összeg:</strong> {{totalPrice}} Ft</td>
           </tr>
         </tbody>
       </table>
       <div>
-        <!--gomb, ami visszavisz a termékek oldalra-->
-        <a href="http://localhost:4200/fooldal">
-          <button type="button" class="btn btn-default">Folytatom a vásárlást</button>
-        </a>
         <!--gomb, ami a rendelés oldalra visz-->
         <a href="http://localhost:4200/rendeles">
-          <button type="button" class="btn btn-default">Megrendelem</button>
+          <button type="button" class="btn btn-success float-right">Megrendelem</button>
+        </a>
+        <!--gomb, ami visszavisz a termékek oldalra-->
+        <a href="http://localhost:4200/fooldal">
+          <button type="button" class="btn btn-info float-right">Folytatom a vásárlást</button>
         </a>
 
       </div>

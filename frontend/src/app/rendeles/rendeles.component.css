@@ -9,3 +9,8 @@
   position: relative;
   width: 300px;
 }
+
+#btn1 {
+  margin-left: 1%;
+  float: right;
+}
