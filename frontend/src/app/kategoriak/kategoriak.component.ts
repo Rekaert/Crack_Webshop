@@ -11,6 +11,7 @@ export class KategoriakComponent implements OnInit {
   kategoriak: any = [];
   newKategoria: Object = {
     name: '',
+    imgLink: '',
   };
 
   constructor(private http: HttpLocalService) {

@@ -6,5 +6,8 @@ const kategoriaSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
+  imgLink: {
+    type: String,
+  },
 });
 module.exports = mongoose.model('Kategoria', kategoriaSchema);

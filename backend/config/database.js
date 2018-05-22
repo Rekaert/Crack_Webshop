@@ -19,8 +19,8 @@ const password = 'user';
 const database = 'webshop';
 
 module.exports = {
-  uri: `mongodb://${user}:${password}@${host}:${port}/${database}`,
-  /* uri: 'mongodb://pwd:user@ds227740.mlab.com:27740/crack', */
+  /*  uri: `mongodb://${user}:${password}@${host}:${port}/${database}`, */
+  uri: 'mongodb://pwd:user@ds227740.mlab.com:27740/crack',
   options: {
     connectTimeoutMS: 5000,
     reconnectTries: Number.MAX_VALUE,
