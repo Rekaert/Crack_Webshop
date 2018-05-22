@@ -7,11 +7,13 @@
 <div *ngIf="http.typeOfUser <=1">
   <div class="container">
     <div class="row">
-      <div class="col-3">
+      <div class="col-12 col-md-3">
         <!--adott vásárló profiladatainak mejelenítése-->
         <div style="width: 18rem;">
           <div>
             <h5>Profil adatok</h5>
+            <br>
+            <br>
             <p>
               <strong>Felhasználónév: </strong>{{customer.username}}</p>
             <p>
@@ -23,6 +25,7 @@
             <p>
               <strong>Telefonszám: </strong>{{customer.tel}}</p>
             <br>
+            <hr>
             <div>
               <a href="http://localhost:4200/profil" class="btn btn-primary">Adatok szerkesztése</a>
             </div>
@@ -30,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="col-9">
+      <div class="col-12 col-md-9">
         <!--Rendelési összefoglaló, adatok módosíása-->
         <h5>Rendelési összefoglaló</h5>
         <br>
@@ -54,35 +57,38 @@
               <td>
                 <div class="btn-group">
                   <button id="addQuantity" type="button" class="btn btn-warning" (click)="addQuantity(basketItem, i)">+</button>
-                  <button id="removeQuantity" type="button" class="btn btn-warning" (click)="removeQuantity(basketItem)">-</button>
+                  <button id="removeQuantity" type="button" class="btn btn-warning" (click)="removeQuantity(basketItem, i)">-</button>
                 </div>
               </td>
               <td>
-                <button type="button" class="btn btn-danger" (click)="deleteProductFromBasket()">Törlés</button>
-              </td>
-            </tr>
-            <hr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td (onload)="getTotalPrice()">
-                <strong>Összeg: {{totalPrice}} Ft</strong>
+                <button type="button" class="btn btn-danger" (click)="deleteProductFromBasket(basketItem)">Törlés</button>
               </td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td></td>
+              <td colspan="3" (onload)="getTotalPrice()">
+                <strong>Összeg: {{totalPrice}} Ft</strong>
+              </td>
+            </tr>
+          </tfoot>
         </table>
         <div>
         </div>
       </div>
+      <br>
+      <br>
       <div>
         <!--gomb, ami visszavisz a kosár nézetbe-->
         <a href="http://localhost:4200/kosar">
           <button id="btn1" type="button" class="btn btn-info">Vissza a kosárba</button>
         </a>
         <!--gomb, ami elküldi adott vásárló rendelését a szerverre, ha minden adat ki van töltve-->
-        <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#sikeresRendelesModal" (click)="sendOrder()">Rendelés leadása</button>
+        <button id="btn2" type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#sikeresRendelesModal"
+          (click)="sendOrder()">Rendelés leadása</button>
       </div>
-
       <p id="uzenet"></p>
     </div>
     <!--sikeres rendelés modal-->
@@ -90,16 +96,15 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Köszönjük vásárlását!</h5>
+            <h5 class="modal-title">{{modaltitle}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>Rendelését rögzítettük. Hamarosan felvesszük Önnel a kapcsolatot.</p>
+            <p>{{modalbody}}</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>

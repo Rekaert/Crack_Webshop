@@ -19,11 +19,11 @@ export class RendelesComponent implements OnInit {
   // termékek végösszege
   totalPrice: number = 0;
 
-  // mennyiség növelése
-  buttonAdd = document.querySelector('#addQuantity');
+  // modalcím
+  modaltitle = '';
 
-  // mennyiség csökkentése
-  buttonRemove = document.querySelector('#removeQuantity');
+  // modalüzenet
+  modalbody = '';
 
   constructor(public http: HttpLocalService, public userService: UsersService) {
     this.getBasketFromStorage();
@@ -43,7 +43,7 @@ export class RendelesComponent implements OnInit {
   // mevizsgálom, h. van-e a sessionStorage-ban basket key, ha van, lekérem belőle az adatokat
   getBasketFromStorage() {
     this.basket = sessionStorage.basket ? JSON.parse(sessionStorage.basket) : [];
-    //console.log(sessionStorage.basket, 'baske');
+    // console.log(sessionStorage.basket, 'baske');
     return this.basket;
   }
 
@@ -56,22 +56,64 @@ export class RendelesComponent implements OnInit {
   }
 
   // mennyiség növelése
-  addQuantity(basketItem, i) { //basketitem a sor amit kiválasztasz, i az indexe a sornak ezt használjuk fel arra hogy tudjuk melyik termék mennyiségét módosítsuk
-    basketItem.quantity++; //növeljük a mennyiség rublika tartalmát adó változót
-    this.basket[i].quantity = basketItem.quantity; //az itt létrehozott kosárnak a quantityjét egyenlővé tesszük a megnöveltel
-    this.basket[i].totalCost = this.basket[i].quantity * this.basket[i].productCost; // újraszámoljuk az eredményt az új mennyiség alapján
-    let stringed = JSON.stringify(this.basket); // stringé alakítjuk a basket tartalmát és beletesszük egy változóba mert így tudjuk feltolni a sess storageba
-    sessionStorage.setItem("basket", stringed); //bementjük a session storageba
-    this.getBasketFromStorage() // újra lekérjük az adatokat a frissített sess storageből
-    this.getTotalPrice()  //újraszámoltatunk a friss adatok alapján
+  addQuantity(basketItem, i) {
+    basketItem.quantity++;
+    this.basket[i].quantity = basketItem.quantity;
+    this.basket[i].totalCost = this.basket[i].quantity * this.basket[i].productCost;
+    sessionStorage.basket = JSON.stringify(this.basket);
+    this.getBasketFromStorage();
+    this.getTotalPrice();
   }
 
   // mennyiség csökkentése
-  removeQuantity(basketItem) {
+  removeQuantity(basketItem, i) {
     console.log(this.basket, 'mennyis');
-    basketItem.quantity--;
-    // this.basket.filter(item => )
-    // this.getTotalPrice();
+    // tslint:disable-next-line:no-unused-expression
+    basketItem.quantity > 1 ? basketItem.quantity-- : basketItem.quantity;
+    this.basket[i].quantity = basketItem.quantity;
+    this.basket[i].totalCost = this.basket[i].quantity * this.basket[i].productCost;
+    sessionStorage.basket = JSON.stringify(this.basket);
+    this.getBasketFromStorage();
+    this.getTotalPrice();
+  }
+
+  // Kiválasztott termék törlése
+  deleteProductFromBasket(basketItem) {
+    this.basket = this.basket.filter(item => item.productId !== basketItem.productId);
+    sessionStorage.basket = JSON.stringify(this.basket);
+    // this.getBasketFromStorage();
+    this.getTotalPrice();
+  }
+
+  messageModal(customer) {
+    console.log(customer, 'modal1');
+    for (let k in customer) {
+      if (customer.szmlcim = '') {
+        this.modaltitle = '';
+        this.modalbody = '';
+        this.modaltitle = 'Hiányos profiladatok!';
+        this.modalbody = 'Kérjük, pótolja hiányzó adatait profiloldalán.';
+      } else if (customer.szallcim = '') {
+        this.modaltitle = '';
+        this.modalbody = '';
+        this.modaltitle = 'Hiányos profiladatok!';
+        this.modalbody = 'Kérjük, pótolja hiányzó adatait profiloldalán.';
+      } else if (this.basket.length === 0) {
+        this.modaltitle = '';
+        this.modalbody = '';
+        this.modaltitle = 'Kosara üres!';
+        this.modalbody = 'A rendelés leadásához, helyezzen termékeket a kosárba.';
+      } else {
+        this.modaltitle = '';
+        this.modalbody = '';
+        this.modaltitle = 'Köszönjük vásárlását!';
+        this.modalbody = 'Rendelését rögzítettük. Hamarosan felvesszük Önnel a kapcsolatot.';
+      }
+    }
+  }
+
+  sendOrder() {
+    this.messageModal(this.customer);
   }
 
 }

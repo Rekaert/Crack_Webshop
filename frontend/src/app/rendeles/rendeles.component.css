@@ -12,5 +12,14 @@
 
 #btn1 {
   margin-left: 1%;
-  float: right;
+  position: absolute;
+  right: 50vh;
+  top: 65vh;
+}
+
+#btn2 {
+  margin-left: 1%;
+  position: absolute;
+  right: 30vh;
+  top: 65vh;
 }
