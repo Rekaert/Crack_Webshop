@@ -15,6 +15,9 @@
           <!-- <label class="form-control" for="newPic">Új kép </label> -->
           <input placeholder="Kép link" id="newPic1" type="text" class="form-control" [(ngModel)]="newProduct.image">
         </div>
+        <select name="" id="" class="form-control" [(ngModel)]="newProduct.catId">
+          <option value={{cat._id}} *ngFor="let cat of httpLocalService.categories">{{cat.name}}</option>
+        </select>
         <input type="text" placeholder="Kép név" class="form-control" [(ngModel)]="newProduct.url">
         <input type="text" placeholder="Gyáró" class="form-control" name="manufact" [(ngModel)]="newProduct.manufacturer">
         <input type="text" placeholder="Ár" class="form-control" name="manufact" [(ngModel)]="newProduct.cost">
@@ -38,6 +41,9 @@
         </div>
         <img src="{{ 'http://localhost:8080/images/'+product.image}}" alt="kép">
         <input type="text" class="form-control" [(ngModel)]="product.url">
+        <select name="" id="" class="form-control" [(ngModel)]="product.catId">
+          <option value={{cat._id}} *ngFor="let cat of httpLocalService.categories">{{cat.name}}</option>
+        </select>
         <input type="text" class="form-control" name="manufact" [(ngModel)]="product.manufacturer">
         <input type="text" class="form-control" name="manufact" [(ngModel)]="product.cost">
       </div>
@@ -49,62 +55,4 @@
     </div>
   </div>
 </div>
-<!-- <table class="table table-bordered text-center table-striped">
-  <thead>
-    <th>ID</th>
-    <th>Name</th>
-    <th>URL</th>
-    <th>Manufacturer</th>
-    <th>Cost</th>
-    <th>Image</th>
-    <th>Methods</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-      </td>
-      <td>
-        <input type="text" class="form-control" name="name" id="prodName" [(ngModel)]="newProduct.name">
-      </td>
-      <td>
-        <input type="text" class="form-control" name="url" id="prodUrl" [(ngModel)]="newProduct.url">
-      </td>
-      <td>
-        <input type="text" class="form-control" name="manufact" id="prodManufact" [(ngModel)]="newProduct.manufacturer">
-      </td>
-      <td>
-        <input type="text" class="form-control" name="cost" id="prodCost" [(ngModel)]="newProduct.cost">
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <input type="button" class="btn btn-success" value="Create" name="create" id="createButton" (click)="create()">
-      </td>
-    </tr>
-    <tr *ngFor="let product of products">
-      <td>
-        <input type="text" class="form-control" [(ngModel)]="product._id">
-      </td>
-      <td>
-        <input type="text" class="form-control" [(ngModel)]="product.name">
-      </td>
-      <td>
-        <input type="text" class="form-control" [(ngModel)]="product.url">
-      </td>
-      <td>
-        <input type="text" class="form-control" [(ngModel)]="product.manufacturer">
-      </td>
-      <td>
-        <input type="text" class="form-control" [(ngModel)]="product.cost">
-      </td>
-      <td>
-        <input type="text" class="form-control" [(ngModel)]="product.img">
-      </td>
-      <td class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" (click)="update(product)">Update</button>
-        <button type="button" class="btn btn-danger" (click)="delete(product)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table> -->
+<pre>{{newProduct.catId}}</pre>

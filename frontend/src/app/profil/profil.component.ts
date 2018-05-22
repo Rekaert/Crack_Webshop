@@ -49,6 +49,7 @@ export class ProfilComponent implements OnInit {
       this.user = user;
       this.convertAddressFieldsBack();
       this.message = 'update succesfully happened';
+      alert('Sikeresen frissítetted az adatokat.')
     }, err => {
       this.message = 'update failed';
     })
