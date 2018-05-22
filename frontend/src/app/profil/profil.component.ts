@@ -18,6 +18,8 @@ export class ProfilComponent implements OnInit {
   user = new User();
   orders: any = [];
   message: string = "";
+  selectedOrder: any = {};
+  modalReady: boolean = false;
 
   constructor(private http: HttpLocalService,
     private httpClient: HttpClient,
@@ -47,6 +49,7 @@ export class ProfilComponent implements OnInit {
       this.user = user;
       this.convertAddressFieldsBack();
       this.message = 'update succesfully happened';
+      alert('Sikeresen frissítetted az adatokat.')
     }, err => {
       this.message = 'update failed';
     })
@@ -69,6 +72,35 @@ export class ProfilComponent implements OnInit {
     u.szallcim_irszam = szallcimSplit[0];
     u.szallcim_varos = szallcimSplit[1];
     u.szallcim_utca = szallcimSplit[2];
+  }
+
+  selectOrder(id) {
+    this.modalReady = false;
+    for (let i = 0; i < this.orders.length; i++) {
+      if (this.orders[i]._id == id) {
+        this.selectedOrder = this.orders[i];
+        this.populateSelectedOrder();
+        console.log(this.selectedOrder);
+        return;
+      }
+    }
+  }
+
+  populateSelectedOrder() {
+    this.httpClient.get<any>(baseUrl + '/order/one/' + this.selectedOrder._id).subscribe(orderDetails => {
+
+      for (let i = 0; i < orderDetails.length; i++) {
+        const orderDetail = orderDetails[i];
+        this.httpClient.get<any>(baseUrl + '/product/' + orderDetail.productId).subscribe(product => {
+          orderDetail.product = product;
+          if (i == orderDetails.length - 1) {
+            this.modalReady = true;
+          }
+        });
+      }
+
+      this.selectedOrder.details = orderDetails;
+    });
   }
 
 }
