@@ -63,4 +63,12 @@ export class RendelesComponent implements OnInit {
     // this.getTotalPrice();
   }
 
+  // mennyiség csökkentése
+  removeQuantity(basketItem) {
+    console.log(this.basket, 'mennyis');
+    basketItem.quantity--;
+    // this.basket.filter(item => )
+    // this.getTotalPrice();
+  }
+
 }
