@@ -21,7 +21,7 @@ export class OrdersComponent implements OnInit {
     quantity: "",
     price: "",
   }
-
+  price: any = {};
   showDetails: boolean = false;
   orders: any = [];
   orders2: any = [];
@@ -33,11 +33,10 @@ export class OrdersComponent implements OnInit {
     this.httpLocalService.getProducts();
     this.httpLocalService.getOrders();
 
-    setTimeout(() => { console.log(this.httpLocalService.orders); }, 1000)
+    /*  setTimeout(() => { console.log(this.httpLocalService.orders); }, 1000) */
     //setTimeout(() => { this.countCost() }, 1000)
     this.getAll();
-    //setTimeout(() => { console.log(this.httpLocalService.users); }, 1000);
-    //setTimeout(() => { console.log(this.httpLocalService.products); }, 1000);
+
   }
 
   ngOnInit() {
@@ -62,6 +61,9 @@ export class OrdersComponent implements OnInit {
   }
 
   details(id) {
+    for (let i of this.httpLocalService.products) {
+      this.price[i._id] = i.cost;
+    }
     this.showDetails = true;
     this.http.get('http://localhost:8080/order/one/' + id).subscribe(
       data => {
@@ -83,6 +85,8 @@ export class OrdersComponent implements OnInit {
   }
 
   createOne() {
+
+    this.orders2New['price'] = this.orders2New['quantity'] > 1 && this.orders2New['quantity'] % 1 == 0 ? this.price[this.orders2New['productId']] * this.orders2New['quantity'] : this.price[this.orders2New['productId']];
     let edited = this.orders.filter(item => item._id == this.orders2New['orderId'])[0];
     edited.quantity = parseInt(edited.quantity) + parseInt(this.orders2New['quantity']);
     edited.cost = parseInt(edited.cost) + parseInt(this.orders2New['price']);
@@ -106,6 +110,7 @@ export class OrdersComponent implements OnInit {
   }
 
   updateOne(editOrder) {
+    editOrder['price'] = editOrder['quantity'] > 1 && editOrder['quantity'] % 1 == 0 ? this.price[editOrder['productId']] * editOrder['quantity'] : this.price[editOrder['productId']];
     let edited = this.orders.filter(item => item._id == this.orders2New['orderId'])[0];
     let edited2 = this.orders2.filter(item => item._id == editOrder._id)[0];
     edited.quantity = 0;
