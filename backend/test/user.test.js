@@ -58,6 +58,7 @@ describe('User', () => {
     it('response statusCode equal to 200 and object in res', (done) => {
       chai.request(baseUrl)
         .get('/profile')
+        .set('Cookie', cookie)
         .end((err, res) => {
           expect(res).to.have.status(200);
           expect(res).to.be.an('object');
@@ -72,6 +73,7 @@ describe('User', () => {
     it('response statusCode equal to 200 and object in res', (done) => {
       chai.request(baseUrl)
         .get('/')
+        .set('Cookie', cookie)
         .end((err, res) => {
           expect(res).to.have.status(200);
           expect(res).to.be.an('array');

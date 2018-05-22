@@ -1,7 +1,7 @@
 const chai = require('chai');
 const should = chai.should();
 const Order = require('../models/order');
-const orderController1 = require('../controller/order.controller.1');
+const orderController1 = require('../controller/order.controller');
 const expect = require('chai').expect;
 const chaiHttp = require('chai-http');
 

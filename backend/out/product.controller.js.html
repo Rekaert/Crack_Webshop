@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: kategoriak.controller.js</title>
+    <title>JSDoc: Source: product.controller.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: kategoriak.controller.js</h1>
+    <h1 class="page-title">Source: product.controller.js</h1>
 
     
 
@@ -26,21 +26,34 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Kategoria = require('../models/kategoria');
+            <pre class="prettyprint source linenums"><code>const Product = require('../models/product');
+const fs = require('fs');
+const request = require('request');
+
+const filePath = './public/img/';
 
 /**
- * @module Értékelés
+ * @function deleteFile - Function to delete the saved image of a product 
+ * @param {String} fileName -The name of the file to be deleted
+ */
+function deleteFile(fileName) {
+  fs.unlinkSync(filePath + fileName);
+}
+
+/**
+ * @module Product
  */
 module.exports = {
 
+
   /**
-   * Function to list all categories
+   * Function to list all products
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @returns {Array} - All categories
+   * @returns {Array} - The list of all the products
    */
   list: (req, res) => {
-    Kategoria.find({}, (err, post) => {
+    Product.find({}, (err, post) => {
       if (err) {
         res.send(err);
       }
@@ -49,14 +62,31 @@ module.exports = {
   },
 
   /**
-   * Function to find category
+   * Function to find a product by url
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @param {Number} id - The id of the category
-   * @returns {Object} - The found category
+   * @returns {Object} - The found product
+   */
+  findByUrl: (req, res) => {
+    Product.find({
+      url: req.params.url,
+    }, (err, post) => {
+      if (err) {
+        res.send(err);
+      }
+      res.send(post);
+    });
+  },
+
+  /**
+   * Function to find a product by id
+   * @param {Number} id - The id property of the product
+   * @param {Object} req - Request
+   * @param {Object} res - Response
+   * @returns {Array} - The found product
    */
   find: (req, res) => {
-    Kategoria.findById(req.params.id, (err, post) => {
+    Product.findById(req.params.id, (err, post) => {
       if (err) {
         res.send(err);
       }
@@ -64,15 +94,19 @@ module.exports = {
     });
   },
 
+
   /**
-   * Function to create a new category
+   * Function to create a product
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @returns {Object} - The created category
-   * @prop {String} name -The name of the new category
+   * @returns {Object} - The created product
    */
   create: (req, res) => {
-    Kategoria.create(req.body, (err, post) => {
+    const cim = req.body.image;
+    const url = req.body.url;
+    req.body.image = `${url}.jpg`;
+    request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
+    Product.create(req.body, (err, post) => {
       if (err) {
         res.send(err);
       } else {
@@ -81,16 +115,23 @@ module.exports = {
     });
   },
 
+
   /**
-   * Function to list all categories
+   * Function to update a product
+   * @param {Number} id - The id property of the product
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @param {Number} id - The id of the category
-   * @returns {Object} - The updated category
-   * @prop {String} name -The new name of the category
+   * @returns {Object} - The product before the update
    */
   update: (req, res) => {
-    Kategoria.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
+    if (req.body.oldImage) {
+      const cim = req.body.image;
+      const urlcim = req.body.url;
+      req.body.image = `${urlcim}.jpg`;
+      request(cim).pipe(fs.createWriteStream(`public/img/${urlcim}.jpg`));
+      deleteFile(req.body.oldImage);
+    }
+    Product.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
       if (err) {
         res.send(err);
       } else {
@@ -99,19 +140,21 @@ module.exports = {
     });
   },
 
+
   /**
-   * Function to list all categories
+   * Function to delete a product
+   * @param {Number} id - The id property of the order
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @param {Number} id - The id of the category
-   * @returns {Object} - The deleted category
+   * @returns {Object} - The deleted product
    */
   remove: (req, res) => {
-    Kategoria.findByIdAndRemove(req.params.id, (err, post) => {
+    Product.findByIdAndRemove(req.params.id, (err, post) => {
       if (err) {
         res.send(err);
       } else {
         res.json(post);
+        deleteFile(post.image);
       }
     });
   },

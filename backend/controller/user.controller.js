@@ -35,12 +35,12 @@ module.exports = {
    * Function to register a new user
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @prop username - The name of the user
-   * @prop email - The email address of the user
-   * @prop szmlcím - The address where the bill is sentű
-   * @prop szallcím - The address where the product is transported
-   * @prop tel - The telephone number of the user
-   * @prop perm - The permission status of the user or admin
+   * @prop {String} username - The name of the user
+   * @prop {String} email - The email address of the user
+   * @prop {String} szmlcím - The address where the bill is sentű
+   * @prop {String} szallcím - The address where the product is transported
+   * @prop {Number} tel - The telephone number of the user
+   * @prop {String} perm - The permission status of the user or admin
    * @returns {Object} - Success message, Registered user
    */
   register: (req, res) => {
@@ -63,7 +63,7 @@ module.exports = {
    * Function to update a users properties
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @param id - The id of the user
+   * @param {Number} id - The id of the user
    * @returns {Object} - The user before the update
    * new:true - mongoose document - http://mongoosejs.com/docs/api.html#query_Query-findOneAndUpdate -
    * "new: bool - if true, return the modified document rather than the original. defaults to false (changed in 4.0)"
@@ -89,7 +89,7 @@ module.exports = {
    * Function to delete a user
    * @param {Object} req - Request
    * @param {Object} res - Response
-   * @param id - The id of the user
+   * @param {Number} id - The id of the user
    * @returns {Object} - The deleted user
    */
   delete: (req, res) => {
