@@ -3,7 +3,107 @@
   <h2>A megtekintéshez bejelentkezés szükséges</h2>
   <img src="../../assets/img/stopLego.png" alt="">
 </div>
+<!--Ha be van jelentkezve a vásárló-->
 <div *ngIf="http.typeOfUser <=1">
-  IDE DOLGOZZ
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <!--adott vásárló profiladatainak mejelenítése-->
+        <div style="width: 18rem;">
+          <div>
+            <h5>Profil adatok</h5>
+            <p>
+              <strong>Felhasználónév: </strong>{{customer.username}}</p>
+            <p>
+              <strong>Email: </strong>{{customer.email}}</p>
+            <p>
+              <strong>Szállítási cím: </strong>{{customer.szallcim}}</p>
+            <p>
+              <strong>Számlázási cím: </strong>{{customer.szmlcim}}</p>
+            <p>
+              <strong>Telefonszám: </strong>{{customer.tel}}</p>
+            <br>
+            <div>
+              <a href="http://localhost:4200/profil" class="btn btn-primary">Adatok szerkesztése</a>
+            </div>
 
+          </div>
+        </div>
+      </div>
+      <div class="col-9">
+        <!--Rendelési összefoglaló, adatok módosíása-->
+        <h5>Rendelési összefoglaló</h5>
+        <br>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Termék ID</th>
+              <th>Termék</th>
+              <th>Ár</th>
+              <th>Mennyiség</th>
+              <th>Mennyiség módosítása</th>
+              <th>Tétel törlése</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let basketItem of basket">
+              <td>{{basketItem.productId}}</td>
+              <td>{{basketItem.productName}}</td>
+              <td>{{basketItem.productCost}} Ft</td>
+              <td>{{basketItem.quantity}}</td>
+              <td>
+                <div class="btn-group">
+                  <button id="addQuantity" type="button" class="btn btn-warning" (click)="addQuantity(basketItem)">+</button>
+                  <button id="removeQuantity" type="button" class="btn btn-warning" (click)="removeQuantity(_id)">-</button>
+                </div>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)="deleteProductFromBasket()">Törlés</button>
+              </td>
+            </tr>
+            <hr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td (onload)="getTotalPrice()">
+                <strong>Összeg: {{totalPrice}} Ft</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+        </div>
+      </div>
+      <div>
+        <!--gomb, ami visszavisz a kosár nézetbe-->
+        <a href="http://localhost:4200/kosar">
+          <button id="btn1" type="button" class="btn btn-info">Vissza a kosárba</button>
+        </a>
+        <!--gomb, ami elküldi adott vásárló rendelését a szerverre, ha minden adat ki van töltve-->
+        <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#sikeresRendelesModal" (click)="sendOrder()">Rendelés leadása</button>
+      </div>
+
+      <p id="uzenet"></p>
+    </div>
+    <!--sikeres rendelés modal-->
+    <div class="modal" id="sikeresRendelesModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Köszönjük vásárlását!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Rendelését rögzítettük. Hamarosan felvesszük Önnel a kapcsolatot.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
