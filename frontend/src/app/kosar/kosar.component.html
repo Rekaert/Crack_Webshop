@@ -4,6 +4,47 @@
   <img src="../../assets/img/stopLego.png" alt="">
 </div>
 <div *ngIf="http.typeOfUser <=1">
-  IDE DOLGOZZ
+  <div class="row">
+    <div class="col-12">
+      <h2>KOSÁR</h2>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Termék ID</th>
+            <th>Termék</th>
+            <th>Mennyiség</th>
+            <th>Ár</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let basketItem of basket">
+            <td>{{basketItem.productId}}</td>
+            <td>{{basketItem.productName}}</td>
+            <td>{{basketItem.quantity}}</td>
+            <td>{{basketItem.productCost}} Ft</td>
+          </tr>
+          <hr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td (onload)="getTotalPrice()">
+              <strong>Összeg:</strong> {{totalPrice}} Ft</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <!--gomb, ami visszavisz a termékek oldalra-->
+        <a href="http://localhost:4200/fooldal">
+          <button type="button" class="btn btn-default">Folytatom a vásárlást</button>
+        </a>
+        <!--gomb, ami a rendelés oldalra visz-->
+        <a href="http://localhost:4200/rendeles">
+          <button type="button" class="btn btn-default">Megrendelem</button>
+        </a>
 
-</div>
+      </div>
