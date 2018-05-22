@@ -27,7 +27,7 @@
           <b>{{prod.rateSatis}} / 10</b>
         </li>
         <li class="list-group-item list-group-item-primary active">
-          <h5>Megjelenés :</h5>
+          <h5>Megjelenés : {{prod.createdAt | date:"yyyy.MM.dd"}}</h5>
         </li>
       </ul>
       <br>
@@ -105,7 +105,8 @@
     <button class="btn btn-block btn-primary" (click)="createRate()">Elküld!</button>
   </div>
   <div *ngIf="!rateMe">
-    <h1 class="text-center">A terméket megvásárolt, bejelentkezett felhasználók írhatnak véleményt.</h1>
+    <h1 class="text-center">A terméket megvásárolt, bejelentkezett felhasználók írhatnak véleményt. </h1>
+    <h3 class="text-center">(Egy termékhez csak egy vélemény írható.)</h3>
     <br>
   </div>
   <div class="jumbotron" *ngFor="let rate of blog">
@@ -129,6 +130,7 @@
     </div>
     <br>
     <p class="lead">Dátum: {{rate.createdAt | date:"yyyy:MM:dd HH:mm:ss"}}</p>
+    <button *ngIf="rate.me" (click)="editBlog(rate)" class="btn btn-warning"> Módosítás</button>
   </div>
 </div>
 <div *ngIf="!prod">

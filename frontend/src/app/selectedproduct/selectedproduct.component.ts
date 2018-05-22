@@ -24,6 +24,7 @@ export class SelectedproductComponent implements OnInit {
   }
   constructor(private route: ActivatedRoute, public http: Http, public httpLocal: HttpLocalService) {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.httpLocal.getUsers();
     this.getOne();
 
   }
@@ -99,6 +100,9 @@ export class SelectedproductComponent implements OnInit {
             this.rateMe = true;
           }
         }
+        if (this.rateMe) {
+          this.hasComment();
+        }
       });
   }
   toBasket() {
@@ -127,13 +131,35 @@ export class SelectedproductComponent implements OnInit {
     }
   }
   createRate() {
-    this.ownRate.userId = this.httpLocal.user._id;
-    this.ownRate.productId = this.prod._id;
-    this.ownRate.text = this.ownRate.text == "" ? "Nincs hozzáfűznivalóm" : this.ownRate.text;
-    /* console.log(this.ownRate); */
-    this.http.post('http://localhost:8080/rate/', this.ownRate).subscribe((data) => {
-      location.reload();
-    });
+    if (!this.ownRate._id) {
+      this.ownRate.userId = this.httpLocal.user._id;
+      this.ownRate.productId = this.prod._id;
+      this.ownRate.text = this.ownRate.text == "" ? "Nincs hozzáfűznivalóm" : this.ownRate.text;
+      /* console.log(this.ownRate); */
+      this.http.post('http://localhost:8080/rate/', this.ownRate).subscribe((data) => {
+        location.reload();
+      });
+    } else {
+      this.http.put('http://localhost:8080/rate/' + this.ownRate._id, this.ownRate).subscribe((data) => {
+        location.reload();
+      });
+    }
+  }
+  hasComment() {
+    for (let i in this.blog) {
+      if (this.blog[i].userId == this.httpLocal.user._id) {
+        this.blog[i].me = true;
+        this.rateMe = false;
+      }
+      else {
+        this.blog[i].me = false;
+      }
+    }
+  }
+  editBlog(rate) {
+    this.rateMe = true;
+    this.ownRate = rate;
+
   }
   ngOnInit() {
 
