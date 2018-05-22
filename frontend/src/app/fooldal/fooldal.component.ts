@@ -8,7 +8,7 @@ import { Http } from '@angular/http';
 })
 export class FooldalComponent implements OnInit {
   products: any = [];
-  item: any = 3;
+  item: any = 4;
   constructor(public http: Http) {
     this.getAll();
 
