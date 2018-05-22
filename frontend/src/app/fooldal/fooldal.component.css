@@ -54,8 +54,8 @@
 
 .categories img {
   position: relative;
-  width: 90px;
-  filter: grayscale(80%);
+  width: 45%;
+  filter: grayscale(55%);
   transition: transform .2s;
   margin-bottom: 3%;
   z-index: 0;
