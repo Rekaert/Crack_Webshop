@@ -19,7 +19,8 @@ export class ProductsComponent implements OnInit {
     url: '',
     manufacturer: '',
     cost: '',
-    image: ''
+    image: '',
+    catId: '5b03d2421d0d8a16844f7c17'
   };
 
   products: any = [];
@@ -27,6 +28,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(public http: Http, public httpLocalService: HttpLocalService) {
     this.getAll();
+    this.httpLocalService.getCategories();
   }
 
   ngOnInit() { }
