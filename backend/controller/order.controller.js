@@ -29,7 +29,7 @@ module.exports = {
   listOwnOrders: (req, res) => {
     if (req.user) {
       Order.find({
-        userId: req.user.id
+        userId: req.user.id,
       }, (err, post) => {
         if (err) {
           res.send(err);

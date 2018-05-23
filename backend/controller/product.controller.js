@@ -5,7 +5,7 @@ const request = require('request');
 const filePath = './public/img/';
 
 /**
- * @function deleteFile - Function to delete the saved image of a product 
+ * @function deleteFile - Function to delete the saved image of a product
  * @param {String} fileName -The name of the file to be deleted
  */
 function deleteFile(fileName) {
