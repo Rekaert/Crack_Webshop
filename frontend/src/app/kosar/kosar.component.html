@@ -37,10 +37,10 @@
     </table>
     <div>
       <!--gomb, ami a rendelés oldalra visz-->
-      <a href="http://localhost:4200/rendeles">
-        <button type="button" class="btn btn-success float-right">Megrendelem</button>
+      <a routerLink="/rendeles">
+        <button [disabled]="!basket[0]" type="button" class="btn btn-success float-right">Megrendelem</button>
       </a>
       <!--gomb, ami visszavisz a termékek oldalra-->
-      <a href="http://localhost:4200/fooldal">
+      <a routerLink="/fooldal">
         <button type="button" class="btn btn-info float-right">Folytatom a vásárlást</button>
       </a>

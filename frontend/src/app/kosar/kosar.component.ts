@@ -13,7 +13,7 @@ export class KosarComponent implements OnInit {
     // customer, ami taralmazza a belépett user adatait
     customer: any = {};
   */
-  // kosar, ami tartalmazza a sessionStorage-ból lekért termék adatokat
+  // kosar, ami tartalmazza a localStorage-ból lekért termék adatokat
   basket: any;
 
   // termékek végösszege
@@ -35,10 +35,10 @@ export class KosarComponent implements OnInit {
        return this.customer;*/
   }
 
-  // mevizsgálom, h. van-e a sessionStorage-ban basket key, ha van, lekérem belőle az adatokat
+  // mevizsgálom, h. van-e a localStorage-ban basket key, ha van, lekérem belőle az adatokat
   getBasketFromStorage() {
-    this.basket = sessionStorage.basket ? JSON.parse(sessionStorage.basket) : [];
-    console.log(sessionStorage.basket, 'baske');
+    this.basket = localStorage.basket ? JSON.parse(localStorage.basket) : [];
+    console.log(localStorage.basket, 'baske');
     return this.basket;
   }
 
