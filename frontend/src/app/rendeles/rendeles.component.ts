@@ -149,6 +149,10 @@ export class RendelesComponent implements OnInit {
 
 
     }
+    else {
+      this.modaltitle = 'Kosara üres!';
+      this.modalbody = 'A rendelés leadásához, helyezzen termékeket a kosárba.';
+    }
   }
 
 
