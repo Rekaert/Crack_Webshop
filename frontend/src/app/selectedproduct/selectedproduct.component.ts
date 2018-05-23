@@ -118,6 +118,7 @@ export class SelectedproductComponent implements OnInit {
     let local = JSON.stringify(basket);
     localStorage.setItem("basket", local);
     this.shoppingAnimation();
+    this.httpLocal.basketNumber++;
   }
   shoppingAnimation() {
     this.shop = "shop";

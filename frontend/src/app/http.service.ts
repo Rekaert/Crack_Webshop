@@ -8,6 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HttpLocalService {
   private url = 'http://localhost:8080';
+  basketNumber: any = 0;
   proba: any = 0;
   kitilt: boolean = false;
   user: any;
