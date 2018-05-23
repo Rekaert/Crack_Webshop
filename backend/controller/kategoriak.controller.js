@@ -44,6 +44,7 @@ module.exports = {
    * @prop {String} name -The name of the new category
    */
   create: (req, res) => {
+    req.body.name = req.body.name.toLowerCase();
     Kategoria.create(req.body, (err, post) => {
       if (err) {
         res.send(err);
@@ -62,6 +63,7 @@ module.exports = {
    * @prop {String} name -The new name of the category
    */
   update: (req, res) => {
+    req.body.name = req.body.name.toLowerCase();
     Kategoria.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
       if (err) {
         res.send(err);
