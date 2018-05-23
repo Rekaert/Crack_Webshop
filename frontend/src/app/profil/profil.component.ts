@@ -20,6 +20,7 @@ export class ProfilComponent implements OnInit {
   message: string = "";
   selectedOrder: any = {};
   modalReady: boolean = false;
+  passwordVerification: string = "";
 
   constructor(private http: HttpLocalService,
     private httpClient: HttpClient,
@@ -41,18 +42,23 @@ export class ProfilComponent implements OnInit {
   }
 
   updateProfile() {
+    console.log(this.passwordVerification + ',' + this.user.newpassword);
+    if (this.passwordVerification == this.user.newpassword) {
 
-    this.convertAddressFields();
+      this.convertAddressFields();
 
-    this.userService.update(this.user).subscribe(user => {
-      console.log('update succesfully happened');
-      this.user = user;
-      this.convertAddressFieldsBack();
-      this.message = 'update succesfully happened';
-      alert('Sikeresen frissítetted az adatokat.')
-    }, err => {
-      this.message = 'update failed';
-    })
+      this.userService.update(this.user).subscribe(user => {
+        console.log('update succesfully happened');
+        this.user = user;
+        this.convertAddressFieldsBack();
+        this.message = 'update succesfully happened';
+        alert('Sikeresen frissítetted az adatokat.');
+      }, err => {
+        this.message = 'update failed';
+      })
+    } else {
+      alert('Kérlek a jelszóváltoztatásnál add meg ugyanazt a jelszót még egyszer.')
+    }
   }
 
   convertAddressFields() {

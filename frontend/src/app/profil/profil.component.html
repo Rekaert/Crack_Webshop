@@ -47,6 +47,9 @@
           <label for="newpassword">Új jelszó*:</label>
           <input type="password" name="newpassword" id="newpassword" [(ngModel)]="user.newpassword" class="form-control" aria-describedby="passwordHelpBlock"
             required/>
+
+          <label for="newpassword">Új jelszó ismétlése*:</label>
+          <input type="password" name="passwordVerification" id="passwordVerification" [(ngModel)]="passwordVerification" class="form-control" required/>
           <small id="passwordHelpBlock" class="form-text text-muted">
             Minimum 8 karakter hosszú, tartalmaznia kell számot és szöveget.
           </small>
