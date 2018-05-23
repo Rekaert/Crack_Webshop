@@ -23,3 +23,11 @@
   right: 30vh;
   top: 65vh;
 }
+
+table {
+  border-radius: 15px;
+}
+
+.add_margin_to_btn {
+  margin-right: 5px;
+}

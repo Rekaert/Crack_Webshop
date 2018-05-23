@@ -5,7 +5,7 @@
 </div>
 <div *ngIf="httpLocalService.typeOfUser ==0">
 
-  <div class="col-md-4 product">
+  <div class="col-md-3 product">
     <div class="card text-center">
       <div class="card-header">
         <input placeholder="Termék név" type="text" class="form-control" [(ngModel)]="newProduct.name">
@@ -19,7 +19,7 @@
           <option value={{cat._id}} *ngFor="let cat of httpLocalService.categories">{{cat.name}}</option>
         </select>
         <input type="text" placeholder="Kép név" class="form-control" [(ngModel)]="newProduct.url">
-        <input type="text" placeholder="Gyáró" class="form-control" name="manufact" [(ngModel)]="newProduct.manufacturer">
+        <input type="text" placeholder="Gyáró" class="form-control" name="manufact" [(ngModel)]="newProduct.manufacturer" value="Lego">
         <input type="text" placeholder="Ár" class="form-control" name="manufact" [(ngModel)]="newProduct.cost">
       </div>
       <div class="card-footer btn-group">
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="col-md-4 product" *ngFor="let product of products">
+  <div class="col-md-3 product" *ngFor="let product of products">
     <div class="card text-center">
       <div class="card-header">
         <input type="text" class="form-control" [(ngModel)]="product.name">
@@ -55,4 +55,3 @@
     </div>
   </div>
 </div>
-<pre>{{newProduct.catId}}</pre>
