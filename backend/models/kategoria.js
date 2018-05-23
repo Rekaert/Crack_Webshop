@@ -6,6 +6,11 @@ const kategoriaSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
+  rank: {
+    type: Number,
+    default: 1,
+  },
+
   imgLink: {
     type: String,
   },
