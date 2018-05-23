@@ -82,7 +82,7 @@ export class SelectedproductComponent implements OnInit {
     this.http.get('http://localhost:8080/order/all').subscribe(
       orders => {
         let order = JSON.parse(orders['_body']);
-        console.log(this.httpLocal.user);
+        /* console.log(this.httpLocal.user); */
         for (let i in order) {
           if (order[i].userId == this.httpLocal.user._id) {
             this.isBought(order[i]._id);

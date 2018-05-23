@@ -62,6 +62,8 @@ export class HttpLocalService {
         if (data['success']) {
           this.auth();
         }
+      }, err => {
+        alert('Hibás adatokat adtál meg!');
       });
 
   }
@@ -70,21 +72,21 @@ export class HttpLocalService {
       .subscribe((data2) => {
         data2 = JSON.parse(data2['_body']).user;
         this.user = data2;
-        if (data2['perm'] == 0) {
-          this.isLoggedIn = true;
-          this.typeOfUser = 0;
-          console.log(this.typeOfUser);
-        } else if (data2['perm'] == 1) {
-          this.typeOfUser = 1;
-          this.isLoggedIn = true;
-          console.log(this.typeOfUser);
+        if (data2) {
+          if (data2['perm'] == 0) {
+            this.isLoggedIn = true;
+            this.typeOfUser = 0;
+            /* console.log(this.typeOfUser); */
+          } else if (data2['perm'] == 1) {
+            this.typeOfUser = 1;
+            this.isLoggedIn = true;
+            /* console.log(this.typeOfUser); */
+          }
+          else {
+            alert('Nem rendelkezel megfelelő jogosultságokkal!')
+          }
         }
-        else {
-          alert('Nem rendelkezel megfelelő jogosultságokkal!')
-        }
-        if (this.isLoggedIn == false) {
-          alert('Hibás adatokat adtál meg!')
-        };
+
       });
   }
 

@@ -23,6 +23,7 @@ export class AppComponent {
 
   constructor(public http: HttpLocalService) {
     this.http.getUsers();
+    this.http.auth();
   }
 
   /*     profile() {

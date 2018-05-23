@@ -23,7 +23,7 @@ export class FooldalComponent implements OnInit {
         this.http.get('http://localhost:8080/kategoria').subscribe(
           cat => {
             cat = JSON.parse(cat['_body']);
-            console.log(category);
+            /* console.log(category); */
             data = this.matchCat(cat, data, category);
             this.http.get('http://localhost:8080/rate').subscribe(
               rate => {
@@ -96,7 +96,7 @@ export class FooldalComponent implements OnInit {
   selectCategory(cat) {
 
     this.kategoria = cat;
-    console.log(this.kategoria);
+    /* console.log(this.kategoria); */
     this.getAll(this.kategoria);
   }
   ngOnInit() {
