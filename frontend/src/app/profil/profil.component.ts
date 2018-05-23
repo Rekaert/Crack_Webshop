@@ -38,46 +38,58 @@ export class ProfilComponent implements OnInit {
         for (let i = 0; i < this.orders.length; i++) {
           this.orders[i].status = 'Lezárt';
         }
+      }, err => {
+        console.log(err)
       });
   }
 
   updateProfile() {
     console.log(this.passwordVerification + ',' + this.user.newpassword);
-    if (this.passwordVerification == this.user.newpassword) {
 
-      this.convertAddressFields();
-
-      this.userService.update(this.user).subscribe(user => {
-        console.log('update succesfully happened');
-        this.user = user;
-        this.convertAddressFieldsBack();
-        this.message = 'update succesfully happened';
-        alert('Sikeresen frissítetted az adatokat.');
-      }, err => {
-        this.message = 'update failed';
-      })
-    } else {
+    if (this.user.newpassword && this.passwordVerification != this.user.newpassword) {
       alert('Kérlek a jelszóváltoztatásnál add meg ugyanazt a jelszót még egyszer.')
+      return;
     }
+
+    if (this.user.newpassword && this.user.newpassword.length < 8) {
+      alert('Kérlek adj meg 8 karakternél hosszabb jelszót.')
+      return;
+    }
+
+    this.convertAddressFields();
+
+    this.userService.update(this.user).subscribe(user => {
+      console.log('update succesfully happened');
+      this.user = user;
+      this.convertAddressFieldsBack();
+      this.message = 'update succesfully happened';
+      alert('Sikeresen frissítetted az adatokat.');
+    }, err => {
+      this.message = 'update failed';
+    })
   }
 
   convertAddressFields() {
-    let u = this.user;
-    u.szallcim = u.szallcim_irszam + '|' + u.szallcim_varos + '|' + u.szallcim_utca;
-    u.szmlcim = u.szmlcim_irszam + '|' + u.szmlcim_varos + '|' + u.szmlcim_utca;
+    if (this.user) {
+      let u = this.user;
+      u.szallcim = u.szallcim_irszam + '|' + u.szallcim_varos + '|' + u.szallcim_utca;
+      u.szmlcim = u.szmlcim_irszam + '|' + u.szmlcim_varos + '|' + u.szmlcim_utca;
+    }
   }
 
   convertAddressFieldsBack() {
-    let u = this.user;
-    let szmlcimSplit = u.szmlcim.split('|');
-    u.szmlcim_irszam = szmlcimSplit[0];
-    u.szmlcim_varos = szmlcimSplit[1];
-    u.szmlcim_utca = szmlcimSplit[2];
+    if (this.user) {
+      let u = this.user;
+      let szmlcimSplit = u.szmlcim.split('|');
+      u.szmlcim_irszam = szmlcimSplit[0];
+      u.szmlcim_varos = szmlcimSplit[1];
+      u.szmlcim_utca = szmlcimSplit[2];
 
-    let szallcimSplit = u.szallcim.split('|');
-    u.szallcim_irszam = szallcimSplit[0];
-    u.szallcim_varos = szallcimSplit[1];
-    u.szallcim_utca = szallcimSplit[2];
+      let szallcimSplit = u.szallcim.split('|');
+      u.szallcim_irszam = szallcimSplit[0];
+      u.szallcim_varos = szallcimSplit[1];
+      u.szallcim_utca = szallcimSplit[2];
+    }
   }
 
   selectOrder(id) {
