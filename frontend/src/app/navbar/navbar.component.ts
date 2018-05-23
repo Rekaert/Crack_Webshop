@@ -30,6 +30,15 @@ export class NavbarComponent implements OnInit {
     tel: '',
   };
 
+  newUsersAddress: any = {
+    szallcim_iranyitoszam: '',
+    szallcim_varos: '',
+    szallcim_utca: '',
+    szmlcim_iranyitoszam: '',
+    szmlcim_varos: '',
+    szmlcim_utca: '',
+  };
+
   constructor(public http: HttpLocalService) {
     /* if (localStorage.user) {
        this.log = JSON.parse(localStorage.user);
@@ -85,6 +94,16 @@ export class NavbarComponent implements OnInit {
   register(): any {
     if (this.newUser.password === this.newUser.passwordRe) {
       this.newUser.perm = 0;
+      this.newUser.szmlcim = [
+        this.newUsersAddress.szmlcim_iranyitoszam,
+        this.newUsersAddress.szmlcim_utca,
+        this.newUsersAddress.szmlcim_varos
+      ].join('|');
+      this.newUser.szallcim = [
+        this.newUsersAddress.szallcim_iranyitoszam,
+        this.newUsersAddress.szallcim_utca,
+        this.newUsersAddress.szallcim_varos
+      ].join('|');
       this.http.register(this.newUser);
       alert('Sikeres regisztráció!');
     } else {
