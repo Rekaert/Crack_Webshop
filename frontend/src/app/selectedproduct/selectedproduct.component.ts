@@ -107,7 +107,7 @@ export class SelectedproductComponent implements OnInit {
   }
   toBasket() {
     this.quantity = this.quantity > 1 && this.quantity % 1 == 0 ? this.quantity : 1;
-    let basket = sessionStorage.basket ? JSON.parse(sessionStorage.basket) : [];
+    let basket = localStorage.basket ? JSON.parse(localStorage.basket) : [];
     basket.push({
       productId: this.prod._id,
       productName: this.prod.name,
@@ -115,8 +115,8 @@ export class SelectedproductComponent implements OnInit {
       productCost: this.prod.cost,
       totalCost: this.prod.cost * this.quantity,
     });
-    let session = JSON.stringify(basket);
-    sessionStorage.setItem("basket", session);
+    let local = JSON.stringify(basket);
+    localStorage.setItem("basket", local);
     this.shoppingAnimation();
   }
   shoppingAnimation() {
