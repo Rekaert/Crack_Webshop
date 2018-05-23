@@ -136,9 +136,8 @@ describe('Product', () => {
         .send(createProduct1)
         .set('Cookie', cookie)
         .end((err, res) => {
-          console.log(res.body.op._id);
-          productId1 = res.body.op._id;
           expect(res).to.have.status(200);
+          productId1 = res.body._id;
           done();
         });
     });
@@ -148,7 +147,7 @@ describe('Product', () => {
         .send(createProduct2)
         .set('Cookie', cookie)
         .end((err, res) => {
-          productId2 = res.body.op._id;
+          productId2 = res.body._id;
           expect(res).to.be.an('object');
           done();
         });
@@ -159,11 +158,11 @@ describe('Product', () => {
         .send(createProduct3)
         .set('Cookie', cookie)
         .end((err, res) => {
-          productId3 = res.body.op._id;
-          res.body.op.should.have.property('name');
-          res.body.op.should.have.property('url');
-          res.body.op.should.have.property('manufacturer');
-          res.body.op.should.have.property('cost');
+          productId3 = res.body._id;
+          res.body.should.have.property('name');
+          res.body.should.have.property('url');
+          res.body.should.have.property('manufacturer');
+          res.body.should.have.property('cost');
           done();
         });
     });
@@ -202,20 +201,19 @@ describe('Product', () => {
           done();
         });
     });
-    /* it('response should have all parameters', (done) => {
+    it('response should have all parameters', (done) => {
       chai.request(baseUrl)
         .put(`/${productId3}`)
-        .send(updateProduct3)
         .set('Cookie', cookie)
+        .send(updateProduct3)
         .end((err, res) => {
-          console.log(res.body);
           res.body.should.be.a('object');
           res.body.should.have.property('name');
           res.body.should.have.property('url');
           res.body.should.have.property('manufacturer');
           done();
         });
-    }); */
+    });
   });
   describe('delete()', () => {
     before((done) => {
