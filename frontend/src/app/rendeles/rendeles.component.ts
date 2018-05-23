@@ -37,9 +37,9 @@ export class RendelesComponent implements OnInit {
   ngOnInit() {
     this.userService.getProfile().subscribe(
       data => {
-        console.log(data);
+        /* console.log(data); */
         this.customer = data.user;
-        console.log(this.customer, 'cusomer');
+        /* console.log(this.customer, 'cusomer'); */
       });
     return this.customer;
   }
@@ -57,14 +57,13 @@ export class RendelesComponent implements OnInit {
     this.totalPiece = 0;
     this.basket.map(item => {
       this.totalPrice += parseInt(item.totalCost);
-      this.totalPiece++;
+      /* this.totalPiece += parseInt(item.quantity); */
     });
   }
 
   // mennyiség növelése
   addQuantity(basketItem, i) {
     basketItem.quantity++;
-    this.totalPiece++;
     this.basket[i].quantity = basketItem.quantity;
     this.basket[i].totalCost = this.basket[i].quantity * this.basket[i].productCost;
     localStorage.basket = JSON.stringify(this.basket);
@@ -74,9 +73,9 @@ export class RendelesComponent implements OnInit {
 
   // mennyiség csökkentése
   removeQuantity(basketItem, i) {
-    console.log(this.basket, 'mennyis');
+    /* console.log(this.basket, 'mennyis'); */
     // tslint:disable-next-line:no-unused-expression
-    basketItem.quantity > 1 ? (basketItem.quantity-- , this.totalPiece--) : basketItem.quantity;
+    basketItem.quantity > 1 ? (basketItem.quantity--) : basketItem.quantity;
     this.basket[i].quantity = basketItem.quantity;
     this.basket[i].totalCost = this.basket[i].quantity * this.basket[i].productCost;
     localStorage.basket = JSON.stringify(this.basket);
@@ -110,6 +109,9 @@ export class RendelesComponent implements OnInit {
 
   sendOrder() {
     //console.log(this.httpLocal.user._id);
+    for (let i in this.basket) {
+      this.totalPiece += this.basket[i].quantity;
+    }
     this.messageModal();
     if (this.basket) {
       this.http.post('http://localhost:8080/order/all/create', {
@@ -117,30 +119,32 @@ export class RendelesComponent implements OnInit {
         cost: this.totalPrice
       })
         .subscribe((data) => {
-          //console.log(this.basket);
+          console.log(this.basket.length);
           let id = JSON.parse(data['_body'])._id;
-          for (let i in this.basket) {
+          for (let i = 0; i < this.basket.length; i++) {
             let elkuld = {
               orderId: id,
               productId: this.basket[i].productId,
               quantity: this.basket[i].quantity,
               price: this.basket[i].totalCost
             }
-            this.basket[i].productId = id;
+
             this.http.post('http://localhost:8080/order/one/create', elkuld)
-              .subscribe((data) => {
-                // console.log(data);
+              .subscribe((data2) => {
+                if (i + 1 == this.basket.length) {
+                  this.basket = [];
+                  localStorage.clear();
+                }
               });
 
           }
         }
         );
-      console.log(this.customer);
+      /*  console.log(this.customer); */
 
       //console.log(this.httpLocal.user, );
 
-      this.basket = [];
-      localStorage.clear();
+
     }
   }
 
