@@ -14,7 +14,7 @@ export class RendelesComponent implements OnInit {
   // customer, ami taralmazza a belépett user adatait
   customer: any = {};
 
-  // kosar, ami tartalmazza a sessionStorage-ból lekért termék adatokat
+  // kosar, ami tartalmazza a localStorage-ból lekért termék adatokat
   basket: any;
 
   // termékek végösszege
@@ -26,7 +26,11 @@ export class RendelesComponent implements OnInit {
   // modalüzenet
   modalbody = '';
 
+  // validáció
+  btntoggler = true;
+
   totalPiece = 0;
+
   constructor(public httpLocal: HttpLocalService, public userService: UsersService, public http: Http) {
     this.getBasketFromStorage();
     this.getTotalPrice();
@@ -43,10 +47,10 @@ export class RendelesComponent implements OnInit {
     return this.customer;
   }
 
-  // mevizsgálom, h. van-e a sessionStorage-ban basket key, ha van, lekérem belőle az adatokat
+  // mevizsgálom, h. van-e a localStorage-ban basket key, ha van, lekérem belőle az adatokat
   getBasketFromStorage() {
-    this.basket = sessionStorage.basket ? JSON.parse(sessionStorage.basket) : [];
-    // console.log(sessionStorage.basket, 'baske');
+    this.basket = localStorage.basket ? JSON.parse(localStorage.basket) : [];
+    // console.log(localStorage.basket, 'baske');
     return this.basket;
   }
 
@@ -57,8 +61,7 @@ export class RendelesComponent implements OnInit {
     this.basket.map(item => {
       this.totalPrice += parseInt(item.totalCost);
       this.totalPiece++;
-    })
-    console.log(this.totalPrice, 'véösszeg');
+    });
   }
 
   // mennyiség növelése
@@ -67,7 +70,7 @@ export class RendelesComponent implements OnInit {
     this.totalPiece++;
     this.basket[i].quantity = basketItem.quantity;
     this.basket[i].totalCost = this.basket[i].quantity * this.basket[i].productCost;
-    sessionStorage.basket = JSON.stringify(this.basket);
+    localStorage.basket = JSON.stringify(this.basket);
     this.getBasketFromStorage();
     this.getTotalPrice();
   }
@@ -79,7 +82,7 @@ export class RendelesComponent implements OnInit {
     basketItem.quantity > 1 ? (basketItem.quantity-- , this.totalPiece--) : basketItem.quantity;
     this.basket[i].quantity = basketItem.quantity;
     this.basket[i].totalCost = this.basket[i].quantity * this.basket[i].productCost;
-    sessionStorage.basket = JSON.stringify(this.basket);
+    localStorage.basket = JSON.stringify(this.basket);
     this.getBasketFromStorage();
     this.getTotalPrice();
   }
@@ -87,32 +90,33 @@ export class RendelesComponent implements OnInit {
   // Kiválasztott termék törlése
   deleteProductFromBasket(basketItem) {
     this.basket = this.basket.filter(item => item.productId !== basketItem.productId);
-    sessionStorage.basket = JSON.stringify(this.basket);
+    localStorage.basket = JSON.stringify(this.basket);
     // this.getBasketFromStorage();
     this.getTotalPrice();
   }
-  /*
-    messageModal(customer) {
-      console.log(customer, 'modal1');
-  
-      if (customer.szmlcim = '' || customer.szallcim = '') {
-        this.modaltitle = '';
-        this.modalbody = '';
-        this.modaltitle = 'Hiányos profiladatok!';
-        this.modalbody = 'Kérjük, pótolja hiányzó adatait profiloldalán.';
-      } else if (this.basket.length === 0) {
-        this.modaltitle = '';
-        this.modalbody = '';
-        this.modaltitle = 'Kosara üres!';
-        this.modalbody = 'A rendelés leadásához, helyezzen termékeket a kosárba.';
-      } else {
-        this.modaltitle = '';
-        this.modalbody = '';
-        this.modaltitle = 'Köszönjük vásárlását!';
-        this.modalbody = 'Rendelését rögzítettük. Hamarosan felvesszük Önnel a kapcsolatot.';
-      }
+
+  messageModal(customer) {
+    console.log(customer, 'modal1');
+
+    if (customer.szmlcim === '' || customer.szallcim === '') {
+      this.modaltitle = '';
+      this.modalbody = '';
+      this.modaltitle = 'Hiányos profiladatok!';
+      this.modalbody = 'Kérjük, pótolja hiányzó adatait profiloldalán.';
+    } else if (this.basket.length === 0) {
+      this.modaltitle = '';
+      this.modalbody = '';
+      this.modaltitle = 'Kosara üres!';
+      this.modalbody = 'A rendelés leadásához, helyezzen termékeket a kosárba.';
+    } else {
+      this.btntoggler = false;
+      this.modaltitle = '';
+      this.modalbody = '';
+      this.modaltitle = 'Köszönjük vásárlását!';
+      this.modalbody = 'Rendelését rögzítettük. Hamarosan felvesszük Önnel a kapcsolatot.';
     }
-  */
+  }
+
   sendOrder() {
     console.log(this.httpLocal.user._id);
     this.http.post('http://localhost:8080/order/all/create', {
@@ -138,11 +142,13 @@ export class RendelesComponent implements OnInit {
         }
       }
       );
+
+    console.log(this.httpLocal.user, );
+    this.messageModal(this.customer);
+    this.basket = localStorage.clear();
   }
-  // this.messageModal(this.customer);
 
-  // this.basket = sessionStorage.clear();
 
-}
+
 
 }
