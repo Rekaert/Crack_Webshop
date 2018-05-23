@@ -61,6 +61,9 @@ export class NavbarComponent implements OnInit {
   }
 
   register(): any {
+    if (!this.newUser.tel) {
+      this.newUser.tel = 'Még nincs megadva';
+    }
     if (!(this.emailRegex.test(String(this.newUser.email).toLowerCase()))) {
       alert('Nem megflelő emailcímet adtál meg !');
     } else {
@@ -70,12 +73,12 @@ export class NavbarComponent implements OnInit {
           this.newUsersAddress.szmlcim_iranyitoszam,
           this.newUsersAddress.szmlcim_utca,
           this.newUsersAddress.szmlcim_varos
-        ].join('|');
+        ].join(' | ');
         this.newUser.szallcim = [
           this.newUsersAddress.szallcim_iranyitoszam,
           this.newUsersAddress.szallcim_utca,
           this.newUsersAddress.szallcim_varos
-        ].join('|');
+        ].join(' | ');
         this.http.register(this.newUser);
         alert('Sikeres regisztráció!');
       } else {
