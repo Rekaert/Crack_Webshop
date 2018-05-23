@@ -5,7 +5,7 @@
 </div>
 <div *ngIf="httpLocalService.typeOfUser ==0">
 
-  <div class="col-md-4 product">
+  <div class="col-md-3 product">
     <div class="card text-center">
       <div class="card-header">
         <input placeholder="Termék név" type="text" class="form-control" [(ngModel)]="newProduct.name">
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="col-md-4 product" *ngFor="let product of products">
+  <div class="col-md-3 product" *ngFor="let product of products">
     <div class="card text-center">
       <div class="card-header">
         <input type="text" class="form-control" [(ngModel)]="product.name">
@@ -55,4 +55,3 @@
     </div>
   </div>
 </div>
-<pre>{{newProduct.catId}}</pre>

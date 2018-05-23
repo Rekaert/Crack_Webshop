@@ -5,7 +5,7 @@
 </div>
 <!--Ha be van jelentkezve a vásárló-->
 <div *ngIf="http.typeOfUser <=1">
-  <div class="container">
+  <div class="col-12">
     <div class="row">
       <div class="col-12 col-md-3">
         <!--adott vásárló profiladatainak mejelenítése-->
@@ -24,7 +24,6 @@
               <strong>Számlázási cím: </strong>{{customer.szmlcim}}</p>
             <p>
               <strong>Telefonszám: </strong>{{customer.tel}}</p>
-            <br>
             <hr>
             <div>
               <a href="http://localhost:4200/profil" class="btn btn-primary">Adatok szerkesztése</a>
@@ -37,7 +36,7 @@
         <!--Rendelési összefoglaló, adatok módosíása-->
         <h5>Rendelési összefoglaló</h5>
         <br>
-        <table class="table table-hover">
+        <table class="table table-hover table-light table-striped">
           <thead>
             <tr>
               <th>Termék ID</th>
@@ -77,18 +76,16 @@
         </table>
         <div>
         </div>
+        <div>
+          <!--gomb, ami elküldi adott vásárló rendelését a szerverre, ha minden adat ki van töltve-->
+          <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#sikeresRendelesModal" (click)="sendOrder()">Rendelés leadása</button>
+          <!--gomb, ami visszavisz a kosár nézetbe-->
+          <a href="http://localhost:4200/kosar">
+            <button type="button" class="btn btn-info float-right add_margin_to_btn">Vissza a kosárba</button>
+          </a>
+        </div>
       </div>
-      <br>
-      <br>
-      <div>
-        <!--gomb, ami visszavisz a kosár nézetbe-->
-        <a href="http://localhost:4200/kosar">
-          <button id="btn1" type="button" class="btn btn-info">Vissza a kosárba</button>
-        </a>
-        <!--gomb, ami elküldi adott vásárló rendelését a szerverre, ha minden adat ki van töltve-->
-        <button id="btn2" type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#sikeresRendelesModal"
-          (click)="sendOrder()">Rendelés leadása</button>
-      </div>
+
       <p id="uzenet"></p>
     </div>
     <!--sikeres rendelés modal-->
