@@ -106,7 +106,8 @@
                     <i class="far fa-user"></i>
                   </span>
                 </div>
-                <input class="form-control" required #NewUserName="ngModel" id="username" type="text" placeholder="Felhasználónév" [(ngModel)]="newUser.username">
+                <input class="form-control" name="NewUserName" required #NewUserName="ngModel" id="username" type="text" placeholder="Felhasználónév"
+                  [(ngModel)]="newUser.username">
                 <div *ngIf="NewUserName.invalid && (NewUserName.dirty || NewUserName.touched)" class="alert alert-danger">
                   <div *ngIf="NewUserName.errors.required">
                     <p>Felhasználónevet kötelező megadni!</p>
@@ -171,9 +172,9 @@
                     <i class="fas fa-map-marker"></i>
                   </span>
                 </div>
-                <input class="form-control" id="szamlacim-szam" type="text" placeholder="Irányítószám" [(ngModel)]="newUsersAddress.szmlcim_iranyitoszam">
-                <input class="form-control" id="szamlacim-city" type="text" placeholder="Város" [(ngModel)]="newUsersAddress.szmlcim_varos">
-                <input class="form-control" id="szamlacim-street" type="text" placeholder="Utca, Házszám" [(ngModel)]="newUsersAddress.szmlcim_utca">
+                <input class="form-control" name="szamlacim-szam" id="szamlacim-szam" type="text" placeholder="Irányítószám" [(ngModel)]="newUsersAddress.szmlcim_iranyitoszam">
+                <input class="form-control" name="szamlacim-city" id="szamlacim-city" type="text" placeholder="Város" [(ngModel)]="newUsersAddress.szmlcim_varos">
+                <input class="form-control" name="szamlacim-street" id="szamlacim-street" type="text" placeholder="Utca, Házszám" [(ngModel)]="newUsersAddress.szmlcim_utca">
               </div>
               <label for="name">Szállítási cím:</label>
               <div class="input-group mb-3">
@@ -182,9 +183,9 @@
                     <i class="fas fa-map-marker"></i>
                   </span>
                 </div>
-                <input class="form-control" id="szalliasicim-szam" type="text" placeholder="Irányítószám" [(ngModel)]="newUsersAddress.szallcim_iranyitoszam">
-                <input class="form-control" id="szalliasicim-city" type="text" placeholder="Város" [(ngModel)]="newUsersAddress.szallcim_varos">
-                <input class="form-control" id="szalliasicim-street" type="text" placeholder="Utca Házszám" [(ngModel)]="newUsersAddress.szallcim_utca">
+                <input class="form-control" name="szalliasicim-szam" id="szalliasicim-szam" type="text" placeholder="Irányítószám" [(ngModel)]="newUsersAddress.szallcim_iranyitoszam">
+                <input class="form-control" name="szalliasicim-city" id="szalliasicim-city" type="text" placeholder="Város" [(ngModel)]="newUsersAddress.szallcim_varos">
+                <input class="form-control" name="szalliasicim-street" id="szalliasicim-street" type="text" placeholder="Utca Házszám" [(ngModel)]="newUsersAddress.szallcim_utca">
               </div>
               <label for="name">Telefonszám:</label>
               <div class="input-group mb-3">
@@ -193,7 +194,7 @@
                     <i class="fas fa-phone"></i>
                   </span>
                 </div>
-                <input class="form-control" id="telefon" type="text" placeholder="Telefonszám" [(ngModel)]="newUser.tel">
+                <input class="form-control" name="telefon" id="telefon" type="text" placeholder="Telefonszám" [(ngModel)]="newUser.tel">
               </div>
             </form>
           </div>
