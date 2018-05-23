@@ -93,7 +93,7 @@ export class NavbarComponent implements OnInit {
 
   register(): any {
     if (this.newUser.password === this.newUser.passwordRe) {
-      this.newUser.perm = 0;
+      this.newUser.perm = 1;
       this.newUser.szmlcim = [
         this.newUsersAddress.szmlcim_iranyitoszam,
         this.newUsersAddress.szmlcim_utca,

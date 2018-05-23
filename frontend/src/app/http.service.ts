@@ -108,7 +108,6 @@ export class HttpLocalService {
     this.httpClient.get('http://localhost:8080/kategoria')
       .subscribe((data) => {
         this.categories = JSON.parse(data['_body']);
-        console.log(this.categories);
       });
   }
 
