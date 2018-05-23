@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpLocalService } from '../http.service';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { User } from '../users/user';
 import { UsersService } from '../users.service';
 
@@ -25,7 +26,7 @@ export class RendelesComponent implements OnInit {
   // modalüzenet
   modalbody = '';
 
-  constructor(public http: HttpLocalService, public userService: UsersService) {
+  constructor(public http: Http, public userService: UsersService) {
     this.getBasketFromStorage();
     this.getTotalPrice();
   }
@@ -107,10 +108,15 @@ export class RendelesComponent implements OnInit {
     }
   */
   sendOrder() {
-    // this.messageModal(this.customer);
+    this.http.post('http://localhost:8080/order/all/create', this.customer._id)
+      .subscribe((data) => {
+        console.log(data);
 
-    // this.basket = sessionStorage.clear();
+        // this.messageModal(this.customer);
+
+        // this.basket = sessionStorage.clear();
+
+      });
 
   }
-
 }

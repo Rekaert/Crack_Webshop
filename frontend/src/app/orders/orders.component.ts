@@ -18,7 +18,7 @@ export class OrdersComponent implements OnInit {
   orders2New: object = {
     orderId: "",
     productId: "",
-    quantity: "",
+    quantity: 1,
     price: "",
   }
   price: any = {};

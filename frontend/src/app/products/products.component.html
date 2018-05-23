@@ -19,7 +19,7 @@
           <option value={{cat._id}} *ngFor="let cat of httpLocalService.categories">{{cat.name}}</option>
         </select>
         <input type="text" placeholder="Kép név" class="form-control" [(ngModel)]="newProduct.url">
-        <input type="text" placeholder="Gyáró" class="form-control" name="manufact" [(ngModel)]="newProduct.manufacturer">
+        <input type="text" placeholder="Gyáró" class="form-control" name="manufact" [(ngModel)]="newProduct.manufacturer" value="Lego">
         <input type="text" placeholder="Ár" class="form-control" name="manufact" [(ngModel)]="newProduct.cost">
       </div>
       <div class="card-footer btn-group">
