@@ -63,7 +63,7 @@ export class FooldalComponent implements OnInit {
     }
     if (category == 'all') {
       data = data.sort((a, b) => {
-        return a.createdAt > b.createdAt;
+        return a.createdAt < b.createdAt;
       }).filter((item, index) => index < 10);
     } else {
       data = data.filter(item => item.cat == category);
