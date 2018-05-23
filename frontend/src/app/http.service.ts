@@ -120,6 +120,9 @@ export class HttpLocalService {
     this.httpClient.get('http://localhost:8080/kategoria')
       .subscribe((data) => {
         this.categories = JSON.parse(data['_body']);
+        this.categories = this.categories.sort((a, b) => {
+          return a.rank - b.rank;
+        });
       });
   }
 

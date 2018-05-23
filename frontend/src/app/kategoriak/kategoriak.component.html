@@ -12,6 +12,9 @@
           <input type="text" class="form-control" [(ngModel)]="newKategoria.name">
         </td>
         <td>
+          <input type="text" class="form-control" [(ngModel)]="newKategoria.rank">
+        </td>
+        <td>
           <input type="text" class="form-control" [(ngModel)]="newKategoria.imgLink">
         </td>
         <td>
@@ -19,6 +22,9 @@
         </td>
       </tr>
       <tr *ngFor="let kategoria of kategoriak">
+        <td>
+          <input type="text" [(ngModel)]="kategoria.rank" class="form-control">
+        </td>
         <td>
           <input type="text" [(ngModel)]="kategoria.name" class="form-control">
         </td>
