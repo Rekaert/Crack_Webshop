@@ -8,6 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HttpLocalService {
   private url = 'http://localhost:8080';
+  proba: any = 0;
+  kitilt: boolean = false;
   user: any;
   users: any = [];
   products: any = [];
@@ -61,9 +63,17 @@ export class HttpLocalService {
         data = JSON.parse(data['_body']);
         if (data['success']) {
           this.auth();
+          this.proba = 0;
         }
       }, err => {
-        alert('Hibás adatokat adtál meg!');
+        this.proba++;
+        if (this.proba == 5) {
+          this.kitilt = true;
+          setTimeout(() => {
+            this.kitilt = false;
+          }, 1000 * 60 * 5)
+        }
+        alert(`Hibás adatokat adtál meg! Még ${5 - this.proba} lehetőséged van`);
       });
 
   }
