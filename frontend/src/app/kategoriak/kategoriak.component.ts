@@ -12,6 +12,7 @@ export class KategoriakComponent implements OnInit {
   newKategoria: Object = {
     name: '',
     imgLink: '',
+    rank: ''
   };
 
   constructor(private http: HttpLocalService) {

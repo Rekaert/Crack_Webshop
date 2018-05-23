@@ -8,6 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HttpLocalService {
   private url = 'http://localhost:8080';
+  proba: any = 0;
+  kitilt: boolean = false;
   user: any;
   users: any = [];
   products: any = [];
@@ -61,7 +63,17 @@ export class HttpLocalService {
         data = JSON.parse(data['_body']);
         if (data['success']) {
           this.auth();
+          this.proba = 0;
         }
+      }, err => {
+        this.proba++;
+        if (this.proba == 5) {
+          this.kitilt = true;
+          setTimeout(() => {
+            this.kitilt = false;
+          }, 1000 * 60 * 5)
+        }
+        alert(`Hibás adatokat adtál meg! Még ${5 - this.proba} lehetőséged van`);
       });
 
   }
@@ -70,21 +82,21 @@ export class HttpLocalService {
       .subscribe((data2) => {
         data2 = JSON.parse(data2['_body']).user;
         this.user = data2;
-        if (data2['perm'] == 0) {
-          this.isLoggedIn = true;
-          this.typeOfUser = 0;
-          console.log(this.typeOfUser);
-        } else if (data2['perm'] == 1) {
-          this.typeOfUser = 1;
-          this.isLoggedIn = true;
-          console.log(this.typeOfUser);
+        if (data2) {
+          if (data2['perm'] == 0) {
+            this.isLoggedIn = true;
+            this.typeOfUser = 0;
+            /* console.log(this.typeOfUser); */
+          } else if (data2['perm'] == 1) {
+            this.typeOfUser = 1;
+            this.isLoggedIn = true;
+            /* console.log(this.typeOfUser); */
+          }
+          else {
+            alert('Nem rendelkezel megfelelő jogosultságokkal!')
+          }
         }
-        else {
-          alert('Nem rendelkezel megfelelő jogosultságokkal!')
-        }
-        if (this.isLoggedIn == false) {
-          alert('Hibás adatokat adtál meg!')
-        };
+
       });
   }
 
@@ -108,6 +120,9 @@ export class HttpLocalService {
     this.httpClient.get('http://localhost:8080/kategoria')
       .subscribe((data) => {
         this.categories = JSON.parse(data['_body']);
+        this.categories = this.categories.sort((a, b) => {
+          return a.rank - b.rank;
+        });
       });
   }
 

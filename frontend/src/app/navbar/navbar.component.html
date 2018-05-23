@@ -37,7 +37,7 @@
             </div>
           </li>
 
-          <button *ngIf="!http.isLoggedIn" data-toggle="modal" data-target="#loginModal" class="btn btn_cust button_signin">Belépés</button>
+          <button [disabled]="http.kitilt" *ngIf="!http.isLoggedIn" data-toggle="modal" data-target="#loginModal" class="btn btn_cust button_signin">Belépés</button>
           <button *ngIf="http.isLoggedIn" (click)="logout()" class="btn btn_cust button_signout">Kilépés</button>
 
           <!-- <span class="header-text" *ngIf="logged" style="color:white">{{log.username}} &nbsp; &nbsp; &nbsp; </span> -->
