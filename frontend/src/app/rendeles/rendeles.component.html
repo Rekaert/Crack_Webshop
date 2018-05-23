@@ -41,9 +41,10 @@
             <tr>
               <th>Termék ID</th>
               <th>Termék</th>
-              <th>Ár</th>
+              <th>Részösszeg</th>
               <th>Mennyiség</th>
-              <th>Mennyiség módosítása</th>
+              <th>Mennyiség
+                <br>módosítása</th>
               <th>Tétel törlése</th>
             </tr>
           </thead>
@@ -51,7 +52,7 @@
             <tr *ngFor="let basketItem of basket let i = index">
               <td>{{basketItem.productId}}</td>
               <td>{{basketItem.productName}}</td>
-              <td>{{basketItem.productCost}} Ft</td>
+              <td>{{basketItem.productCost*basketItem.quantity}} Ft</td>
               <td>{{basketItem.quantity}}</td>
               <td>
                 <div class="btn-group">

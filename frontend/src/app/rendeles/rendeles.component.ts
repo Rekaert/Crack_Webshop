@@ -92,7 +92,7 @@ export class RendelesComponent implements OnInit {
   }
 
   messageModal() {
-    if (this.customer.szmlcim === '' || this.customer.szallcim === '') {
+    if (this.customer.szmlcim === '' || this.customer.szallcim === '' || this.customer.tel === '') {
 
       this.modaltitle = 'Hiányos profiladatok!';
       this.modalbody = 'Kérjük, pótolja hiányzó adatait profiloldalán.';
@@ -134,6 +134,7 @@ export class RendelesComponent implements OnInit {
                 if (i + 1 == this.basket.length) {
                   this.basket = [];
                   localStorage.clear();
+                  this.getTotalPrice();
                 }
               });
 
