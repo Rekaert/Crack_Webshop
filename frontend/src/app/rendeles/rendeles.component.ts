@@ -89,6 +89,7 @@ export class RendelesComponent implements OnInit {
     localStorage.basket = JSON.stringify(this.basket);
     // this.getBasketFromStorage();
     this.getTotalPrice();
+    this.httpLocal.basketNumber--
   }
 
   messageModal() {
@@ -135,6 +136,7 @@ export class RendelesComponent implements OnInit {
                   this.basket = [];
                   localStorage.clear();
                   this.getTotalPrice();
+                  this.httpLocal.basketNumber = 0;
                 }
               });
 
