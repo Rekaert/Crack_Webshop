@@ -42,43 +42,10 @@ export class NavbarComponent implements OnInit {
   emailRegex: any = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   // nameRegex: any = /a-zA-Z/;
   constructor(public http: HttpLocalService) {
-    /* if (localStorage.user) {
-       this.log = JSON.parse(localStorage.user);
-       this.logged = true;
-       // this.http.getTodo(this.log[0]._id);
-       // setInterval(() => this.findUrgent(), 1000);
-     }*/
   }
 
   ngOnInit() {
   }
-  /*
-    switchRegLog() {
-      this.modalTitle = this.modalTitle === 'Register' ? 'Login' : 'Register';
-      this.logreg = this.logreg * -1;
-    }
-  async signIn() {
-    if (this.logreg === 1) {
-      this.login();
-    }
-    setTimeout(() => {
-      this.log = JSON.parse(this.datas);
-      console.log(this.log);
-      localStorage.user = this.datas;
-      this.logged = true;
-      location.reload();
-      if (this.log === []) {
-        this.logged = false;
-      }
-    }, 500);
-  }
-  signOut() {
-    this.logged = false;
-    this.log = undefined;
-    // this.http.todos = [];
-    localStorage.removeItem('user');
-    location.reload();
-  }*/
 
   login(): any {
 
