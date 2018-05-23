@@ -39,6 +39,8 @@ export class NavbarComponent implements OnInit {
     szmlcim_utca: '',
   };
 
+  emailRegex: any = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  nameRegex: any = /[a - zA - Z]/;
   constructor(public http: HttpLocalService) {
     /* if (localStorage.user) {
        this.log = JSON.parse(localStorage.user);
@@ -92,24 +94,31 @@ export class NavbarComponent implements OnInit {
   }
 
   register(): any {
-    if (this.newUser.password === this.newUser.passwordRe) {
-      this.newUser.perm = 0;
-      this.newUser.szmlcim = [
-        this.newUsersAddress.szmlcim_iranyitoszam,
-        this.newUsersAddress.szmlcim_utca,
-        this.newUsersAddress.szmlcim_varos
-      ].join('|');
-      this.newUser.szallcim = [
-        this.newUsersAddress.szallcim_iranyitoszam,
-        this.newUsersAddress.szallcim_utca,
-        this.newUsersAddress.szallcim_varos
-      ].join('|');
-      this.http.register(this.newUser);
-      alert('Sikeres regisztráció!');
+    if (!(this.nameRegex.test(String(this.newUser.name)))) {
+      alert('A név csak betűket tartalmazhat !');
     } else {
-      alert('Nem egyeznek a megadot jelszavak !');
+      if (!(this.emailRegex.test(String(this.newUser.email).toLowerCase()))) {
+        alert('Nem megflelő emailcímet adtál meg !');
+      } else {
+        if (this.newUser.password === this.newUser.passwordRe) {
+          this.newUser.perm = 1;
+          this.newUser.szmlcim = [
+            this.newUsersAddress.szmlcim_iranyitoszam,
+            this.newUsersAddress.szmlcim_utca,
+            this.newUsersAddress.szmlcim_varos
+          ].join('|');
+          this.newUser.szallcim = [
+            this.newUsersAddress.szallcim_iranyitoszam,
+            this.newUsersAddress.szallcim_utca,
+            this.newUsersAddress.szallcim_varos
+          ].join('|');
+          this.http.register(this.newUser);
+          alert('Sikeres regisztráció!');
+        } else {
+          alert('Nem egyeznek a megadot jelszavak !');
+        }
+      }
     }
   }
-
 }
 

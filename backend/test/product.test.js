@@ -7,7 +7,7 @@ const chaiHttp = require('chai-http');
 const assert = require('chai').assert;
 
 const baseUrl = 'http://localhost:8080/product/';
-const productId = '5b03cc1a97ae7f2c6060fe8a';
+const productId = '5b05257c4d668223ec95348f';
 let productId1;
 let productId2;
 let productId3;
@@ -21,45 +21,47 @@ const theAccount = {
 const createProduct1 = {
   name: 'valami1',
   url: 'valami1',
-  image: 'https://www.google.hu/search?q=k%C3%A9p&source=lnms&tbm=isch&sa=X&ved=0ahUKEwikmMncn43bAhVHkywKHdEUDOEQ_AUICigB&biw=1536&bih=759#imgrc=-Aq6sdWT13lBUM:',
+  image: 'http://m.blog.hu/ro/rovidvelemenyek/image/aaaaaa_1.jpg',
   manufacturer: 'lego1',
-  catId: '5b03d2421d0d8a16844f7c17',
+  catId: '5b0523d7c5a48e14c0789707',
   cost: 50000,
 };
 const createProduct2 = {
   name: 'valami2',
   url: 'valami2',
   manufacturer: 'lego2',
-  catId: '5b03d2421d0d8a16844f7c17',
+  catId: '5b0523d7c5a48e14c0789707',
   cost: 50000,
+  image: 'http://m.blog.hu/ro/rovidvelemenyek/image/aaaaaa_1.jpg',
 };
 const createProduct3 = {
   name: 'valami3',
   url: 'valami3',
   manufacturer: 'lego3',
-  catId: '5b03d2421d0d8a16844f7c17',
+  catId: '5b0523d7c5a48e14c0789707',
   cost: 50000,
+  image: 'http://m.blog.hu/ro/rovidvelemenyek/image/aaaaaa_1.jpg',
 };
 
 const updateProduct1 = {
   name: 'valami1Up',
   url: 'valami1Up',
   manufacturer: 'legoUp',
-  catId: '5b03d2421d0d8a16844f7c17',
+  catId: '5b0523d7c5a48e14c0789707',
   cost: 200,
 };
 const updateProduct2 = {
   name: 'valami2Up',
   url: 'valami2Up',
   manufacturer: 'lego2Up',
-  catId: '5b03d2421d0d8a16844f7c17',
+  catId: '5b0523d7c5a48e14c0789707',
   cost: 200,
 };
 const updateProduct3 = {
   name: 'valami3Up',
   url: 'valami3Up',
   manufacturer: 'legoUp',
-  catId: '5b03d2421d0d8a16844f7c17',
+  catId: '5b0523d7c5a48e14c0789707',
   cost: 200,
 };
 
@@ -134,9 +136,8 @@ describe('Product', () => {
         .send(createProduct1)
         .set('Cookie', cookie)
         .end((err, res) => {
-          console.log(cookie);
-          productId1 = res.body.op._id;
           expect(res).to.have.status(200);
+          productId1 = res.body._id;
           done();
         });
     });
@@ -146,7 +147,7 @@ describe('Product', () => {
         .send(createProduct2)
         .set('Cookie', cookie)
         .end((err, res) => {
-          productId2 = res.body.op._id;
+          productId2 = res.body._id;
           expect(res).to.be.an('object');
           done();
         });
@@ -157,11 +158,11 @@ describe('Product', () => {
         .send(createProduct3)
         .set('Cookie', cookie)
         .end((err, res) => {
-          productId3 = res.body.op._id;
-          res.body.op.should.have.property('name');
-          res.body.op.should.have.property('url');
-          res.body.op.should.have.property('manufacturer');
-          res.body.op.should.have.property('cost');
+          productId3 = res.body._id;
+          res.body.should.have.property('name');
+          res.body.should.have.property('url');
+          res.body.should.have.property('manufacturer');
+          res.body.should.have.property('cost');
           done();
         });
     });
@@ -203,10 +204,9 @@ describe('Product', () => {
     it('response should have all parameters', (done) => {
       chai.request(baseUrl)
         .put(`/${productId3}`)
-        .send(updateProduct3)
         .set('Cookie', cookie)
+        .send(updateProduct3)
         .end((err, res) => {
-          console.log(productId3);
           res.body.should.be.a('object');
           res.body.should.have.property('name');
           res.body.should.have.property('url');

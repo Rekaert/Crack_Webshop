@@ -98,78 +98,111 @@
         <div id="register" role="tabpanel" aria-labelledby="register-tab" class="tab-pane fade">
           <!-- Register Form-->
           <div class="modal-body">
-            <label for="email">Név:</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon0">
-                  <i class="far fa-user"></i>
-                </span>
+            <form #registerForm="ngForm">
+              <label for="email">Név:</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon0">
+                    <i class="far fa-user"></i>
+                  </span>
+                </div>
+                <input class="form-control" name="NewUserName" required #NewUserName="ngModel" id="username" type="text" placeholder="Felhasználónév"
+                  [(ngModel)]="newUser.username">
+                <div *ngIf="NewUserName.invalid && (NewUserName.dirty || NewUserName.touched)" class="alert alert-danger">
+                  <div *ngIf="NewUserName.errors.required">
+                    <p>Felhasználónevet kötelező megadni!</p>
+                  </div>
+                </div>
               </div>
-              <input class="form-control" id="username" type="text" placeholder="Felhasználónév" [(ngModel)]="newUser.username">
-            </div>
-            <label for="email">E-mail:</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="far fa-user"></i>
-                </span>
+              <label for="email">E-mail:</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="far fa-user"></i>
+                  </span>
+                </div>
+                <input class="form-control" name="newUserEmail" #newUserEmail="ngModel" required id="email" type="email" placeholder="Email-cím: valami@valami.hu"
+                  [(ngModel)]="newUser.email">
+                <div *ngIf="newUserEmail.invalid && (newUserEmail.dirty || newUserEmail.touched)" class="alert alert-danger">
+                  <div *ngIf="newUserEmail.errors.required">
+                    <p>Email-címet kötelező megadni!</p>
+                  </div>
+                </div>
               </div>
-              <input class="form-control" id="email" type="email" placeholder="Email-cím: valami@valami.hu" [(ngModel)]="newUser.email">
-            </div>
-            <label for="pass">Jelszó:</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon2">
-                  <i class="fas fa-key"></i>
-                </span>
+              <label for="pass">Jelszó:</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon2">
+                    <i class="fas fa-key"></i>
+                  </span>
+                </div>
+                <input class="form-control" required minlength="8" name="newUserPass" #newUserPass="ngModel" id="pass" type="password" placeholder="Jelszó"
+                  [(ngModel)]="newUser.password">
+                <div *ngIf="newUserPass.invalid && (newUserPass.dirty || newUserPass.touched)" class="alert alert-danger">
+                  <div *ngIf="newUserPass.errors.required">
+                    <p>Jelszót kötelező megadni!</p>
+                  </div>
+                  <div *ngIf="newUserPass.errors.minlength">
+                    <p>A jelszónak legalább 8 karakter hosszúnak kell lennie!</p>
+                  </div>
+                </div>
               </div>
-              <input class="form-control" id="pass" type="password" placeholder="Jelszó" [(ngModel)]="newUser.password">
-            </div>
-            <label for="repass">Jelszó újra:</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">
-                  <i class="fas fa-key"></i>
-                </span>
+              <label for="repass">Jelszó újra:</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon3">
+                    <i class="fas fa-key"></i>
+                  </span>
+                </div>
+                <input class="form-control" required minlength="8" name="newUserPassRe" #newUserPassRe="ngModel" id="repass" type="password"
+                  placeholder="Jelszó újra" [(ngModel)]="newUser.passwordRe">
+                <div *ngIf="newUserPassRe.invalid && (newUserPassRe.dirty || newUserPassRe.touched)" class="alert alert-danger">
+                  <div *ngIf="newUserPassRe.errors.required">
+                    <p>Jelszót kötelező megadni!</p>
+                  </div>
+                  <div *ngIf="newUserPassRe.errors.minlength">
+                    <p>A jelszónak legalább 8 karakter hosszúnak kell lennie!</p>
+                  </div>
+                </div>
               </div>
-              <input class="form-control" id="repass" type="password" placeholder="Jelszó újra" [(ngModel)]="newUser.passwordRe">
-            </div>
-            <label for="name">Számlázási cím:</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon4">
-                  <i class="fas fa-map-marker"></i>
-                </span>
+              <label for="name">Számlázási cím:</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon4">
+                    <i class="fas fa-map-marker"></i>
+                  </span>
+                </div>
+                <input class="form-control" name="szamlacim-szam" id="szamlacim-szam" type="text" placeholder="Irányítószám" [(ngModel)]="newUsersAddress.szmlcim_iranyitoszam">
+                <input class="form-control" name="szamlacim-city" id="szamlacim-city" type="text" placeholder="Város" [(ngModel)]="newUsersAddress.szmlcim_varos">
+                <input class="form-control" name="szamlacim-street" id="szamlacim-street" type="text" placeholder="Utca, Házszám" [(ngModel)]="newUsersAddress.szmlcim_utca">
               </div>
-              <input class="form-control" id="szamlacim-szam" type="text" placeholder="Irányítószám" [(ngModel)]="newUsersAddress.szmlcim_iranyitoszam">
-              <input class="form-control" id="szamlacim-city" type="text" placeholder="Város" [(ngModel)]="newUsersAddress.szmlcim_varos">
-              <input class="form-control" id="szamlacim-street" type="text" placeholder="Utca, Házszám" [(ngModel)]="newUsersAddress.szmlcim_utca">
-            </div>
-            <label for="name">Szállítási cím:</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon5">
-                  <i class="fas fa-map-marker"></i>
-                </span>
+              <label for="name">Szállítási cím:</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon5">
+                    <i class="fas fa-map-marker"></i>
+                  </span>
+                </div>
+                <input class="form-control" name="szalliasicim-szam" id="szalliasicim-szam" type="text" placeholder="Irányítószám" [(ngModel)]="newUsersAddress.szallcim_iranyitoszam">
+                <input class="form-control" name="szalliasicim-city" id="szalliasicim-city" type="text" placeholder="Város" [(ngModel)]="newUsersAddress.szallcim_varos">
+                <input class="form-control" name="szalliasicim-street" id="szalliasicim-street" type="text" placeholder="Utca Házszám" [(ngModel)]="newUsersAddress.szallcim_utca">
               </div>
-              <input class="form-control" id="szalliasicim-szam" type="text" placeholder="Irányítószám" [(ngModel)]="newUsersAddress.szallcim_iranyitoszam">
-              <input class="form-control" id="szalliasicim-city" type="text" placeholder="Város" [(ngModel)]="newUsersAddress.szallcim_varos">
-              <input class="form-control" id="szalliasicim-street" type="text" placeholder="Utca Házszám" [(ngModel)]="newUsersAddress.szallcim_utca">
-            </div>
-            <label for="name">Telefonszám:</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon6">
-                  <i class="fas fa-phone"></i>
-                </span>
+              <label for="name">Telefonszám:</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon6">
+                    <i class="fas fa-phone"></i>
+                  </span>
+                </div>
+                <input class="form-control" name="telefon" id="telefon" type="text" placeholder="Telefonszám" [(ngModel)]="newUser.tel">
               </div>
-              <input class="form-control" id="telefon" type="text" placeholder="Telefonszám" [(ngModel)]="newUser.tel">
-            </div>
+            </form>
           </div>
           <div class="modal-footer">
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Bezárás</button>
-              <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning" (click)="register()">Regisztráció</button>
+              <button [disabled]="registerForm.form.invalid" type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-warning"
+                (click)="register()">Regisztráció</button>
             </div>
           </div>
         </div>

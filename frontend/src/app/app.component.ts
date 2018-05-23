@@ -22,7 +22,6 @@ export class AppComponent {
   baseUrl = 'http://localhost:8080/user/'; */
 
   constructor(public http: HttpLocalService) {
-    this.http.auth();
     this.http.getUsers();
   }
 
