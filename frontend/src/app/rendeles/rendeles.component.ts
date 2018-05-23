@@ -84,16 +84,11 @@ export class RendelesComponent implements OnInit {
     // this.getBasketFromStorage();
     this.getTotalPrice();
   }
-
-  messageModal(customer) {
-    console.log(customer, 'modal1');
-    for (let k in customer) {
-      if (customer.szmlcim = '') {
-        this.modaltitle = '';
-        this.modalbody = '';
-        this.modaltitle = 'Hiányos profiladatok!';
-        this.modalbody = 'Kérjük, pótolja hiányzó adatait profiloldalán.';
-      } else if (customer.szallcim = '') {
+  /*
+    messageModal(customer) {
+      console.log(customer, 'modal1');
+  
+      if (customer.szmlcim = '' || customer.szallcim = '') {
         this.modaltitle = '';
         this.modalbody = '';
         this.modaltitle = 'Hiányos profiladatok!';
@@ -110,10 +105,10 @@ export class RendelesComponent implements OnInit {
         this.modalbody = 'Rendelését rögzítettük. Hamarosan felvesszük Önnel a kapcsolatot.';
       }
     }
-  }
-
+  */
   sendOrder() {
-    this.messageModal(this.customer);
+    // this.messageModal(this.customer);
+
     // this.basket = sessionStorage.clear();
 
   }
