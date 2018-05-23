@@ -38,7 +38,7 @@
     <div>
       <!--gomb, ami a rendelés oldalra visz-->
       <a routerLink="/rendeles">
-        <button type="button" class="btn btn-success float-right">Megrendelem</button>
+        <button [disabled]="!basket[0]" type="button" class="btn btn-success float-right">Megrendelem</button>
       </a>
       <!--gomb, ami visszavisz a termékek oldalra-->
       <a routerLink="/fooldal">
