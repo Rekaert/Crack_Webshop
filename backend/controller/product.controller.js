@@ -77,7 +77,11 @@ module.exports = {
     const cim = req.body.image;
     const url = req.body.url;
     req.body.image = `${url}.jpg`;
-    request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
+    try {
+      request(cim).pipe(fs.createWriteStream(`public/img/${url}.jpg`));
+    } catch (err) {
+      console.log('nem sikerült a fájl módosítása');
+    }
     Product.create(req.body, (err, post) => {
       if (err) {
         res.send(err);
@@ -97,11 +101,15 @@ module.exports = {
    */
   update: (req, res) => {
     if (req.body.oldImage) {
-      const cim = req.body.image;
-      const urlcim = req.body.url;
-      req.body.image = `${urlcim}.jpg`;
-      request(cim).pipe(fs.createWriteStream(`public/img/${urlcim}.jpg`));
-      deleteFile(req.body.oldImage);
+      try {
+        const cim = req.body.image;
+        const urlcim = req.body.url;
+        req.body.image = `${urlcim}.jpg`;
+        request(cim).pipe(fs.createWriteStream(`public/img/${urlcim}.jpg`));
+        deleteFile(req.body.oldImage);
+      } catch (err) {
+        console.log('nem sikerült a fájl módosítása');
+      }
     }
     Product.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
       if (err) {
@@ -127,7 +135,11 @@ module.exports = {
       } else {
         res.json(post);
         if (post.image) {
-          deleteFile(post.image);
+          try {
+            deleteFile(post.image);
+          } catch (error) {
+            console.log('nem sikerült a fájl törlése');
+          }
         }
       }
     });
