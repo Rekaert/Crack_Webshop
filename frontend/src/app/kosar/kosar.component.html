@@ -1,54 +1,46 @@
-<div class="stop_lego" *ngIf="http.typeOfUser >=2">
-  <h1>Nincs megfelelo jogosultságod, az oldal megtekintéséhez!</h1>
-  <h2>A megtekintéshez bejelentkezés szükséges</h2>
-  <img src="../../assets/img/stopLego.png" alt="">
-</div>
-<div *ngIf="http.typeOfUser <=1">
-  <div class="row">
-    <div class="col-12">
-      <h2>KOSÁR</h2>
-      <br>
-    </div>
+<div class="row">
+  <div class="col-12">
+    <h2>KOSÁR</h2>
+    <br>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <table class="table table-striped table-light">
-        <thead>
-          <tr>
-            <th>Termék ID</th>
-            <th>Termék</th>
-            <th>Mennyiség</th>
-            <th>Egységár</th>
-            <th>Összár</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let basketItem of basket">
-            <td>{{basketItem.productId}}</td>
-            <td>{{basketItem.productName}}</td>
-            <td>{{basketItem.quantity}}</td>
-            <td>{{basketItem.productCost}} Ft</td>
-            <td>{{basketItem.productCost*basketItem.quantity}} Ft</td>
-          </tr>
-          <tr>
-            <td>-</td>
-            <td>-</td>
-            <td (onload)="getTotalQuantity()">
-              {{quantity}} termék</td>
-            <td>-</td>
-            <td (onload)="getTotalPrice()">
-              <strong>Összeg:</strong> {{totalPrice}} Ft</td>
-          </tr>
-        </tbody>
-      </table>
-      <div>
-        <!--gomb, ami a rendelés oldalra visz-->
-        <a href="http://localhost:4200/rendeles">
-          <button type="button" class="btn btn-success float-right">Megrendelem</button>
-        </a>
-        <!--gomb, ami visszavisz a termékek oldalra-->
-        <a href="http://localhost:4200/fooldal">
-          <button type="button" class="btn btn-info float-right">Folytatom a vásárlást</button>
-        </a>
-
-      </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <table class="table table-striped table-light">
+      <thead>
+        <tr>
+          <th>Termék ID</th>
+          <th>Termék</th>
+          <th>Mennyiség</th>
+          <th>Egységár</th>
+          <th>Összár</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let basketItem of basket">
+          <td>{{basketItem.productId}}</td>
+          <td>{{basketItem.productName}}</td>
+          <td>{{basketItem.quantity}}</td>
+          <td>{{basketItem.productCost}} Ft</td>
+          <td>{{basketItem.productCost*basketItem.quantity}} Ft</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td (onload)="getTotalQuantity()">
+            {{quantity}} termék</td>
+          <td>-</td>
+          <td (onload)="getTotalPrice()">
+            <strong>Összeg:</strong> {{totalPrice}} Ft</td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <!--gomb, ami a rendelés oldalra visz-->
+      <a href="http://localhost:4200/rendeles">
+        <button type="button" class="btn btn-success float-right">Megrendelem</button>
+      </a>
+      <!--gomb, ami visszavisz a termékek oldalra-->
+      <a href="http://localhost:4200/fooldal">
+        <button type="button" class="btn btn-info float-right">Folytatom a vásárlást</button>
+      </a>
