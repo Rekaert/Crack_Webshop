@@ -31,3 +31,9 @@ table {
 .add_margin_to_btn {
   margin-right: 5px;
 }
+
+.white_bg {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 15px;
+}

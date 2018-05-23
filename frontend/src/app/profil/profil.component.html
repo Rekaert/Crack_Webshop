@@ -6,7 +6,7 @@
 <div *ngIf="http.typeOfUser <=1">
 
   <!--ADATMÓDOSÍTÁS RÉSZ -->
-  <div class="container">
+  <div class="container white_bg">
     <div class="row">
       <div class="col-sm-12 text-center">
         <h3>Felhasználói adataim módosítása</h3>
@@ -14,10 +14,10 @@
       <div></div>
       <hr>
 
-      <div class="col-sm-12 text-left">
+      <div class="col-sm-12 text-left ">
         <p>A *-al jelölt mezők kitöltése kötelező!</p>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-3 ">
         <h5>Személyes adatok:</h5>
         <form #validForm="ngForm">
           <label for="teljes_nev">Teljes név*:</label>
@@ -81,74 +81,79 @@
         </form>
       </div>
       <div class="col-sm-12 text-left">
-        <button type="button" (click)="updateProfile()" class="btn btn-info">Adatok frissítése</button>
+        <button type="button" (click)="updateProfile()" class="btn btn-info float-right">Adatok frissítése</button>
       </div>
+      <br>
+      <br>
     </div>
-    <hr>
 
 
-    <!--RENDELÉSEK RÉSZ -->
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-sm-12 text-center">
-          <h3>Rendeléseim</h3>
-          <table class="table text-center table-striped table-light ">
-            <thead class="col-sm-12 text-left">
-              <tr>
-                <th>Rendelésazonosító</th>
-                <th>Dátum</th>
-                <th>Mennyiség</th>
-                <th>Ár</th>
-                <th>Megrendelés státusza</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let order of orders">
-                <td>{{order._id}}</td>
-                <td>{{order.createdAt | date : 'medium'}}</td>
-                <td>{{order.quantity}}</td>
-                <td>{{order.cost}}</td>
-                <td>{{order.status}}</td>
-                <td>
-                  <button data-toggle="modal" data-target="#orderDetailsModal" class="btn btn-info" (click)="selectOrder(order._id)">Részletek</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
 
-          <!--Modal megrendelés részletei-->
+  </div>
+  <br>
 
-          <div id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true" class="modal fade">
-            <div role="document" class="modal-dialog">
-              <div class="modal-content text-center">
-                <div class="modal-header text-center">
-                  Megrendelés ({{selectedOrder._id}}) részletei:
-                </div>
-                <div id="userTabContent" class="tab-content">
-                  <div id="login" role="tabpanel" aria-labelledby="login-tab" class="tab-pane fade show active">
-                    <div class="modal-body" *ngIf="modalReady">
-                      <table class="table table-bordered text-center">
-                        <thead class="col-sm-4 text-center">
-                          <tr>
-                            <th>Terméknév</th>
-                            <th>Darab</th>
-                            <th>Ár</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let order2 of selectedOrder.details">
-                            <td>{{order2.product.name}}</td>
-                            <td>{{order2.quantity}}</td>
-                            <td>{{order2.price}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+  <!--RENDELÉSEK RÉSZ -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 text-center">
+        <h3>Rendeléseim</h3>
+        <br>
+        <table class="table text-center table-striped table-light ">
+          <thead class="col-sm-12 text-left">
+            <tr>
+              <th>Rendelésazonosító</th>
+              <th>Dátum</th>
+              <th>Mennyiség</th>
+              <th>Ár</th>
+              <th>Megrendelés státusza</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+              <td>{{order._id}}</td>
+              <td>{{order.createdAt | date : 'medium'}}</td>
+              <td>{{order.quantity}}</td>
+              <td>{{order.cost}}</td>
+              <td>{{order.status}}</td>
+              <td>
+                <button data-toggle="modal" data-target="#orderDetailsModal" class="btn btn-info" (click)="selectOrder(order._id)">Részletek</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!--Modal megrendelés részletei-->
+
+        <div id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true" class="modal fade">
+          <div role="document" class="modal-dialog">
+            <div class="modal-content text-center">
+              <div class="modal-header text-center">
+                Megrendelés ({{selectedOrder._id}}) részletei:
+              </div>
+              <div id="userTabContent" class="tab-content">
+                <div id="login" role="tabpanel" aria-labelledby="login-tab" class="tab-pane fade show active">
+                  <div class="modal-body" *ngIf="modalReady">
+                    <table class="table table-bordered text-center">
+                      <thead class="col-sm-4 text-center">
+                        <tr>
+                          <th>Terméknév</th>
+                          <th>Darab</th>
+                          <th>Ár</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let order2 of selectedOrder.details">
+                          <td>{{order2.product.name}}</td>
+                          <td>{{order2.quantity}}</td>
+                          <td>{{order2.price}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
                     <div class="modal-footer">
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Bezárás</button>
-                      </div>
+                      <button type="button" class="btn btn-info" data-dismiss="modal">Bezárás</button>
                     </div>
                   </div>
                 </div>
