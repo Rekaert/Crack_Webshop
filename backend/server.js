@@ -134,7 +134,7 @@ app.use('/kategoria/', kategoriaRouter);
 app.use('/rate/', rateRouter);
 
 
-//nodemailer
+// Nodemailer
 
 app.post('/sendemail', (req, res) => {
   const mailadr = req.body;

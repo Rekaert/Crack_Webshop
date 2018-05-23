@@ -1,16 +1,16 @@
 const chai = require('chai');
-const should = chai.should();
 const Product = require('../models/product');
-const productController = require('../controller/user.controller');
 const expect = require('chai').expect;
-const chaiHttp = require('chai-http');
 const assert = require('chai').assert;
+const productController = require('../controller/user.controller');
+const chaiHttp = require('chai-http');
 
+const should = chai.should();
 const baseUrl = 'http://localhost:8080/user/';
 const productId = '5b054c3606ea1a37685e36b0';
-let productId1;
-let productId2;
-let productId3;
+// let productId1;
+// let productId2;
+// let productId3;
 chai.use(chaiHttp);
 
 let cookie;
@@ -18,58 +18,58 @@ const theAccount = {
   username: 'email@cim.com',
   password: 'qwer1234',
 };
-const createProduct1 = {
-  username: 'sanyi',
-  password: 'sanyi',
-  email: 'sanyi@gmail.com',
-  szmlcim: 'Budapest',
-  szallcim: 'Debrecen',
-  tel: '066666666',
-  perm: '1',
-};
-const createProduct2 = {
-  username: 'sanyi2',
-  password: 'sanyi2',
-  email: 'sanyi2@gmail.com',
-  szmlcim: 'Budapest',
-  szallcim: 'Debrecen',
-  tel: '066666665',
-  perm: '1',
-};
-const createProduct3 = {
-  username: 'sanyi3',
-  password: 'sanyi3',
-  email: 'sanyi3@gmail.com',
-  szmlcim: 'Budapest',
-  szallcim: 'Debrecen',
-  tel: '066666565',
-  perm: '1',
-};
+// const createProduct1 = {
+//   username: 'sanyi',
+//   password: 'sanyi',
+//   email: 'sanyi@gmail.com',
+//   szmlcim: 'Budapest',
+//   szallcim: 'Debrecen',
+//   tel: '066666666',
+//   perm: '1',
+// };
+// const createProduct2 = {
+//   username: 'sanyi2',
+//   password: 'sanyi2',
+//   email: 'sanyi2@gmail.com',
+//   szmlcim: 'Budapest',
+//   szallcim: 'Debrecen',
+//   tel: '066666665',
+//   perm: '1',
+// };
+// const createProduct3 = {
+//   username: 'sanyi3',
+//   password: 'sanyi3',
+//   email: 'sanyi3@gmail.com',
+//   szmlcim: 'Budapest',
+//   szallcim: 'Debrecen',
+//   tel: '066666565',
+//   perm: '1',
+// };
 
-const updateProduct1 = {
-  username: 'sanyi2',
-  email: 'sanyi2@gmail.com',
-  szmlcim: 'Budapest',
-  szallcim: 'Debrecen',
-  tel: '066666665',
-  perm: '1',
-};
-const updateProduct2 = {
-  username: 'sanyi3',
-  email: 'sanyi3@gmail.com',
-  szmlcim: 'Budapest',
-  szallcim: 'Debrecen',
-  tel: '066666565',
-  perm: '1',
-};
-const updateProduct3 = {
-  username: 'sanyi',
-  email: 'sanyi@gmail.com',
-  szmlcim: 'Budapest',
-  szallcim: 'Debrecen',
-  tel: '066666666',
-  perm: '1',
-};
+// const updateProduct1 = {
+//   username: 'sanyi2',
+//   email: 'sanyi2@gmail.com',
+//   szmlcim: 'Budapest',
+//   szallcim: 'Debrecen',
+//   tel: '066666665',
+//   perm: '1',
+// };
+// const updateProduct2 = {
+//   username: 'sanyi3',
+//   email: 'sanyi3@gmail.com',
+//   szmlcim: 'Budapest',
+//   szallcim: 'Debrecen',
+//   tel: '066666565',
+//   perm: '1',
+// };
+// const updateProduct3 = {
+//   username: 'sanyi',
+//   email: 'sanyi@gmail.com',
+//   szmlcim: 'Budapest',
+//   szallcim: 'Debrecen',
+//   tel: '066666666',
+//   perm: '1',
+// };
 
 describe('User', () => {
   describe('all()', () => {
@@ -92,9 +92,22 @@ describe('User', () => {
     });
   });
   describe('profile()', () => {
+    before((done) => {
+      chai.request('http://localhost:8080/user')
+        .post('/login')
+        .send(theAccount)
+        .end((err, res) => {
+          if (err) {
+            throw err;
+          }
+          cookie = res.headers['set-cookie'].pop().split(';')[0];
+          done();
+        });
+    });
     it('response statusCode equal to 200', (done) => {
       chai.request(baseUrl)
         .get('/profile')
+        .set('Cookie', cookie)
         .end((err, res) => {
           expect(err).to.be.null;
           expect(res).to.have.status(200);
@@ -104,6 +117,7 @@ describe('User', () => {
     it('response should be an object', (done) => {
       chai.request(baseUrl)
         .get('/profile')
+        .set('Cookie', cookie)
         .end((err, res) => {
           expect(res).to.be.an('object');
           done();
@@ -112,8 +126,8 @@ describe('User', () => {
     it('response should have all properties', (done) => {
       chai.request(baseUrl)
         .get('/profile')
+        .set('Cookie', cookie)
         .end((err, res) => {
-          console.log(res.body);
           res.body.should.have.property('user');
           done();
         });

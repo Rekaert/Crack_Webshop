@@ -70,7 +70,7 @@ module.exports = {
    */
   update: (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
+      new: true,
     }, (err, doc) => {
       if (doc && req.body.newpassword) {
         doc.changePassword(req.body.oldpassword, req.body.newpassword, () => {

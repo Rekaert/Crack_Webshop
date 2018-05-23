@@ -26,15 +26,15 @@ const userSchema = mongoose.Schema({
   },
   szmlcim: {
     type: String,
-    default: "",
+    default: '',
   },
   szallcim: {
     type: String,
-    default: "",
+    default: '',
   },
   tel: {
     type: String,
-    default: "",
+    default: '',
   },
   perm: {
     type: String,
