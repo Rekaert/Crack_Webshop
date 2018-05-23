@@ -105,7 +105,12 @@
                   <i class="far fa-user"></i>
                 </span>
               </div>
-              <input class="form-control" id="username" type="text" placeholder="Felhasználónév" [(ngModel)]="newUser.username">
+              <input class="form-control" required #NewUserName="ngModel" id="username" type="text" placeholder="Felhasználónév" [(ngModel)]="newUser.username">
+              <div *ngIf="NewUserName.invalid && (NewUserName.dirty || NewUserName.touched)" class="alert alert-danger">
+                <div *ngIf="NewUserName.errors.required">
+                  <p>Felhasználónevet kötelező megadni!</p>
+                </div>
+              </div>
             </div>
             <label for="email">E-mail:</label>
             <div class="input-group mb-3">
@@ -114,7 +119,13 @@
                   <i class="far fa-user"></i>
                 </span>
               </div>
-              <input class="form-control" id="email" type="email" placeholder="Email-cím: valami@valami.hu" [(ngModel)]="newUser.email">
+              <input class="form-control" name="newUserEmail" #newUserEmail="ngModel" required id="email" type="email" placeholder="Email-cím: valami@valami.hu"
+                [(ngModel)]="newUser.email">
+              <div *ngIf="newUserEmail.invalid && (newUserEmail.dirty || newUserEmail.touched)" class="alert alert-danger">
+                <div *ngIf="newUserEmail.errors.required">
+                  <p>Email-címet kötelező megadni!</p>
+                </div>
+              </div>
             </div>
             <label for="pass">Jelszó:</label>
             <div class="input-group mb-3">
@@ -123,7 +134,16 @@
                   <i class="fas fa-key"></i>
                 </span>
               </div>
-              <input class="form-control" id="pass" type="password" placeholder="Jelszó" [(ngModel)]="newUser.password">
+              <input class="form-control" required minlength="8" name="newUserPass" #newUserPass="ngModel" id="pass" type="password" placeholder="Jelszó"
+                [(ngModel)]="newUser.password">
+              <div *ngIf="newUserPass.invalid && (newUserPass.dirty || newUserPass.touched)" class="alert alert-danger">
+                <div *ngIf="newUserPass.errors.required">
+                  <p>Jelszót kötelező megadni!</p>
+                </div>
+                <div *ngIf="newUserPass.errors.minlength">
+                  <p>A jelszónak legalább 8 karakter hosszúnak kell lennie!</p>
+                </div>
+              </div>
             </div>
             <label for="repass">Jelszó újra:</label>
             <div class="input-group mb-3">
@@ -132,7 +152,16 @@
                   <i class="fas fa-key"></i>
                 </span>
               </div>
-              <input class="form-control" id="repass" type="password" placeholder="Jelszó újra" [(ngModel)]="newUser.passwordRe">
+              <input class="form-control" required minlength="8" name="newUserPassRe" #newUserPassRe="ngModel" id="repass" type="password"
+                placeholder="Jelszó újra" [(ngModel)]="newUser.passwordRe">
+              <div *ngIf="newUserPassRe.invalid && (newUserPassRe.dirty || newUserPassRe.touched)" class="alert alert-danger">
+                <div *ngIf="newUserPassRe.errors.required">
+                  <p>Jelszót kötelező megadni!</p>
+                </div>
+                <div *ngIf="newUserPassRe.errors.minlength">
+                  <p>A jelszónak legalább 8 karakter hosszúnak kell lennie!</p>
+                </div>
+              </div>
             </div>
             <label for="name">Számlázási cím:</label>
             <div class="input-group mb-3">
