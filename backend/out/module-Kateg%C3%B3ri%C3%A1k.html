@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: Product</title>
+    <title>JSDoc: Module: Kategóriák</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: Product</h1>
+    <h1 class="page-title">Module: Kategóriák</h1>
 
     
 
@@ -72,7 +72,7 @@
 
 
 <div class="description">
-    Function to create a product
+    Function to create a new category
 </div>
 
 
@@ -159,6 +159,58 @@
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of the new category</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
 <dl class="details">
 
     
@@ -188,7 +240,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="product.controller.js.html">product.controller.js</a>, <a href="product.controller.js.html#line76">line 76</a>
+        <a href="kategoriak.controller.js.html">kategoriak.controller.js</a>, <a href="kategoriak.controller.js.html#line46">line 46</a>
     </li></ul></dd>
     
 
@@ -215,7 +267,7 @@
 
         
 <div class="param-desc">
-    - The created product
+    - The created category
 </div>
 
 
@@ -244,7 +296,7 @@
     
 
     
-    <h4 class="name" id=".find"><span class="type-signature">(static) </span>find<span class="signature">(id, req, res)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    <h4 class="name" id=".find"><span class="type-signature">(static) </span>find<span class="signature">(req, res, id)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -252,7 +304,7 @@
 
 
 <div class="description">
-    Function to find a product by id
+    Function to find category
 </div>
 
 
@@ -284,6 +336,52 @@
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Request</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Response</td>
+        </tr>
+
     
 
         <tr>
@@ -304,53 +402,7 @@
 
             
 
-            <td class="description last">The id property of the product</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Request</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Response</td>
+            <td class="description last">The id of the category</td>
         </tr>
 
     
@@ -391,7 +443,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="product.controller.js.html">product.controller.js</a>, <a href="product.controller.js.html#line60">line 60</a>
+        <a href="kategoriak.controller.js.html">kategoriak.controller.js</a>, <a href="kategoriak.controller.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -418,187 +470,7 @@
 
         
 <div class="param-desc">
-    - The found product
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".findByUrl"><span class="type-signature">(static) </span>findByUrl<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Function to find a product by url
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Request</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Response</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="product.controller.js.html">product.controller.js</a>, <a href="product.controller.js.html#line42">line 42</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - The found product
+    - The found category
 </div>
 
 
@@ -635,7 +507,7 @@
 
 
 <div class="description">
-    Function to list all products
+    Function to list all categories
 </div>
 
 
@@ -751,7 +623,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="product.controller.js.html">product.controller.js</a>, <a href="product.controller.js.html#line27">line 27</a>
+        <a href="kategoriak.controller.js.html">kategoriak.controller.js</a>, <a href="kategoriak.controller.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -778,7 +650,7 @@
 
         
 <div class="param-desc">
-    - The list of all the products
+    - All categories
 </div>
 
 
@@ -807,7 +679,7 @@
     
 
     
-    <h4 class="name" id=".remove"><span class="type-signature">(static) </span>remove<span class="signature">(id, req, res)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id=".remove"><span class="type-signature">(static) </span>remove<span class="signature">(req, res, id)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -815,7 +687,7 @@
 
 
 <div class="description">
-    Function to delete a product
+    Function to list all categories
 </div>
 
 
@@ -847,29 +719,6 @@
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The id property of the order</td>
-        </tr>
-
     
 
         <tr>
@@ -917,6 +766,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The id of the category</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -954,7 +826,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="product.controller.js.html">product.controller.js</a>, <a href="product.controller.js.html#line131">line 131</a>
+        <a href="kategoriak.controller.js.html">kategoriak.controller.js</a>, <a href="kategoriak.controller.js.html#line83">line 83</a>
     </li></ul></dd>
     
 
@@ -981,7 +853,7 @@
 
         
 <div class="param-desc">
-    - The deleted product
+    - The deleted category
 </div>
 
 
@@ -1010,7 +882,7 @@
     
 
     
-    <h4 class="name" id=".update"><span class="type-signature">(static) </span>update<span class="signature">(id, req, res)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id=".update"><span class="type-signature">(static) </span>update<span class="signature">(req, res, id)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -1018,7 +890,7 @@
 
 
 <div class="description">
-    Function to update a product
+    Function to list all categories
 </div>
 
 
@@ -1050,29 +922,6 @@
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The id property of the product</td>
-        </tr>
-
     
 
         <tr>
@@ -1120,10 +969,85 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The id of the category</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
 
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The new name of the category</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1157,7 +1081,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="product.controller.js.html">product.controller.js</a>, <a href="product.controller.js.html#line102">line 102</a>
+        <a href="kategoriak.controller.js.html">kategoriak.controller.js</a>, <a href="kategoriak.controller.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -1184,7 +1108,7 @@
 
         
 <div class="param-desc">
-    - The product before the update
+    - The updated category
 </div>
 
 

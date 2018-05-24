@@ -2,7 +2,7 @@ const rateRouter = require('express').Router();
 const RateController = require('../controller/rate.controller');
 
 /**
- * @module Kategoria-router
+ * @module Értékelés-router
  * routing middleware for categories
  */
 /**

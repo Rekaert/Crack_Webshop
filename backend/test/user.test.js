@@ -8,9 +8,9 @@ const chaiHttp = require('chai-http');
 const should = chai.should();
 const baseUrl = 'http://localhost:8080/user/';
 const productId = '5b054c3606ea1a37685e36b0';
-// let productId1;
-// let productId2;
-// let productId3;
+let productId1;
+let productId2;
+let productId3;
 chai.use(chaiHttp);
 
 let cookie;
@@ -18,6 +18,26 @@ const theAccount = {
   username: 'email@cim.com',
   password: 'qwer1234',
 };
+
+// function getId() {
+//   chai.request(baseUrl)
+//     .get('/')
+//     .end((err, res) => {
+//       console.log(res.body);
+//       for (let k = 0; k < res.body.length; k++) {
+//         if (res.body[k].username === 'sanyi') {
+//           productId1 = res.body[k]._id;
+//         }
+//         if (res.body[k].username === 'sanyi2') {
+//           productId2 = res.body[k]._id;
+//         }
+//         if (res.body[k].username === 'sanyi3') {
+//           productId3 = res.body[k]._id;
+//         }
+//       }
+//     });
+// }
+
 // const createProduct1 = {
 //   username: 'sanyi',
 //   password: 'sanyi',
@@ -154,8 +174,6 @@ describe('User', () => {
 //         .set('Cookie', cookie)
 //         .end((err, res) => {
 //           expect(res).to.have.status(200);
-//           productId1 = res.body._id;
-//           console.log(res.body);
 //           done();
 //         });
 //     });
@@ -165,7 +183,6 @@ describe('User', () => {
 //         .send(createProduct2)
 //         .set('Cookie', cookie)
 //         .end((err, res) => {
-//           productId2 = res.body._id;
 //           expect(res).to.be.an('object');
 //           done();
 //         });
@@ -176,114 +193,113 @@ describe('User', () => {
 //         .send(createProduct3)
 //         .set('Cookie', cookie)
 //         .end((err, res) => {
-//           productId3 = res.body._id;
 //           res.body.user.should.have.property('username');
 //           res.body.user.should.have.property('email');
 //           res.body.user.should.have.property('szmlcim');
 //           res.body.user.should.have.property('szallcim');
 //           res.body.user.should.have.property('tel');
 //           res.body.user.should.have.property('perm');
+//           getId();
 //           done();
 //         });
 //     });
 //   });
-// });
-// describe('update()', () => {
-//   before((done) => {
-//     chai.request('http://localhost:8080/user')
-//       .post('/login')
-//       .send(theAccount)
-//       .end((err, res) => {
-//         if (err) {
-//           throw err;
-//         }
-//         cookie = res.headers['set-cookie'].pop().split(';')[0];
-//         done();
-//       });
+//   describe('update()', () => {
+//     before((done) => {
+//       chai.request('http://localhost:8080/user')
+//         .post('/login')
+//         .send(theAccount)
+//         .end((err, res) => {
+//           if (err) {
+//             throw err;
+//           }
+//           cookie = res.headers['set-cookie'].pop().split(';')[0];
+//           done();
+//         });
+//     });
+//     it('response statusCode equal to 200', (done) => {
+//       chai.request(baseUrl)
+//         .put(`/update/${productId1}`)
+//         .send(updateProduct1)
+//         .set('Cookie', cookie)
+//         .end((err, res) => {
+//           console.log(productId1);
+//           expect(err).to.be.null;
+//           expect(res).to.have.status(200);
+//           done();
+//         });
+//     });
+//     it('response should be an object', (done) => {
+//       chai.request(baseUrl)
+//         .put(`/update/${productId2}`)
+//         .send(updateProduct2)
+//         .set('Cookie', cookie)
+//         .end((err, res) => {
+//           expect(res).to.be.an('object');
+//           done();
+//         });
+//     });
+//     it('response should have all parameters', (done) => {
+//       chai.request(baseUrl)
+//         .put(`/update/${productId3}`)
+//         .set('Cookie', cookie)
+//         .send(updateProduct3)
+//         .end((err, res) => {
+//           res.body.should.have.property('username');
+//           res.body.should.have.property('email');
+//           res.body.should.have.property('szmlcim');
+//           res.body.should.have.property('szallcim');
+//           res.body.should.have.property('tel');
+//           res.body.should.have.property('perm');
+//           done();
+//         });
+//     });
 //   });
-//   it('response statusCode equal to 200', (done) => {
-//     chai.request(baseUrl)
-//       .put(`/update/${productId1}`)
-//       .send(updateProduct1)
-//       .set('Cookie', cookie)
-//       .end((err, res) => {
-//         expect(err).to.be.null;
-//         expect(res).to.have.status(200);
-//         console.log(res.body);
-//         done();
-//       });
+//   describe('delete()', () => {
+//     before((done) => {
+//       chai.request('http://localhost:8080/user')
+//         .post('/login')
+//         .send(theAccount)
+//         .end((err, res) => {
+//           if (err) {
+//             throw err;
+//           }
+//           cookie = res.headers['set-cookie'].pop().split(';')[0];
+//           done();
+//         });
+//     });
+//     it('response statusCode equal to 200', (done) => {
+//       chai.request(baseUrl)
+//         .delete(`/delete/${productId1}`)
+//         .set('Cookie', cookie)
+//         .end((err, res) => {
+//           expect(err).to.be.null;
+//           expect(res).to.have.status(200);
+//           done();
+//         });
+//     });
+//     it('response should be an object', (done) => {
+//       chai.request(baseUrl)
+//         .delete(`/delete/${productId2}`)
+//         .set('Cookie', cookie)
+//         .end((err, res) => {
+//           expect(res.body).to.be.an('object');
+//           done();
+//         });
+//     });
+//     it('response should have all parameters', (done) => {
+//       chai.request(baseUrl)
+//         .delete(`/delete/${productId3}`)
+//         .set('Cookie', cookie)
+//         .end((err, res) => {
+//           res.body.should.have.property('username');
+//           res.body.should.have.property('email');
+//           res.body.should.have.property('szmlcim');
+//           res.body.should.have.property('szallcim');
+//           res.body.should.have.property('tel');
+//           res.body.should.have.property('perm');
+//           done();
+//         });
+//     });
 //   });
-//   it('response should be an object', (done) => {
-//     chai.request(baseUrl)
-//       .put(`/update/${productId2}`)
-//       .send(updateProduct2)
-//       .set('Cookie', cookie)
-//       .end((err, res) => {
-//         expect(res).to.be.an('object');
-//         done();
-//       });
-//   });
-//   it('response should have all parameters', (done) => {
-//     chai.request(baseUrl)
-//       .put(`/update/${productId3}`)
-//       .set('Cookie', cookie)
-//       .send(updateProduct3)
-//       .end((err, res) => {
-//         res.body.should.have.property('username');
-//         res.body.should.have.property('email');
-//         res.body.should.have.property('szmlcim');
-//         res.body.should.have.property('szallcim');
-//         res.body.should.have.property('tel');
-//         res.body.should.have.property('perm');
-//         done();
-//       });
-//   });
-// });
-// describe('delete()', () => {
-//   before((done) => {
-//     chai.request('http://localhost:8080/user')
-//       .post('/login')
-//       .send(theAccount)
-//       .end((err, res) => {
-//         if (err) {
-//           throw err;
-//         }
-//         cookie = res.headers['set-cookie'].pop().split(';')[0];
-//         done();
-//       });
-//   });
-//   it('response statusCode equal to 200', (done) => {
-//     chai.request(baseUrl)
-//       .delete(`/delete/${productId1}`)
-//       .set('Cookie', cookie)
-//       .end((err, res) => {
-//         expect(err).to.be.null;
-//         expect(res).to.have.status(200);
-//         done();
-//       });
-//   });
-//   it('response should be an object', (done) => {
-//     chai.request(baseUrl)
-//       .delete(`/delete/${productId2}`)
-//       .set('Cookie', cookie)
-//       .end((err, res) => {
-//         expect(res.body).to.be.an('object');
-//         console.log(res.body);
-//         done();
-//       });
-//   });
-//   it('response should have all parameters', (done) => {
-//     chai.request(baseUrl)
-//       .delete(`/delete/${productId3}`)
-//       .set('Cookie', cookie)
-//       .end((err, res) => {
-//         res.body.should.have.property('username');
-//         res.body.should.have.property('email');
-//         res.body.should.have.property('szmlcim');
-//         res.body.should.have.property('szallcim');
-//         res.body.should.have.property('tel');
-//         res.body.should.have.property('perm');
-//         done();
-//       });
-// });
 // });
