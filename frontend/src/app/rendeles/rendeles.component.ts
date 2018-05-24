@@ -85,7 +85,7 @@ export class RendelesComponent implements OnInit {
 
   // Kiválasztott termék törlése
   deleteProductFromBasket(basketItem) {
-    this.basket = this.basket.filter(item => item.productId !== basketItem.productId);
+    this.basket = this.basket.filter((item, i) => i !== basketItem);
     localStorage.basket = JSON.stringify(this.basket);
     // this.getBasketFromStorage();
     this.getTotalPrice();
@@ -114,7 +114,7 @@ export class RendelesComponent implements OnInit {
       this.totalPiece += this.basket[i].quantity;
     }
     this.messageModal();
-    if (this.basket) {
+    if (this.basket[0]) {
       this.http.post('http://localhost:8080/order/all/create', {
         userId: this.httpLocal.user._id, quantity: this.totalPiece,
         cost: this.totalPrice

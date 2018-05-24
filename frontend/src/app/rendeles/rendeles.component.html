@@ -49,7 +49,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let basketItem of basket let i = index">
+            <tr *ngFor="let basketItem of basket;index as i">
               <td>{{basketItem.productId}}</td>
               <td>{{basketItem.productName}}</td>
               <td>{{basketItem.productCost*basketItem.quantity}} Ft</td>
@@ -61,7 +61,7 @@
                 </div>
               </td>
               <td>
-                <button type="button" class="btn btn-danger" (click)="deleteProductFromBasket(basketItem)">Törlés</button>
+                <button type="button" class="btn btn-danger" (click)="deleteProductFromBasket(i)">Törlés</button>
               </td>
             </tr>
           </tbody>
