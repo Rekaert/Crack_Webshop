@@ -15,7 +15,7 @@ export class KategoriakComponent implements OnInit {
     rank: ''
   };
 
-  constructor(private http: HttpLocalService) {
+  constructor(public http: HttpLocalService) {
     this.getDatas();
   }
 
@@ -30,16 +30,19 @@ export class KategoriakComponent implements OnInit {
   }
 
   create(newKategoria) {
+    newKategoria.rank = parseInt(newKategoria.rank);
     this.http.createCategory(newKategoria);
     this.getDatas();
   }
 
   remove(category) {
+
     this.http.deleteCategory(category);
     this.getDatas();
   }
 
   update(category) {
+    category.rank = parseInt(category.rank);
     this.http.updateCategory(category);
     this.getDatas();
   }
