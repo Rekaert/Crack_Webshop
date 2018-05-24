@@ -114,7 +114,7 @@ export class RendelesComponent implements OnInit {
       this.totalPiece += this.basket[i].quantity;
     }
     this.messageModal();
-    if (this.basket) {
+    if (this.basket[0]) {
       this.http.post('http://localhost:8080/order/all/create', {
         userId: this.httpLocal.user._id, quantity: this.totalPiece,
         cost: this.totalPrice
