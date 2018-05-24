@@ -85,7 +85,7 @@ export class RendelesComponent implements OnInit {
 
   // Kiválasztott termék törlése
   deleteProductFromBasket(basketItem) {
-    this.basket = this.basket.filter(item => item.productId !== basketItem.productId);
+    this.basket = this.basket.filter((item, i) => i !== basketItem);
     localStorage.basket = JSON.stringify(this.basket);
     // this.getBasketFromStorage();
     this.getTotalPrice();
