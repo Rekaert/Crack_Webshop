@@ -30,6 +30,7 @@ export class ProfilComponent implements OnInit {
     this.userService.getProfile().subscribe(data => {
       console.log(data);
       this.user = data.user;
+      console.log(this.user);
       this.convertAddressFieldsBack();
     })
     this.httpClient.get<any>(baseUrl + '/order/all/own', { withCredentials: true })
