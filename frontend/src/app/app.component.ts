@@ -24,6 +24,8 @@ export class AppComponent {
   constructor(public http: HttpLocalService) {
     this.http.getUsers();
     this.http.auth();
+    /* console.log(localStorage.basket); */
+    this.http.basketNumber = localStorage.basket ? JSON.parse(localStorage.basket).length : 0;
   }
 
   /*     profile() {

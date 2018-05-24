@@ -17,6 +17,7 @@ export class UsersComponent implements OnInit {
   users: User[];
   user = new User();
   message: string = "";
+  passwordVerification: string = "";
 
   constructor(private http: HttpLocalService,
     private userService: UsersService) { }
@@ -42,6 +43,12 @@ export class UsersComponent implements OnInit {
 
   create() {
     this.convertAddressFields();
+
+    if (this.user['password'] && this.passwordVerification != this.user['password']) {
+      alert('Kérlek a jelszóváltoztatásnál add meg ugyanazt a jelszót még egyszer.')
+      return;
+    }
+
     if (this.user['password'] && this.user['password'].length >= 8) {
       this.userService.create(this.user).subscribe(data => {
         alert('Az új felhasználót sikeresen hozzáadtad.')
@@ -83,6 +90,11 @@ export class UsersComponent implements OnInit {
   update() {
     console.log(this.user);
     this.convertAddressFields();
+
+    if (this.user['newpassword'] && this.passwordVerification != this.user['newpassword']) {
+      alert('Kérlek a jelszóváltoztatásnál add meg ugyanazt a jelszót még egyszer.')
+      return;
+    }
 
     if (!this.user['newpassword'] || this.user['newpassword'].length >= 8) {
       this.userService.update(this.user).subscribe(data => {

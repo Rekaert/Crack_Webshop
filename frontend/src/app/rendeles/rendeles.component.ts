@@ -85,14 +85,15 @@ export class RendelesComponent implements OnInit {
 
   // Kiválasztott termék törlése
   deleteProductFromBasket(basketItem) {
-    this.basket = this.basket.filter(item => item.productId !== basketItem.productId);
+    this.basket = this.basket.filter((item, i) => i !== basketItem);
     localStorage.basket = JSON.stringify(this.basket);
     // this.getBasketFromStorage();
     this.getTotalPrice();
+    this.httpLocal.basketNumber--
   }
 
   messageModal() {
-    if (this.customer.szmlcim === '' || this.customer.szallcim === '') {
+    if (this.customer.szmlcim === '' || this.customer.szallcim === '' || this.customer.tel === '') {
 
       this.modaltitle = 'Hiányos profiladatok!';
       this.modalbody = 'Kérjük, pótolja hiányzó adatait profiloldalán.';
@@ -113,7 +114,7 @@ export class RendelesComponent implements OnInit {
       this.totalPiece += this.basket[i].quantity;
     }
     this.messageModal();
-    if (this.basket) {
+    if (this.basket[0]) {
       this.http.post('http://localhost:8080/order/all/create', {
         userId: this.httpLocal.user._id, quantity: this.totalPiece,
         cost: this.totalPrice
@@ -134,6 +135,8 @@ export class RendelesComponent implements OnInit {
                 if (i + 1 == this.basket.length) {
                   this.basket = [];
                   localStorage.clear();
+                  this.getTotalPrice();
+                  this.httpLocal.basketNumber = 0;
                 }
               });
 
@@ -145,6 +148,10 @@ export class RendelesComponent implements OnInit {
       //console.log(this.httpLocal.user, );
 
 
+    }
+    else {
+      this.modaltitle = 'Kosara üres!';
+      this.modalbody = 'A rendelés leadásához, helyezzen termékeket a kosárba.';
     }
   }
 

@@ -65,7 +65,7 @@ export class HttpLocalService {
         if (data['success']) {
           this.auth();
           this.proba = 0;
-          alert('Sikeres belépés!');
+          location.reload();
         }
       }, err => {
         this.proba++;
@@ -129,8 +129,10 @@ export class HttpLocalService {
   }
 
   createCategory(newCategory) {
+    console.log(newCategory);
     this.httpClient.post('http://localhost:8080/kategoria', newCategory)
-      .subscribe(() => {
+      .subscribe((data) => {
+        console.log(data);
         this.getCategories();
       }
       );

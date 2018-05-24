@@ -20,39 +20,50 @@
 }
 
 .nav-link {
-  position: relative;
-  padding-top: 0;
-  top: 0;
-  font-family: 'Skranji', cursive;
-  margin-right: 15px;
   color: rgb(240, 36, 9);
-  text-transform: uppercase;
+  font-family: 'Skranji', cursive;
   font-weight: bold;
+  margin-right: 15px;
+  padding-top: 0;
+  position: relative;
   text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px darkslateblue;
+  text-transform: uppercase;
+  top: 0;
 }
 
 .navbar {
   cursor: pointer;
-  margin-top: 0;
   font-size: 25px;
+  margin-top: 0;
 }
 
 .navbar .nav-item:hover {
+  color: #1D69BD;
   cursor: pointer;
-  color: #1D69BD
 }
 
 .btn_cust {
-  color: rgb(240, 36, 9);
-  font-size: 20px;
-  font-family: 'Skranji', cursive;
   background-color: rgb(29, 28, 28);
+  color: rgb(240, 36, 9);
+  font-family: 'Skranji', cursive;
+  font-size: 20px;
   height: 50%;
-  right: 15%;
   position: absolute;
+  right: 15%;
   top: 20%;
 }
 
 .btn_cust:hover {
   color: #1D69BD
+}
+
+#numberOfItems {
+  background: #0056B3;
+  border-radius: 100%;
+  color: white;
+  left: -11px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-shadow: 10px 10px 35px 16px rgba(0, 0, 0, 0.75);
+  z-index: ;
 }
