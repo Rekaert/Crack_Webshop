@@ -89,18 +89,14 @@ export class RendelesComponent implements OnInit {
     localStorage.basket = JSON.stringify(this.basket);
     // this.getBasketFromStorage();
     this.getTotalPrice();
-    this.httpLocal.basketNumber--
+    this.httpLocal.basketNumber--;
   }
 
   messageModal() {
-    if (this.customer.szmlcim === '' || this.customer.szallcim === '' || this.customer.tel === '') {
+    if (this.customer.szmlcim === '\||' || this.customer.szallcim === '\||' || this.customer.tel === '\||') {
 
       this.modaltitle = 'Hiányos profiladatok!';
       this.modalbody = 'Kérjük, pótolja hiányzó adatait profiloldalán.';
-    } else if (this.basket.length === 0) {
-
-      this.modaltitle = 'Kosara üres!';
-      this.modalbody = 'A rendelés leadásához, helyezzen termékeket a kosárba.';
     } else {
 
       this.modaltitle = 'Köszönjük vásárlását!';
@@ -109,7 +105,7 @@ export class RendelesComponent implements OnInit {
   }
 
   sendOrder() {
-    //console.log(this.httpLocal.user._id);
+    // console.log(this.httpLocal.user._id);
     for (let i in this.basket) {
       this.totalPiece += this.basket[i].quantity;
     }
@@ -121,18 +117,18 @@ export class RendelesComponent implements OnInit {
       })
         .subscribe((data) => {
           console.log(this.basket.length);
-          let id = JSON.parse(data['_body'])._id;
+          const id = JSON.parse(data['_body'])._id;
           for (let i = 0; i < this.basket.length; i++) {
-            let elkuld = {
+            const elkuld = {
               orderId: id,
               productId: this.basket[i].productId,
               quantity: this.basket[i].quantity,
               price: this.basket[i].totalCost
-            }
+            };
 
             this.http.post('http://localhost:8080/order/one/create', elkuld)
               .subscribe((data2) => {
-                if (i + 1 == this.basket.length) {
+                if (i + 1 === this.basket.length) {
                   this.basket = [];
                   localStorage.clear();
                   this.getTotalPrice();
@@ -145,11 +141,10 @@ export class RendelesComponent implements OnInit {
         );
       /*  console.log(this.customer); */
 
-      //console.log(this.httpLocal.user, );
+      // console.log(this.httpLocal.user, );
 
 
-    }
-    else {
+    } else {
       this.modaltitle = 'Kosara üres!';
       this.modalbody = 'A rendelés leadásához, helyezzen termékeket a kosárba.';
     }
