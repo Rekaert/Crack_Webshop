@@ -22,8 +22,8 @@
             <sup id="numberOfItems">{{http.basketNumber}}</sup>
           </a>
           <a *ngIf="http.typeOfUser <= 1" class="nav-item nav-link" routerLink="/profil">profil</a>
-          <a *ngIf="http.typeOfUser <= 1" class="nav-item nav-link" routerLink="/rendeles">rendeles</a>
-          <!-- <a *ngIf="http.typeOfUser <= 2" class="nav-item nav-link" routerLink="/kapcsolat">kapcsolat</a> -->
+          <!-- <a *ngIf="http.typeOfUser <= 1" class="nav-item nav-link" routerLink="/rendeles">rendeles</a> -->
+          <a *ngIf="http.typeOfUser <= 2" class="nav-item nav-link" routerLink="/kapcsolat">kapcsolat</a>
           <li *ngIf="http.typeOfUser <= 0" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
