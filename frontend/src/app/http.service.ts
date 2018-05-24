@@ -65,7 +65,7 @@ export class HttpLocalService {
         if (data['success']) {
           this.auth();
           this.proba = 0;
-          alert('Sikeres belépés!');
+          location.reload();
         }
       }, err => {
         this.proba++;
