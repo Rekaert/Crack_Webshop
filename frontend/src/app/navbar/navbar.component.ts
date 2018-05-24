@@ -71,13 +71,13 @@ export class NavbarComponent implements OnInit {
         this.newUser.perm = 1;
         this.newUser.szmlcim = [
           this.newUsersAddress.szmlcim_iranyitoszam,
-          this.newUsersAddress.szmlcim_utca,
-          this.newUsersAddress.szmlcim_varos
+          this.newUsersAddress.szmlcim_varos,
+          this.newUsersAddress.szmlcim_utca
         ].join(' | ');
         this.newUser.szallcim = [
           this.newUsersAddress.szallcim_iranyitoszam,
-          this.newUsersAddress.szallcim_utca,
-          this.newUsersAddress.szallcim_varos
+          this.newUsersAddress.szallcim_varos,
+          this.newUsersAddress.szallcim_utca
         ].join(' | ');
         this.http.register(this.newUser);
         alert('Sikeres regisztráció!');
