@@ -9,8 +9,8 @@ import { HttpLocalService } from '../http.service';
 })
 export class FooldalComponent implements OnInit {
   products: any = [];
-  item: any = 4;
-  kategoria: any = 'all';
+  item: number = 4;
+  kategoria: string = 'all';
   constructor(public http: Http, public httpLocal: HttpLocalService) {
     this.getAll(this.kategoria);
     this.httpLocal.getCategories();

@@ -9,6 +9,7 @@
 
 .navbar-brand {
   text-shadow: 1px 1px 2px white, 0 0 25px rgb(219, 219, 92), 0 0 5px white;
+  color: rgb(240, 36, 9);
 }
 
 .navbar-brand:hover {
@@ -24,6 +25,7 @@
   font-family: 'Skranji', cursive;
   font-weight: bold;
   margin-right: 15px;
+  font-size: 120%;
   padding-top: 0;
   position: relative;
   text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px darkslateblue;
@@ -65,5 +67,4 @@
   padding-left: 8px;
   padding-right: 8px;
   text-shadow: 10px 10px 35px 16px rgba(0, 0, 0, 0.75);
-  z-index: ;
 }
